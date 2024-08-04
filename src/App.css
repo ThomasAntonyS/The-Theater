@@ -7,9 +7,33 @@
   margin: 0;
   width: 100vw;
 }
+/* width */
+::-webkit-scrollbar {
+  height: 7px;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+  border: 2px solid rgb(255, 255, 255);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
 body{
-  overflow-x: visible;
+  overflow-x: hidden;
   font-family: "Fira Mono", monospace;
+  background-color: black;
 }
 .default_style{
   height: max-content;

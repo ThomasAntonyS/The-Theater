@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import Logo from '../assets/Logo.png'
 
 const Header = () => {
 
@@ -17,8 +18,8 @@ const Header = () => {
                 <Link className='default_style'>New & Popular</Link>
             </div>
 
-            <div className="Header_Title flex w-[15vw] text-white font-bold">
-                <p className='default_style '>THEATER</p>
+            <div className="Header_Title flex w-[15vw] ml-[-55px] text-white font-bold">
+                <a href='#'><img src={Logo} alt="Logo" className=' h-[6vh] my-3'/></a>
             </div>
 
             <div className="Header_UserFunction flex w-[12vw] mr-6 text-white">
