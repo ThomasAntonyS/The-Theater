@@ -51,7 +51,7 @@ const Banner = () => {
 
         <div className="Banner_ImageSlider absolute h-full w-full justify-between">
             <button onClick={handleLeftClick} className='absolute top-[40%] left-10 transform -translate-x-1/2 -translate-y-1/2 w-max h-max text-white text-3xl px-4 py-2 rounded-full bg-black bg-opacity-45'>&#8592;</button>
-            <video src={BannerMovies[count].video} alt={BannerMovies[count].title} autoPlay loop className=' absolute object-fill h-full w-full -z-10' />
+            <video src={BannerMovies[count].video} alt={BannerMovies[count].title} autoPlay className=' absolute object-fill h-full w-full -z-10' />
             <button onClick={handleRightClick} className='absolute top-[40%] right-0 transform -translate-x-1/2 -translate-y-1/2 w-max h-max text-white text-3xl px-4 py-2 rounded-full bg-black bg-opacity-45'>&#8594;</button>
         </div>
 
@@ -70,7 +70,7 @@ const Banner = () => {
             {
                 BannerMovies.map((_,index)=>{
                     return(
-                        <div className=' flex flex-row h-max w-20'>
+                        <div className=' flex flex-row h-max w-20' key={index}>
                             {
                                 (index==count)?
                                 <p className='w-[90%] bg-white h-1 rounded-full'></p>

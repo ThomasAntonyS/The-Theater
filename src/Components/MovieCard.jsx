@@ -14,6 +14,8 @@ const MovieCard = ({title,url}) => {
 }
 useEffect(() => {
     fetchMovie()
+    console.log(movies);
+    
 }, [])
     const baseImage = 'https://image.tmdb.org/t/p/w185'
 
