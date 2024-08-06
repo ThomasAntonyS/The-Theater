@@ -51,16 +51,16 @@ const Banner = () => {
 
         <div className="Banner_ImageSlider absolute h-full w-full justify-between">
             <button onClick={handleLeftClick} className='absolute top-[40%] left-10 transform -translate-x-1/2 -translate-y-1/2 w-max h-max text-white text-3xl px-4 py-2 rounded-full bg-black bg-opacity-45'>&#8592;</button>
-            <video src={BannerMovies[count].video} alt={BannerMovies[count].title} autoPlay className=' absolute object-fill h-full w-full -z-10' />
+            <video src={BannerMovies[count].video} alt={BannerMovies[count].title} autoPlay className=' absolute object-cover h-full w-full -z-10' />
             <button onClick={handleRightClick} className='absolute top-[40%] right-0 transform -translate-x-1/2 -translate-y-1/2 w-max h-max text-white text-3xl px-4 py-2 rounded-full bg-black bg-opacity-45'>&#8594;</button>
         </div>
 
-        <div className="Banner_Data absolute w-[30%] h-[30%] bottom-[22%] ml-6">
+        <div className="Banner_Data absolute w-[30%] h-[30%] bottom-[24%] ml-6">
             <p className=' text-white h-max w-max px-4 py-2 bg-white bg-opacity-30 rounded-full'>New Movie</p>
-            <p className=' text-white h-max w-max text-3xl'>{BannerMovies[count].title}</p>
-            <p className=' text-white block overflow-hidden h-[45%] w-[105%]'>{BannerMovies[count].desc}</p>
+            <p className=' text-white h-max w-max text-3xl mt-2'>{BannerMovies[count].title}</p>
+            <p className=' text-white block overflow-hidden h-[45%] w-[105%] mt-2'>{BannerMovies[count].desc}</p>
 
-            <div>
+            <div className=' mt-2'>
                 <button className=' h-max w-max bg-white text-black rounded-full px-4 py-2'><PlayCircleOutlineRoundedIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/>Watch Movie</button>
                 <button className=' text-white h-max w-max bg-white bg-opacity-30 rounded-full mx-2 px-4 py-2'>More Info <span className=' text-1xl'> &#8594;</span></button>
             </div>

@@ -7,9 +7,14 @@ const MovieCard = ({title,url}) => {
     const [movies,setMovies] = useState([])
 
     const fetchMovie = async () => {
-    const data = await fetch(url);
-    const movie = await data.json();
-    setMovies(movie.results)
+        try {
+            const data = await fetch(url);
+            const movie = await data.json();
+            setMovies(movie.results)
+        } catch (error) {
+            console.log(error);
+            
+        }
 }
 useEffect(() => {
     fetchMovie()
@@ -25,7 +30,7 @@ useEffect(() => {
         <button className=' absolute right-0 text-white bg-white bg-opacity-20 w-max h-max px-3 py-[.1rem] rounded-full'><span className=' text-1xl h-max w-max'>See More <span className=' text-[20px]'> &#8594;</span></span></button>
     </div>
 
-    {movies ? (
+    {movies!=[] ? (
         <div className='relative flex overflow-x-scroll overflow-y-hidden mx-auto my-3 w-[99%]'>
             <div className='flex'>
                 {movies.map((movie, index) => (
@@ -37,9 +42,9 @@ useEffect(() => {
                 ))}
             </div>
         </div>
-    ) : (
-        <p>Loading...</p>
-    )}
+    ) :
+    <p className=' text-white text-2xl'>Loading...</p>
+}
 </div>
 
 
