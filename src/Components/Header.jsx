@@ -14,12 +14,12 @@ const Header = () => {
 
             <div className="Header_Navigation flex w-[17vw] ml-6 text-white ">
                 <button className='default_style'><MenuIcon/></button>
-                <Link className='default_style'>Movies</Link>
+                <Link className='default_style' to='/movies'>Movies</Link>
                 <Link className='default_style'>New & Popular</Link>
             </div>
 
             <div className="Header_Title flex w-[15vw] ml-[-55px] text-white font-bold">
-                <a href='#'><img src={Logo} alt="Logo" className=' h-[6vh] my-3'/></a>
+                <a href='/'><img src={Logo} alt="Logo" className=' h-[6vh] my-3'/></a>
             </div>
 
             <div className="Header_UserFunction flex w-[12vw] mr-6 text-white">

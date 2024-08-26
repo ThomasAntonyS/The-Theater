@@ -23,7 +23,7 @@ useEffect(() => {
 
   return (
     
-    <div className='overflow-hidden w-[95vw] mx-auto -mt-[7%] mb-[160px]'>
+    <div className='Card overflow-hidden w-[95vw] mx-auto -mt-[7%] mb-[160px]'>
 
     <div className=' flex relative w-[97%]'>
         <p className='text-3xl mx-3 text-white w-max h-max '>{title}</p>
@@ -34,7 +34,7 @@ useEffect(() => {
         <div className='relative flex overflow-x-scroll overflow-y-hidden mx-auto my-3 w-[99%]'>
             <div className='flex'>
                 {movies.map((movie, index) => (
-                    <div key={index} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[15vw] my-4 mx-6 '>
+                    <div key={index} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-6 '>
                         <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[70%] w-fill object-fill rounded-[10px]'/>
                         <p className=' text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                         <Link path='' className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
@@ -44,11 +44,8 @@ useEffect(() => {
         </div>
     ) :
     <p className=' text-white text-2xl'>Loading...</p>
-}
-</div>
-
-
-
+    }
+    </div>
   )
 
 }
