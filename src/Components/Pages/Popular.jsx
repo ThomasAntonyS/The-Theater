@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import PageCard from '../PageCard';
+import PageLayout from '../PageLayout';
 import Header from '../Header'
 
 const Popular = () => {
@@ -33,7 +33,7 @@ const Popular = () => {
         <Header/>
 
         <section>
-            <PageCard movies={movie} 
+            <PageLayout movies={movie} 
             title={"Most Linked"} 
             description={"A comprehensive collection of all movies, meticulously curated and organized, offers an extensive archive of cinematic masterpieces, spanning various genres, eras, and cultures, providing an invaluable resource for film enthusiasts."}
             path={"popular"}

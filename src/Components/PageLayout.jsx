@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const PageCard = ({movies,title,description}) => {
+const PageLayout = ({movies,title,description}) => {
 
 
     const baseImage = 'https://image.tmdb.org/t/p/w185'
@@ -34,4 +34,4 @@ const PageCard = ({movies,title,description}) => {
     
 }
 
-export default PageCard
+export default PageLayout

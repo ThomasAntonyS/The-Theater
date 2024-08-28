@@ -3,7 +3,7 @@ import Home from './Components/Pages/Home'
 import Popular from './Components/Pages/Popular'
 import TopRated from './Components/Pages/TopRated'
 import Upcoming from './Components/Pages/Upcoming'
-import MovieMain from './Components/Pages/MovieMain'
+import Movie from './Components/Pages/Movie'
 import './App.css'
 
 
@@ -36,7 +36,7 @@ function App() {
 
             <Route
             path={'movie/:id'}
-            element={<MovieMain/>}
+            element={<Movie/>}
             />
 
 

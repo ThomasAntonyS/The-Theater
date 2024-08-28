@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-import PageCard from '../PageCard';
+import PageLayout from '../PageLayout';
 import Header from '../Header'
 
 const TopRated = () => {
@@ -33,7 +33,7 @@ const TopRated = () => {
         <Header/>
 
         <section>
-            <PageCard movies={movie} 
+            <PageLayout movies={movie} 
             title={"Best Of All Times"} 
             description={"Explore our selection of top-rated movies, handpicked from popular genres, showcasing the best in storytelling, acting, and cinematic artistry. Perfect for movie enthusiasts looking for the highest-rated films."}
             path={"top_rated"}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import PageCard from '../PageCard';
+import PageLayout from '../PageLayout';
 import Header from '../Header'
 
 const Upcoming = () => {
@@ -33,7 +33,7 @@ const Upcoming = () => {
         <Header/>
 
         <section>
-            <PageCard movies={movie} 
+            <PageLayout movies={movie} 
             title={"On The Horizon"} 
             description={"Stay updated with the latest releases and never miss out on the most anticipated movies hitting the theaters soon. Discover trailers, release dates, and exclusive sneak peeks of upcoming blockbusters."}
             path={"upcoming"}
