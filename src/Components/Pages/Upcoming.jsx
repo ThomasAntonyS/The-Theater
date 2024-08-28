@@ -1,8 +1,8 @@
-import {useState,useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import PageCard from '../PageCard';
 import Header from '../Header'
 
-const TopRated = () => {
+const Upcoming = () => {
 
     const [pageCount,setPageCount] = useState(1)
     const [movie,setMovie] = useState([])
@@ -12,7 +12,7 @@ const TopRated = () => {
     },[pageCount])
 
     const getMovies = async() =>{
-        const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US&page=${pageCount}`)
+        const data = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US&page=${pageCount}`)
         const response = await data.json()
         setMovie(response.results)
     }
@@ -27,16 +27,16 @@ const TopRated = () => {
 
   return (
 
-    <>
+    <> 
 
         <Header/>
 
         <section>
             <PageCard movies={movie} 
-            title={"Best Of All Times"} 
-            description={"Explore our selection of top-rated movies, handpicked from popular genres, showcasing the best in storytelling, acting, and cinematic artistry. Perfect for movie enthusiasts looking for the highest-rated films."}
-            path={"top_rated"}
-            /> 
+            title={"On The Horizon"} 
+            description={"Stay updated with the latest releases and never miss out on the most anticipated movies hitting the theaters soon. Discover trailers, release dates, and exclusive sneak peeks of upcoming blockbusters."}
+            path={"upcoming"}
+            />
         </section>
 
         <section className='Pagination flex justify-between mt-[3vh] mb-[5vh]'>
@@ -47,9 +47,7 @@ const TopRated = () => {
             </div>
         </section>
     </>
-
   )
-
 }
 
-export default TopRated
+export default Upcoming

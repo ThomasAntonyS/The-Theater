@@ -19,6 +19,7 @@ const Home = () => {
 
       <MovieCard title={"Trending"} 
       url='https://api.themoviedb.org/3/movie/upcoming?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US&page=1'
+      navLink={'upcoming'}
       />
 
       <MovieCard title={"Top Rated"} 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 const PageCard = ({movies,title,description}) => {
 
@@ -16,10 +17,10 @@ const PageCard = ({movies,title,description}) => {
                 <div className=' flex w-[85vw] overflow-x-hidden overflow-y-hidden mx-auto my-3'>
                     <div className='flex flex-wrap'>
                         {movies.map((movie, index) => (
-                            <div key={index} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
+                            <Link key={index} to={`/movie/${movie.id}`} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
                                 <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[70%] w-fill object-fill rounded-[10px]'/>
                                 <p className=' text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

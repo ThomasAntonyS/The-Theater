@@ -12,13 +12,14 @@ const Header = () => {
     <div>
         <div className="Header-main absolute flex align-middle justify-between h-[10vh] w-[100%]  bg-black bg-opacity-25 z-20">
 
-            <div className="Header_Navigation flex w-[17vw] ml-6 text-white ">
-                <button className='default_style'><MenuIcon/></button>
+            <div className="Header_Navigation flex w-[20vw] ml-6 text-white">
+                <button className='default_style' id='menu_icon'><MenuIcon/></button>
                 <Link className='default_style' to='/popular'>Popular</Link>
                 <Link className='default_style' to='/top_rated'>Top Rated</Link>
+                <Link className='default_style' to='/upcoming'>Upcoming</Link>
             </div>
 
-            <div className="Header_Title flex w-[15vw] ml-[-55px] mt-1 text-white font-bold">
+            <div className="Header_Title flex w-[15vw] ml-[-120px] mt-1 text-white font-bold">
                 <a href='/'><img src={Logo} alt="Logo" className=' h-[6vh] my-3'/></a>
             </div>
 

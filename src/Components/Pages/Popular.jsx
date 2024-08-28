@@ -15,7 +15,6 @@ const Popular = () => {
         const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US&page=${pageCount}`)
         const response = await data.json()
         setMovie(response.results)
-        console.log(response.results);
     }
 
     function handleLeft(){
@@ -28,14 +27,16 @@ const Popular = () => {
 
   return (
 
-    <div className=''>
+    <>
 
         <Header/>
 
         <section>
             <PageCard movies={movie} 
-            title={"Collection Of All Movies"} 
-            description={"A comprehensive collection of all movies, meticulously curated and organized, offers an extensive archive of cinematic masterpieces, spanning various genres, eras, and cultures, providing an invaluable resource for film enthusiasts."}/>
+            title={"Most Linked"} 
+            description={"A comprehensive collection of all movies, meticulously curated and organized, offers an extensive archive of cinematic masterpieces, spanning various genres, eras, and cultures, providing an invaluable resource for film enthusiasts."}
+            path={"popular"}
+            />
         </section>
 
         <section className='Pagination flex justify-between mt-[3vh] mb-[5vh]'>
@@ -45,7 +46,7 @@ const Popular = () => {
                 <button className='w-max px-4 py-2 rounded-full text-white text-[20px] bg-white bg-opacity-5' onClick={()=>{setPageCount(pageCount+1);window.scrollTo(0,0)}}>&#8594;</button>
             </div>
         </section>
-    </div>
+    </>
   )
 }
 
