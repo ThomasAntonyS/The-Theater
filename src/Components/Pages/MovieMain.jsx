@@ -12,7 +12,8 @@ const MovieMain = () => {
         fetchItem()
     },[])
     const fetchItem = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US`);
+        const apiKey = process.env.REACT_APP_API_KEY
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`);
         const movie = await data.json();
         setItem(movie)
         console.log(item);
