@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import MoviesPage from '../MoviesPage';
+import {useState,useEffect} from 'react'
+import PageCard from '../PageCard';
+import Header from '../Header'
 
-const Movies = () => {
+const TopRated = () => {
 
     const [pageCount,setPageCount] = useState(1)
     const [movie,setMovie] = useState([])
@@ -11,7 +12,7 @@ const Movies = () => {
     },[pageCount])
 
     const getMovies = async() =>{
-        const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US&page=${pageCount}`)
+        const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US&page=${pageCount}`)
         const response = await data.json()
         setMovie(response.results)
         console.log(response.results);
@@ -26,9 +27,16 @@ const Movies = () => {
     }
 
   return (
+
     <div className=''>
+
+        <Header/>
+
         <section>
-            <MoviesPage movies={movie}/>
+            <PageCard movies={movie} 
+            title={"Top Rated"} 
+            description={"Explore our selection of top-rated movies, handpicked from popular genres, showcasing the best in storytelling, acting, and cinematic artistry. Perfect for movie enthusiasts looking for the highest-rated films."}
+            />
         </section>
 
         <section className='Pagination flex justify-between mt-[3vh] mb-[5vh]'>
@@ -39,7 +47,9 @@ const Movies = () => {
             </div>
         </section>
     </div>
+
   )
+
 }
 
-export default Movies
+export default TopRated

@@ -14,11 +14,11 @@ const Header = () => {
 
             <div className="Header_Navigation flex w-[17vw] ml-6 text-white ">
                 <button className='default_style'><MenuIcon/></button>
-                <Link className='default_style' to='/movies'>Movies</Link>
-                <Link className='default_style'>New & Popular</Link>
+                <Link className='default_style' to='/popular'>Popular</Link>
+                <Link className='default_style' to='/top_rated'>Top Rated</Link>
             </div>
 
-            <div className="Header_Title flex w-[15vw] ml-[-55px] text-white font-bold">
+            <div className="Header_Title flex w-[15vw] ml-[-55px] mt-1 text-white font-bold">
                 <a href='/'><img src={Logo} alt="Logo" className=' h-[6vh] my-3'/></a>
             </div>
 

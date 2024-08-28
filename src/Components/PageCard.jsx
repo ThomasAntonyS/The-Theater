@@ -1,6 +1,6 @@
-import React from 'react'
 
-const MoviesPage = ({movies}) => {
+const PageCard = ({movies,title,description}) => {
+
 
     const baseImage = 'https://image.tmdb.org/t/p/w185'
 
@@ -8,8 +8,8 @@ const MoviesPage = ({movies}) => {
     
         <div className='MoviePage_Card flex flex-col overflow-hidden w-[100vw] mx-auto'>
 
-            <p className=' text-white w-max text-4xl mx-auto mt-[10vh] mb-[3vh]'>Collection Of All Movies</p>
-            <p className=' text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>A comprehensive collection of all movies, meticulously curated and organized, offers an extensive archive of cinematic masterpieces, spanning various genres, eras, and cultures, providing an invaluable resource for film enthusiasts.</p>
+            <p className=' text-white w-max text-4xl mx-auto mt-[15vh] mb-[3vh]'>{title}</p>
+            <p className=' text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>{description}</p>
     
             <div className="content flex flex-col w-max overflow-hidden mx-auto">
                 {movies!=[] ? (
@@ -33,4 +33,4 @@ const MoviesPage = ({movies}) => {
     
 }
 
-export default MoviesPage
+export default PageCard

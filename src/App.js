@@ -1,6 +1,7 @@
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Home from './Components/Pages/Home'
-import Movies from './Components/Pages/Movies'
+import Popular from './Components/Pages/Popular'
+import TopRated from './Components/Pages/TopRated'
 import './App.css'
 
 
@@ -17,9 +18,15 @@ function App() {
             element={<Home/>}/>
 
             <Route
-            path='/movies'
-            element={<Movies/>}
+            path='/popular'
+            element={<Popular/>}
             />
+
+          <Route
+            path='/top_rated'
+            element={<TopRated/>}
+            />
+
 
           </Routes>
 

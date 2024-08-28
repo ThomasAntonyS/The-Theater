@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const MovieCard = ({title,url}) => {
+const MovieCard = ({title,url,navLink}) => {
 
     const [movies,setMovies] = useState([])
 
@@ -27,7 +27,10 @@ useEffect(() => {
 
     <div className=' flex relative w-[97%]'>
         <p className='text-3xl mx-3 text-white w-max h-max '>{title}</p>
-        <button className=' absolute right-0 text-white bg-white bg-opacity-20 w-max h-max px-3 py-[.1rem] rounded-full'><span className=' text-1xl h-max w-max'>See More <span className=' text-[20px]'> &#8594;</span></span></button>
+        <Link 
+        className=' absolute right-0 text-white bg-white bg-opacity-20 w-max h-max px-3 py-[.1rem] rounded-full'
+        to={navLink}
+        ><span className=' text-1xl h-max w-max'>See More <span className=' text-[20px]'> &#8594;</span></span></Link>
     </div>
 
     {movies!=[] ? (
@@ -35,7 +38,7 @@ useEffect(() => {
             <div className='flex'>
                 {movies.map((movie, index) => (
                     <div key={index} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-6 '>
-                        <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[70%] w-fill object-fill rounded-[10px]'/>
+                        <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
                         <p className=' text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                         <Link path='' className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
                     </div>
