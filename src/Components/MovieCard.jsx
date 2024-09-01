@@ -40,7 +40,7 @@ useEffect(() => {
                     <Link to={`movie/${movie.id}`} key={index} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-6 '>
                         <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
                         <p className=' text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
-                        <Link to={`movies/${movie.id}`} className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
+                        <Link to={`movie/${movie.id}`} className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
                     </Link>
                 ))}
             </div>

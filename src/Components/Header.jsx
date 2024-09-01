@@ -24,9 +24,9 @@ const Header = () => {
             </div>
 
             <div className="Header_UserFunction flex w-[12vw] mr-6 text-white">
-                <button className='default_style'><SearchIcon/></button>
-                <Link className='default_style'><NotificationsIcon/></Link>
-                <Link className='default_style'><Avatar alt="Remy Sharp" src="" /></Link>
+                <Link className='default_style' to='/serach'><SearchIcon/></Link>
+                <Link className='default_style' to='/'><NotificationsIcon/></Link>
+                <Link className='default_style' to='/profile'><Avatar alt="Remy Sharp" src="" /></Link>
             </div>
 
         </div>
