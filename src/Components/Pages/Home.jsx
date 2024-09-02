@@ -13,10 +13,12 @@ const Home = () => {
 
       <Banner/>
 
-      <MovieCard title={"Popular Movies"} 
-      url={`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`}
-      navLink={'popular'}
+      <section className=' mt-[-8%]'>
+        <MovieCard title={"Popular Movies"} 
+        url={`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`}
+        navLink={'popular'}
       />
+      </section>
 
       <MovieCard title={"Trending"} 
       url={`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`}

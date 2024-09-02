@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Header from '../Header'
 import Casts from '../Casts'
 import Video from '../Video'
+import Footer from '../Footer'
 
 const MovieMain = () => {
 
@@ -46,6 +47,8 @@ const MovieMain = () => {
 
           <Video movieId={id}/>
           <Casts movieId={id}/>
+
+          <Footer/>
 
         </div>
     </>

@@ -23,7 +23,7 @@ useEffect(() => {
 
   return (
     
-    <div className='Card overflow-hidden w-[95vw] mx-auto -mt-[7%] mb-[160px]'>
+    <div className='Card block overflow-hidden w-[95vw] mx-auto mt-8 mb-10'> 
 
     <div className=' flex relative w-[97%]'>
         <p className='text-3xl mx-3 text-white w-max h-max '>{title}</p>

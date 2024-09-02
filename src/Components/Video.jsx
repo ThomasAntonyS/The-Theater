@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function Video({moviedId}) {
+function Video({movieId}) {
 
     const [videos, setVideos] = useState([])
 
@@ -9,24 +9,41 @@ function Video({moviedId}) {
     }, [])
 
     const fetchVideo = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${moviedId}/videos?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US`);
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US`);
         const movie = await data.json();
         setVideos(movie.results)
-        console.log(videos);
+        
     }
 
     const src = 'https://www.youtube.com/embed/' 
 
     return (
-        <>
-            <p className=' text-white text-4xl mx-[6%] mb-10 '>Trailer</p>
-            <div className='videos'>
+        <div className=' mb-16'>
+            <p className=' text-white text-4xl mx-[6%] mb-5 '>Trailer</p>
+            <div className='videos flex overflow-x-scroll overflow-y-hidden h-[50vh] w-[90%] mx-auto'>
                 {
-                   
+                   (videos)?
+                    videos.map((video) => (
+                        (video) ?
+                        <div key={video.id} className='trailer mr-3'>
+                            <iframe
+                                title={video.name}
+                                key={video.id}
+                                src={src + video.key}
+                                allowFullScreen
+                                frameorder="0"
+                                className=' h-full w-[30vw]'
+                            />
+                        </div>
+                        :
+                        <p className=' text-white'>Loading...</p>
+                    ))
+                    :
+                    <p className=' text-white'>Loading...</p>
                 }
             </div>
             
-         </>
+         </div>
     )
 }
 {/*

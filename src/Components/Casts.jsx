@@ -14,13 +14,13 @@ function Casts({movieId}) {
     const baseImage = 'https://image.tmdb.org/t/p/w185'
     return (
         <>
-        <p className=' text-white text-4xl mx-[6%] mb-10 '>Cast</p>
+        <p className=' text-white text-4xl mx-[6%] '>Cast</p>
         {
             (casts) ?
-            <div className='casts'>
-            <div className='flex overflow-x-scroll overflow-y-hidden w-[90%] mx-auto'>
+            <div className='casts mb-16'>
+            <div className='flex overflow-x-scroll overflow-y-hidden w-[90%] mx-auto mt-5'>
                 {casts.map((cast) => (
-                    <div className='flex flex-wrap text-white w-[13vw] mx-3'>
+                    <div className='flex flex-wrap text-white w-[13vw] mx-3' key={cast.id}>
                         {
                             (cast.profile_path) ? 
                             <img src={baseImage + cast.profile_path} alt={cast.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
