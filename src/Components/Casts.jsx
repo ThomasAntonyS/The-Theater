@@ -4,13 +4,14 @@ import NotFoundImage from '../assets/cast_notFound.webp'
 function Casts({movieId}) {
     const [casts, setCasts] = useState([])
     const fetchCast = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US`);
+        const apiKey = process.env.REACT_APP_API_KEY
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en-US`);
         const casts = await data.json();
         setCasts(casts.cast);
     } 
-    useEffect(() => {
+    useEffect(() => { 
         fetchCast()
-    }, [])
+    }, [movieId])
     const baseImage = 'https://image.tmdb.org/t/p/w185'
     return (
         <>
@@ -29,7 +30,7 @@ function Casts({movieId}) {
                         }
                         
                         <p className=' ml-2'><i>Actor:</i> {cast.original_name}</p>
-                        <p className=' ml-2'><i>Role:</i> {cast.character}</p>
+                        <p className=' ml-2'><i>Role: </i>{(cast.character)? cast.character : "NA"}</p>
                     </div>
                 ))}
             </div>

@@ -6,23 +6,25 @@ function Video({movieId}) {
 
     useEffect(() => {
         fetchVideo()
-    }, [])
+    }, [movieId])
 
     const fetchVideo = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US`);
+        const apiKey = process.env.REACT_APP_API_KEY
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`);
         const movie = await data.json();
         setVideos(movie.results)
-        
     }
 
     const src = 'https://www.youtube.com/embed/' 
 
     return (
-        <div className=' mb-16'>
-            <p className=' text-white text-4xl mx-[6%] mb-5 '>Trailer</p>
-            <div className='videos flex overflow-x-scroll overflow-y-hidden h-[50vh] w-[90%] mx-auto'>
-                {
-                   (videos)?
+        <>
+        {
+            (videos!=[]) ?
+                <div className=' mb-16'>
+                    <p className=' text-white text-4xl mx-[6%] mb-5 '>Trailer</p>
+                    <div className='videos flex overflow-x-scroll overflow-y-hidden h-[50vh] w-[90%] mx-auto'>
+                    {
                     videos.map((video) => (
                         (video) ?
                         <div key={video.id} className='trailer mr-3'>
@@ -37,27 +39,17 @@ function Video({movieId}) {
                         </div>
                         :
                         <p className=' text-white'>Loading...</p>
-                    ))
-                    :
-                    <p className=' text-white'>Loading...</p>
-                }
-            </div>
+
+                        ))
+                    }
+                    </div>
             
-         </div>
+                </div>
+            :
+            null
+        }
+        </>
     )
 }
-{/*
-     videos.map((video) => (
-                            <div key={video.id} className='trailer'>
-                            <iframe width='1000'
-                                height='600'
-                                title={video.name}
-                                key={video.id}
-                                src={src + video.key}
-                                allowFullScreen
-                                frameorder="0"></iframe>
-                            </div>
-                        ))
- */}
 
 export default Video
