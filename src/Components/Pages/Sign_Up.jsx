@@ -3,8 +3,9 @@ import { Link,useNavigate } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
 import SignIn_SignUp_Hero1 from '../../assets/SignIn_SignUp_Hero1.jpg'
 import { ProfileContext } from '../../Context/ProfileContextProvider'
+import Sign_In_Up_Header from '../Sign_In_Up_Header'
 
-const SignUp = () => {
+const Sign_Up = () => {
 
   const {setUserName,setUserEmail} = useContext(ProfileContext)
   const [name,setName] = useState('')
@@ -21,10 +22,12 @@ const SignUp = () => {
   return (
     <div className='Sign_Up relative h-[100vh] bg-white'>
 
+      <Sign_In_Up_Header/>
+
       <img src={SignIn_SignUp_Hero1} alt="Hero image" className=' h-full w-full object-cover'/>
 
-      <section className=' absolute flex flex-col h-[67vh] w-[25vw] bg-black bg-opacity-75 rounded top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-          <img src={Logo} alt="Logo" className=' w-[80%] h-max mx-auto text-white text-3xl font-bold mt-10' />
+      <section className=' absolute flex flex-col h-[67vh] w-[23vw] bg-black bg-opacity-75 rounded top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+          <img src={Logo} alt="Logo" className=' w-[70%] h-max mx-auto text-white text-3xl font-bold mt-10 mb-2' />
 
           <input 
           type="text" 
@@ -32,7 +35,7 @@ const SignUp = () => {
           required
           minLength={3}
           onChange={(e)=>setName(e.target.value)}
-          className=' h-max w-[80%] mx-auto mt-10 px-2 py-2 bg-transparent border-b-2 border-white outline-none text-white
+          className=' h-max w-[80%] mx-auto mt-10 px-2 py-2 bg-black bg-opacity-0 hover:bg-opacity-35 border-b-2 border-white outline-none text-white
           placeholder-white '/>
 
           <input 
@@ -40,7 +43,7 @@ const SignUp = () => {
           placeholder='Email' 
           required
           onChange={(e)=>setEmail(e.target.value)}
-          className=' h-max w-[80%] mx-auto mt-10 px-2 py-2 bg-transparent border-b-2 border-white outline-none text-white
+          className=' h-max w-[80%] mx-auto mt-10 px-2 py-2 bg-black bg-opacity-0 hover:bg-opacity-35 border-b-2 border-white outline-none text-white
           placeholder-white '/>
 
           <input 
@@ -49,7 +52,7 @@ const SignUp = () => {
           required
           minLength={8}
           onChange={(e)=>setPassword(e.target.value)}
-          className=' h-max w-[80%] mx-auto mt-10 px-2 py-2 bg-transparent border-b-2 border-white outline-none text-white
+          className=' h-max w-[80%] mx-auto mt-10 px-2 py-2 bg-black bg-opacity-0 hover:bg-opacity-35 border-b-2 border-white outline-none text-white
           placeholder-white '/>
 
           <button 
@@ -57,11 +60,11 @@ const SignUp = () => {
           onClick={handleSubmit}
           >Sign Up</button>
 
-          <Link to='/signin' className=' w-max h-max mx-auto text-white mt-6'>Already have an account ?</Link>
+          <Link to='/sign_in' className=' w-max h-max mx-auto text-white mt-6'>Already have an account ?</Link>
       </section>
 
     </div>
   )
 }
 
-export default SignUp
+export default Sign_Up

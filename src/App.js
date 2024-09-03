@@ -4,13 +4,12 @@ import Popular from './Components/Pages/Popular'
 import TopRated from './Components/Pages/TopRated'
 import Upcoming from './Components/Pages/Upcoming'
 import Movie from './Components/Pages/Movie'
-import './App.css'
-import Profile from './Components/Pages/Profile'
 import Watchlist from './Components/Pages/Watchlist'
 import Search from './Components/Pages/Search'
-import SignIn from './Components/Pages/SignIn'
-import SignUp from './Components/Pages/SignUp'
+import Sign_In from './Components/Pages/Sign_In'
+import Sign_Up from './Components/Pages/Sign_Up'
 import ProfileContextProvider from './Context/ProfileContextProvider'
+import './App.css'
 
 
 function App() {
@@ -48,11 +47,6 @@ function App() {
             />
 
             <Route
-            path={'/profile'}
-            element={<Profile/>}
-            />
-
-            <Route
             path={'/watchlist'}
             element={<Watchlist/>}
             />
@@ -64,12 +58,12 @@ function App() {
 
             <Route
             path={'/sign_in'}
-            element={<SignIn/>}
+            element={<Sign_In/>}
             />
 
             <Route
             path={'/sign_up'}
-            element={<SignUp/>}
+            element={<Sign_Up/>}
             />
 
         </Routes>

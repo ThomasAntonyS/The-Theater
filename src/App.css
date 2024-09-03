@@ -43,7 +43,7 @@ body{
 .Footer_Main{
   background-color: #070707;
 }
-.search_animation{
+.blink_animation{
   animation: blink 2s infinite ease-in-out;
 }
 @keyframes blink {
@@ -57,13 +57,7 @@ body{
       opacity: 1;
     }  
 }
-.SignUp{
-  background: ;
-}
-.SignUp_Design{
-  clip-path: polygon(100% 0, 0 0, 0 100%);
-  background-color: #000000;
-}
+
 
 
 

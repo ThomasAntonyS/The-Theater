@@ -14,7 +14,7 @@ const Search = () => {
     const apiKey = process.env.REACT_APP_API_KEY
     const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchMovie}&page=1&include_adult=false`);
     const search = await data.json();
-    setMovie  (search.results)
+    setMovie(search.results)
   }
 
   function handleNavigation(e,id){
@@ -52,8 +52,9 @@ const Search = () => {
         (movie.length > 0) ?
           <section className='Serach_Results w-[90%] h-max my-[40px] mx-auto'>
             <div className="content flex flex-col w-max overflow-hidden mx-auto">
-                    {(movie.length > 0) ? (
-                    <div className=' flex w-[85vw] overflow-hidden mx-auto my-3'>
+                {
+                  (movie.length > 0) ? (
+                    <div className=' flex flex-col w-[85vw] overflow-hidden mx-auto my-3'>
                         <div className='flex flex-wrap'>
                             {movie.map((movie, index) => (
                                 <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
@@ -68,13 +69,13 @@ const Search = () => {
                             ))}
                         </div>
                     </div>
-                ) :
+                  ) :
                   null
                 }
               </div>
           </section>
         :
-        <p className='search_animation my-[40px] flex justify-center'>Search your favorite movie</p>
+        <p className='blink_animation my-[40px] flex justify-center'>Search your favorite movie</p>
       }
 
       </div>

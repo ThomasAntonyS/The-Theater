@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../assets/Logo.png'
+import { ProfileContext } from '../Context/ProfileContextProvider';
 
 const Header = () => {
+
+    const {setUserName,setUserEmail,setUserWatchlist,setLoggedIn} = useContext(ProfileContext)
+
+    function handleLogout(){
+        setLoggedIn(false)
+        setUserName(' ')
+        setUserEmail(' ')
+        setUserWatchlist([])
+    }
 
   return (
     <div>
@@ -23,10 +34,14 @@ const Header = () => {
                 <a href='/'><img src={Logo} alt="Logo" className=' h-[6vh] my-3'/></a>
             </div>
 
-            <div className="Header_UserFunction flex w-[12vw] mr-6 text-white">
+            <div className="Header_UserFunction flex w-[13vw] mr-6 text-white">
                 <Link className='default_style p-2 rounded-full hover:bg-white hover:bg-opacity-25' to='/search'><SearchIcon/></Link>
                 <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/watchlist'><LiveTvIcon/></Link>
-                <Link className='default_style' to='/profile'><Avatar alt="Remy Sharp" src="" /></Link>
+                <div className='flex flex-row align-middle h-max my-auto'>
+                    <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/sign_up'><LoginIcon/></Link>
+                    <p className=' w-max h-max my-auto'>|</p>
+                    <button className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' onClick={handleLogout}><LogoutIcon/></button>
+                </div>
             </div>
 
         </div>
