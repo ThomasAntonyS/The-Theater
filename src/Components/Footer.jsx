@@ -26,8 +26,8 @@ const Footer = () => {
                 <Link onClick={(e)=>handleNavigation(e,'/top_rated')}  className=' w-max mx-6 hover:opacity-70'>Top Rated</Link>
                 <Link onClick={(e)=>handleNavigation(e,'/upcoming')} className=' w-max mx-6 hover:opacity-70'>Upcomimg</Link>
                 <span className=' w-max'>|</span>
-                <Link onClick={(e)=>handleNavigation(e,'/signin')}  className=' w-max mx-6 hover:opacity-70'>Sign In</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/signup')}  className=' w-max mx-6 hover:opacity-70'>Sign UP</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/sign_in')}  className=' w-max mx-6 hover:opacity-70'>Sign In</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/sign_up')}  className=' w-max mx-6 hover:opacity-70'>Sign Up</Link>
                 <Link onClick={(e)=>handleNavigation(e,'/watchlist')}  className=' w-max mx-6 hover:opacity-70'>WatchList</Link>
               </div>
 

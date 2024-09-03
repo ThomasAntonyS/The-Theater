@@ -16,13 +16,12 @@ import ProfileContextProvider from './Context/ProfileContextProvider'
 function App() {
 
   return (
-    <>
+    <div>
+      <BrowserRouter>
 
-    <ProfileContextProvider>
+        <ProfileContextProvider>
 
-        <BrowserRouter>
-
-          <Routes>
+        <Routes>
 
             <Route 
             path='/' 
@@ -64,22 +63,22 @@ function App() {
             />
 
             <Route
-            path={'/signin'}
+            path={'/sign_in'}
             element={<SignIn/>}
             />
 
             <Route
-            path={'/signup'}
+            path={'/sign_up'}
             element={<SignUp/>}
             />
 
-          </Routes>
+        </Routes>
 
-        </BrowserRouter>
+        </ProfileContextProvider>
 
-      </ProfileContextProvider>
-
-    </>
+      </BrowserRouter>
+      
+    </div>
   )
 }
 

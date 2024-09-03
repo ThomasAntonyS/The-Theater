@@ -1,21 +1,19 @@
-import React, { useState,createContext } from 'react'
+import React, { createContext, useState } from 'react'
 
-export const ProfileContext = createContext()
+export const ProfileContext = createContext();
 
 const ProfileContextProvider = ({children}) => {
 
     const [username,setUserName] = useState('')
     const [userEmail,setUserEmail] = useState('')
     const [userWatchlist,setUserWatchlist] = useState([])
+    const [loggedIn,setLoggedIn] = useState(false)
 
   return (
-    <>
-        <ProfileContext.Provider value={{username,setUserName,userEmail,setUserEmail,userWatchlist,setUserWatchlist}}>
-            {children}
-        </ProfileContext.Provider>
-    </>
-  )
+    <ProfileContext.Provider value={{username,setUserName,userEmail,setUserEmail,userWatchlist,setUserWatchlist,loggedIn,setLoggedIn}}>
+      {children}
+    </ProfileContext.Provider>
+  );
+};
 
-}
-
-export default ProfileContextProvider
+export default ProfileContextProvider;

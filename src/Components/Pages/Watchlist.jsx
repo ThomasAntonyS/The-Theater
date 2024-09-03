@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
+import { ProfileContext } from '../../Context/ProfileContextProvider'
 
 const Watchlist = () => {
+
+  const {} = useContext(ProfileContext)
 
   return (
 
@@ -10,7 +13,7 @@ const Watchlist = () => {
       <Header/>
 
       <div className=' text-white'>
-
+        
       </div>
 
       <Footer/>
