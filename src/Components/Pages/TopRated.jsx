@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import PageLayout from '../PageLayout';
 import Header from '../Header'
+import Footer from '../Footer';
 
 const TopRated = () => {
 
@@ -47,6 +48,9 @@ const TopRated = () => {
                 <button className='w-max px-4 py-2 rounded-full text-white text-[20px] bg-white bg-opacity-5' onClick={()=>{setPageCount(pageCount+1);window.scrollTo(0,0)}}>&#8594;</button>
             </div>
         </section>
+
+        <Footer/>
+        
     </>
 
   )

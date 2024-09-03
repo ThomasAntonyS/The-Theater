@@ -1,16 +1,36 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+
+  const navigate = useNavigate()
+
+  const handleNavigation =(e,link) =>{
+    e.preventDefault()
+    navigate(link)
+    window.scrollTo(0,0)
+  }
+
   return (
-    <div className='Footer_Main relative h-[60vh] w-[100vw] '>
-        <p className=' absolute text-3xl h-max w-max font-mono font-bold text-white mx-20 mt-[20px]'>THE THEATER</p>
+    <div className='Footer_Main relative h-[20vh] w-[100vw] '>
+        <p className=' absolute flex justify-center text-3xl w-full font-mono font-bold text-white mt-[10px]'>THE THEATER</p>
 
-        <div className="Contact_and_Quick_Link flex absolute w-[90vw] h-[65%] top-1/2 left-1/2 border-2 transform -translate-x-1/2 -translate-y-1/2">
-          <section className="Quick_Link w-1/2 h-full border">
+        <div className="Contact_and_Quick_Link flex absolute w-[90vw] h-[65%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <section className="Quick_Link w-full h-full flex justify-around text-white">
 
-          </section>
+              <div className=' flex flex-row flex-wrap w-max h-max my-auto'>
+                <Link onClick={(e)=>handleNavigation(e,'/')} className=' w-max mx-6'>Home</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/profile')}  className='w-max mx-6'>Profile</Link>
+                <span className=' w-max'>|</span>
+                <Link onClick={(e)=>handleNavigation(e,'/popular')}  className=' w-max mx-6'>Popular</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/top_rated')}  className=' w-max mx-6'>Top Rated</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/upcoming')} className=' w-max mx-6'>Upcomimg</Link>
+                <span className=' w-max'>|</span>
+                <Link onClick={(e)=>handleNavigation(e,'/signin')}  className=' w-max mx-6'>Sign In</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/signup')}  className=' w-max mx-6'>Sign UP</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/watchlist')}  className=' w-max mx-6'>WatchList</Link>
+              </div>
 
-          <section className="Contact w-1/2 h-full text-white">
           </section>
         </div>
 
