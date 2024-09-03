@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import NotFoundImage from '../assets/cast_notFound.webp'
+import PersonIcon from '@mui/icons-material/Person';
 
 function Casts({movieId}) {
     const [casts, setCasts] = useState([])
@@ -24,9 +25,9 @@ function Casts({movieId}) {
                     <div className='flex flex-wrap text-white w-[13vw] mx-3' key={cast.id}>
                         {
                             (cast.profile_path) ? 
-                            <img src={baseImage + cast.profile_path} alt={cast.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
+                            <img src={baseImage + cast.profile_path} alt={cast.title} className=' h-[65%] w-full object-fill rounded-[10px]'/>
                             :
-                            <img src={NotFoundImage} alt={cast.original_name} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
+                            <p className='h-[65%] flex justify-center align-middle'><PersonIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
                         }
                         
                         <p className=' ml-2'><i>Actor:</i> {cast.original_name}</p>

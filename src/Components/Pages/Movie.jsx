@@ -7,6 +7,7 @@ import Footer from '../Footer'
 import MovieCard from '../MovieCard'
 import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
 import AddIcon from '@mui/icons-material/Add';
+import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
 const MovieMain = () => {
 
@@ -36,10 +37,15 @@ const MovieMain = () => {
 
             <div className="Hero_content h-[90%] flex justify-around">
               <div className="Image_Container flex h-full w-[50%]">
-                <img src={"http://image.tmdb.org/t/p/w500/"+item.backdrop_path} alt={item.original_title} 
-                className='m-auto w-[80%] rounded'/>
+                {
+                  (item.backdrop_path != null) ?
+                  <img src={"http://image.tmdb.org/t/p/w500/"+item.backdrop_path} alt={item.original_title} 
+                  className='m-auto w-[80%] rounded'/>
+                  :
+                  <p className=' w-max h-max rounded flex justify-center align-middle text-white m-auto'><MovieCreationIcon style={{fontSize:"15rem",margin:'auto'}}/></p>
+                }
               </div>
-              <div className="Movie_Banner_Content flex flex-col justify-center w-[50%] text-white">
+              <div className="Movie_Banner_Content flex flex-col justify-center w-[50%] text-white m-auto">
                 <p className=' flex flex-wrap w-[90%] text-4xl mb-7'>{item.original_title}</p>
                 <p className='flex flex-wrap w-[90%] mb-5'>{item.overview}</p>
                 <p className=' mb-2'>Released on: <b>{item.release_date}</b></p>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
+import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
 const MovieCard = ({title,url,navLink}) => {
 
@@ -51,7 +52,13 @@ const baseImage = 'https://image.tmdb.org/t/p/w185'
             <div className='flex'>
                 {movies.map((movie, index) => (
                     <Link onClick={(e)=>handleNavigation(e,movie.id)} key={index} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-6 '>
-                        <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
+                        {
+                            (movie.poster_path != null) ?
+                            <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
+                            :
+                            <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
+                        }
+                        { console.log(movie.poster_path)}
                         <p className='flex flex-wrap text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                         <Link to={`movie/${movie.id}`} className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
                     </Link>
