@@ -11,11 +11,10 @@ const Search = () => {
   const navigate = useNavigate();
 
   const fetchSearches = async () => {
-    const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=3a1152dfeee6a71281e7628c90d5e229&language=en-US&query=${searchMovie}&page=1&include_adult=false`);
+    const apiKey = process.env.REACT_APP_API_KEY
+    const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchMovie}&page=1&include_adult=false`);
     const search = await data.json();
     setMovie  (search.results)
-    console.log(movie);
-    
   }
 
   function handleNavigation(e,id){
