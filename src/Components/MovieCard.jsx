@@ -15,7 +15,6 @@ const MovieCard = ({title,url,navLink}) => {
             setMovies(movie.results)
         } catch (error) {
             console.log(error);
-            
         }
 }
 useEffect(() => {
@@ -34,7 +33,9 @@ const baseImage = 'https://image.tmdb.org/t/p/w185'
     
     <div className='Card block overflow-hidden w-[95vw] mx-auto mt-8 mb-10'> 
 
-    <div className=' flex relative w-[97%]'>
+    {(movies.length > 0) ? (
+        <>
+        <div className=' flex relative w-[97%]'>
         <p className='text-3xl mx-3 text-white w-max h-max '>{title}</p>
         {
             (navLink)?
@@ -45,9 +46,8 @@ const baseImage = 'https://image.tmdb.org/t/p/w185'
             :
             null
         }
-    </div>
+        </div>
 
-    {movies!=[] ? (
         <div className='relative flex overflow-x-scroll overflow-y-hidden mx-auto my-3 w-[99%]'>
             <div className='flex'>
                 {movies.map((movie, index) => (
@@ -58,15 +58,15 @@ const baseImage = 'https://image.tmdb.org/t/p/w185'
                             :
                             <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
                         }
-                        { console.log(movie.poster_path)}
                         <p className='flex flex-wrap text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                         <Link to={`movie/${movie.id}`} className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
                     </Link>
                 ))}
             </div>
         </div>
+    </>
     ) :
-    <p className=' text-white text-2xl'>Loading...</p>
+    null
     }
     </div>
   )

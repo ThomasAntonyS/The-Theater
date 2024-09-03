@@ -20,7 +20,7 @@ function Video({movieId}) {
     return (
         <>
         {
-            (videos) ?
+            (videos.length > 0) ?
                 <div className=' mb-16'>
                     <p className=' text-white text-4xl mx-[6%] mb-5 '>Trailer</p>
                     <div className='videos flex overflow-x-scroll overflow-y-hidden h-[50vh] w-[90%] mx-auto'>
@@ -46,7 +46,7 @@ function Video({movieId}) {
             
                 </div>
             :
-            <p className=' text-white'>Loading...</p>
+            null
         }
         </>
     )

@@ -43,4 +43,19 @@ body{
 .Footer_Main{
   background-color: #070707;
 }
+.search_animation{
+  animation: blink 2s infinite ease-in-out;
+}
+@keyframes blink {
+    0%{
+      opacity: 1;
+    } 
+    50%{
+      opacity: 0;
+    } 
+    100%{
+      opacity: 1;
+    }  
+}
+
 

@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
+import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
 const PageLayout = ({movies,title,description}) => {
 
@@ -25,7 +26,12 @@ const PageLayout = ({movies,title,description}) => {
                     <div className='flex flex-wrap'>
                         {movies.map((movie, index) => (
                             <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
-                                <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[70%] w-fill object-fill rounded-[10px]'/>
+                                {
+                                    (movie.poster_path != null) ?
+                                    <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
+                                    :
+                                    <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
+                                }
                                 <p className=' text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                             </Link>
                         ))}

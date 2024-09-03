@@ -3,14 +3,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../assets/Logo.png'
 
 const Header = () => {
 
   return (
     <div>
-        <div className="Header-main absolute flex align-middle justify-between h-[10vh] w-[100%]  bg-black bg-opacity-25 z-20">
+        <div className="Header-main absolute top-0 flex align-middle justify-between h-[10vh] w-[100%]  bg-black bg-opacity-25 z-20">
 
             <div className="Header_Navigation flex w-[20vw] ml-6 text-white">
                 <button className='default_style' id='menu_icon'><MenuIcon/></button>
@@ -24,8 +24,8 @@ const Header = () => {
             </div>
 
             <div className="Header_UserFunction flex w-[12vw] mr-6 text-white">
-                <Link className='default_style' to='/serach'><SearchIcon/></Link>
-                <Link className='default_style' to='/'><NotificationsIcon/></Link>
+                <Link className='default_style' to='/search'><SearchIcon/></Link>
+                <Link className='default_style' to='/watchlist'><LiveTvIcon/></Link>
                 <Link className='default_style' to='/profile'><Avatar alt="Remy Sharp" src="" /></Link>
             </div>
 
