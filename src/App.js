@@ -10,13 +10,17 @@ import Watchlist from './Components/Pages/Watchlist'
 import Search from './Components/Pages/Search'
 import SignIn from './Components/Pages/SignIn'
 import SignUp from './Components/Pages/SignUp'
+import ProfileContextProvider from './Context/ProfileContextProvider'
 
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
+
+    <ProfileContextProvider>
+
+        <BrowserRouter>
 
           <Routes>
 
@@ -71,7 +75,10 @@ function App() {
 
           </Routes>
 
-      </BrowserRouter>
+        </BrowserRouter>
+
+      </ProfileContextProvider>
+
     </>
   )
 }

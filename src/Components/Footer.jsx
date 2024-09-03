@@ -19,16 +19,16 @@ const Footer = () => {
           <section className="Quick_Link w-full h-full flex justify-around text-white">
 
               <div className=' flex flex-row flex-wrap w-max h-max my-auto'>
-                <Link onClick={(e)=>handleNavigation(e,'/')} className=' w-max mx-6'>Home</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/profile')}  className='w-max mx-6'>Profile</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/')} className=' w-max mx-6 hover:opacity-70'>Home</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/profile')}  className='w-max mx-6 hover:opacity-70'>Profile</Link>
                 <span className=' w-max'>|</span>
-                <Link onClick={(e)=>handleNavigation(e,'/popular')}  className=' w-max mx-6'>Popular</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/top_rated')}  className=' w-max mx-6'>Top Rated</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/upcoming')} className=' w-max mx-6'>Upcomimg</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/popular')}  className=' w-max mx-6 hover:opacity-70'>Popular</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/top_rated')}  className=' w-max mx-6 hover:opacity-70'>Top Rated</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/upcoming')} className=' w-max mx-6 hover:opacity-70'>Upcomimg</Link>
                 <span className=' w-max'>|</span>
-                <Link onClick={(e)=>handleNavigation(e,'/signin')}  className=' w-max mx-6'>Sign In</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/signup')}  className=' w-max mx-6'>Sign UP</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/watchlist')}  className=' w-max mx-6'>WatchList</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/signin')}  className=' w-max mx-6 hover:opacity-70'>Sign In</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/signup')}  className=' w-max mx-6 hover:opacity-70'>Sign UP</Link>
+                <Link onClick={(e)=>handleNavigation(e,'/watchlist')}  className=' w-max mx-6 hover:opacity-70'>WatchList</Link>
               </div>
 
           </section>

@@ -14,9 +14,9 @@ const Header = () => {
 
             <div className="Header_Navigation flex w-[20vw] ml-6 text-white">
                 <button className='default_style' id='menu_icon'><MenuIcon/></button>
-                <Link className='default_style' to='/popular'>Popular</Link>
-                <Link className='default_style' to='/top_rated'>Top Rated</Link>
-                <Link className='default_style' to='/upcoming'>Upcoming</Link>
+                <Link className='default_style hover:opacity-70' to='/popular'>Popular</Link>
+                <Link className='default_style hover:opacity-70' to='/top_rated'>Top Rated</Link>
+                <Link className='default_style hover:opacity-70' to='/upcoming'>Upcoming</Link>
             </div>
 
             <div className="Header_Title flex w-[15vw] ml-[-120px] mt-1 text-white font-bold">
@@ -24,8 +24,8 @@ const Header = () => {
             </div>
 
             <div className="Header_UserFunction flex w-[12vw] mr-6 text-white">
-                <Link className='default_style' to='/search'><SearchIcon/></Link>
-                <Link className='default_style' to='/watchlist'><LiveTvIcon/></Link>
+                <Link className='default_style p-2 rounded-full hover:bg-white hover:bg-opacity-25' to='/search'><SearchIcon/></Link>
+                <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/watchlist'><LiveTvIcon/></Link>
                 <Link className='default_style' to='/profile'><Avatar alt="Remy Sharp" src="" /></Link>
             </div>
 

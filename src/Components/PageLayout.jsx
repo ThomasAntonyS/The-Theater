@@ -21,7 +21,7 @@ const PageLayout = ({movies,title,description}) => {
             <p className=' text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>{description}</p>
     
             <div className="content flex flex-col w-max overflow-hidden mx-auto">
-                {movies!=[] ? (
+                {(movies) ? (
                 <div className=' flex w-[85vw] overflow-hidden mx-auto my-3'>
                     <div className='flex flex-wrap'>
                         {movies.map((movie, index) => (

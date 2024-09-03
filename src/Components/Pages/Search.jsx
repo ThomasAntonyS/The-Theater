@@ -52,7 +52,7 @@ const Search = () => {
         (movie.length > 0) ?
           <section className='Serach_Results w-[90%] h-max my-[40px] mx-auto'>
             <div className="content flex flex-col w-max overflow-hidden mx-auto">
-                    {movie!=[] ? (
+                    {(movie.length > 0) ? (
                     <div className=' flex w-[85vw] overflow-hidden mx-auto my-3'>
                         <div className='flex flex-wrap'>
                             {movie.map((movie, index) => (
