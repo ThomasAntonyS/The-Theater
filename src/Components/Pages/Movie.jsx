@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../Header'
 import Casts from '../Casts'
@@ -8,11 +8,14 @@ import MovieCard from '../MovieCard'
 import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
 import AddIcon from '@mui/icons-material/Add';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
+import { ProfileContext } from '../../Context/ProfileContextProvider'
 
 const MovieMain = () => {
 
     const {id} = useParams()
     const [item, setItem] = useState({})
+
+    const {userWatchlist,setUserWatchlist} = useContext(ProfileContext)
 
 
     useEffect(() => {
@@ -24,6 +27,11 @@ const MovieMain = () => {
       const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`);
       const movie = await data.json();
       setItem(movie)
+    }
+
+    function handleWatchlist (e,watchlistMovie){
+      e.preventDefault()
+      setUserWatchlist([...userWatchlist,watchlistMovie])
     }
 
   return (
@@ -67,8 +75,11 @@ const MovieMain = () => {
               </div>
                 
               <div className="Movie_Banner_Button flex h-[10%] w-max text-white mt-[-4%] ml-[5%]">
-                <button className='Movie_Banner_watch border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'><PlayCircleOutlineRoundedIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/>Watch Movie</button>
-                <button className='Movie_Banner_watchlist border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'><AddIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/> Add to Watchlist</button>
+                <button className='Movie_Banner_watch border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'>
+                <PlayCircleOutlineRoundedIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/>Watch Movie</button>
+
+                <button className='Movie_Banner_watchlist border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10' onClick={e=>handleWatchlist(e,item)}>
+                <AddIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/> Add to Watchlist</button>
               </div>
                 
             </section>

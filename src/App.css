@@ -77,10 +77,17 @@ body{
     }
   }
   .Header_UserFunction{
-    margin-right: 40px;
+    margin-right: 110px;
   }
-  .LogIn_Out_section{
-    display: none;
+
+  /* ---------------SignUp--------------- */
+  .SignUp_container{
+    width: 80%;
+  }
+
+  /* ---------------SignIn--------------- */
+  .SignIn_Container{
+    width: 80%;
   }
 
   /* ---------------Banner--------------- */
@@ -210,8 +217,14 @@ body{
 
   /* ---------------Watchlist--------------- */
   .LoggedOut_watchlist{
+    text-align: center;
     width: 95vw;
     margin: auto;
+  }
+  .Watchlist_empty{
+    text-align: center;
+    width: 80%;
+    margin-top: 80%;
   }
 
   /* ---------------Trailer--------------- */

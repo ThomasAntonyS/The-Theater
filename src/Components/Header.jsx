@@ -34,12 +34,24 @@ const Header = () => {
             </div>
 
             <div className="Header_UserFunction flex w-[13vw] mr-6 text-white">
-                <Link className='default_style p-2 rounded-full hover:bg-white hover:bg-opacity-25' to='/search'><SearchIcon/></Link>
-                <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/watchlist'><LiveTvIcon/></Link>
+                <Link className='default_style p-2 rounded-full hover:bg-white hover:bg-opacity-25' to='/search'>
+                {(window.screen.width<640)?<SearchIcon fontSize='small' /> : <SearchIcon/>}
+                </Link>
+
+                <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/watchlist'>
+                {(window.screen.width<640)?<LiveTvIcon fontSize='small'/> : <LiveTvIcon/>}
+                </Link>
+
                 <div className='LogIn_Out_section flex flex-row align-middle h-max my-auto'>
-                    <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/sign_up'><LoginIcon/></Link>
+                    <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/sign_up'>
+                    {(window.screen.width<640)?<LoginIcon fontSize='small'/> : <LoginIcon/>}
+                    </Link>
+
                     <p className=' w-max h-max my-auto'>|</p>
-                    <button className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' onClick={handleLogout}><LogoutIcon/></button>
+
+                    <button className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' onClick={handleLogout}>
+                    {(window.screen.width<640)?<LogoutIcon fontSize='small'/> : <LogoutIcon/>}
+                    </button>
                 </div>
             </div>
 
