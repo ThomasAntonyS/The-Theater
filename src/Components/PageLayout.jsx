@@ -17,22 +17,22 @@ const PageLayout = ({movies,title,description}) => {
     
         <div className='MoviePage_Card flex flex-col overflow-hidden w-[100vw] mx-auto'>
 
-            <p className=' text-white w-max text-4xl mx-auto mt-[15vh] mb-[3vh]'>{title}</p>
-            <p className=' text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>{description}</p>
+            <p className='Page_card_title text-white w-max text-4xl mx-auto mt-[15vh] mb-[3vh]'>{title}</p>
+            <p className='Page_card_description text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>{description}</p>
     
             <div className="content flex flex-col w-max overflow-hidden mx-auto">
                 {(movies) ? (
-                <div className=' flex w-[85vw] overflow-hidden mx-auto my-3'>
+                <div className='Page_cards_container flex w-[85vw] overflow-hidden mx-auto my-3'>
                     <div className='flex flex-wrap'>
                         {movies.map((movie, index) => (
-                            <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
+                            <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Page_Moviecard relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
                                 {
                                     (movie.poster_path != null) ?
                                     <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
                                     :
                                     <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
                                 }
-                                <p className=' text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
+                                <p className='Page_MovieTitle text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                             </Link>
                         ))}
                     </div>

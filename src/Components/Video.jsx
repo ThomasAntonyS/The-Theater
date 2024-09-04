@@ -21,20 +21,20 @@ function Video({movieId}) {
         <>
         {
             (videos.length > 0) ?
-                <div className=' mb-16'>
-                    <p className=' text-white text-4xl mx-[6%] mb-5 '>Trailer and Videos</p>
-                    <div className='videos flex overflow-x-scroll overflow-y-hidden h-[50vh] w-[90%] mx-auto'>
+                <div className=' mb-16 '>
+                    <p className='Videos_title text-white text-4xl mx-[6%] mb-5 '>Trailer and Videos</p>
+                    <div className='videos flex flex-row overflow-x-scroll overflow-y-hidden h-[50vh] w-[90%] mx-auto'>
                     {
                     videos.map((video) => (
                         (video) ?
-                        <div key={video.id} className='trailer mr-3'>
+                        <div key={video.id} className='trailers mr-6'>
                             <iframe
                                 title={video.name}
                                 key={video.id}
                                 src={src + video.key}
                                 allowFullScreen
                                 frameorder="0"
-                                className=' h-full w-[30vw]'
+                                className='trailer h-full w-[40vw]'
                             />
                         </div>
                         :

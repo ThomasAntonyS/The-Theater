@@ -17,20 +17,20 @@ function Casts({movieId}) {
         <>
         {
             (casts.length > 0) ?
-            <div className='casts mb-16'>
-            <p className=' text-white text-4xl mx-[6%] '>Cast</p>
-            <div className='flex overflow-x-scroll overflow-y-hidden w-[90%] mx-auto mt-5'>
+            <div className='Casts mb-16'>
+            <p className='Casts_card_title text-white text-4xl mx-[6%] '>Cast</p>
+            <div className=' flex overflow-x-scroll overflow-y-hidden w-[90%] mx-auto mt-5'>
                 {casts.map((cast) => (
-                    <div className='flex flex-wrap text-white w-[13vw] mx-3' key={cast.id}>
+                    <div className='Casts_card flex flex-wrap text-white w-[13vw] mx-3' key={cast.id}>
                         {
                             (cast.profile_path) ? 
                             <img src={baseImage + cast.profile_path} alt={cast.title} className=' h-[65%] w-full object-fill rounded-[10px]'/>
                             :
-                            <p className='h-[65%] flex justify-center align-middle'><PersonIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
+                            <p className=' h-[65%] flex justify-center align-middle'><PersonIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
                         }
                         
-                        <p className=' ml-2'><i>Actor:</i> {cast.original_name}</p>
-                        <p className=' ml-2'><i>Role: </i>{(cast.character)? cast.character : "NA"}</p>
+                        <p className='Casts_card_data ml-2'><i>Actor:</i> {cast.original_name}</p>
+                        <p className='Casts_card_data ml-2'><i>Role: </i>{(cast.character)? cast.character : "NA"}</p>
                     </div>
                 ))}
             </div>

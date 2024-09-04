@@ -29,14 +29,14 @@ const Search = () => {
     <>
       <Header/>
 
-      <div className=' text-white h-max'>
+      <div className=' text-white h-max overflow-x-hidden'>
 
       <section className=' h-[20%] mb-[50px]'>
-        <p className=' text-white w-max text-4xl mx-auto mt-[15vh] mb-[3vh]'>Find Your Movie</p>
-        <p className=' text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>If you’re searching for your next movie, consider diving into a world where emotions run deep and stories captivate. From epic adventures and heartfelt dramas to thrilling mysteries and side-splitting comedies, there's a film for every mood.</p>
+        <p className='Search_Title text-white w-max text-4xl mx-auto mt-[15vh] mb-[3vh]'>Find Your Movie</p>
+        <p className='Search_Description text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>If you’re searching for your next movie, consider diving into a world where emotions run deep and stories captivate. From epic adventures and heartfelt dramas to thrilling mysteries and side-splitting comedies, there's a film for every mood.</p>
       </section>
 
-      <div className="Search-box w-full flex justify-center ">
+      <div className="Search-box_container w-full flex justify-center ">
         <input type="text"
         placeholder='Search your movie...'
         className=' w-[30%] text-white bg-black border-b-2 outline-none mx-3 px-3 hover:border-b-2 border-b-white hover:bg-white hover:bg-opacity-15 ease-in transition-all delay-200' 
@@ -54,17 +54,17 @@ const Search = () => {
             <div className="content flex flex-col w-max overflow-hidden mx-auto">
                 {
                   (movie.length > 0) ? (
-                    <div className=' flex flex-col w-[85vw] overflow-hidden mx-auto my-3'>
+                    <div className=' flex flex-col w-[95vw] overflow-hidden my-3 mx-auto '>
                         <div className='flex flex-wrap'>
                             {movie.map((movie, index) => (
-                                <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
+                                <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Page_Moviecard relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
                                     {
                                       (movie.poster_path != null) ?
                                       <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
                                       :
                                       <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
                                     }
-                                    <p className=' text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
+                                    <p className='Page_MovieTitle text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                                 </Link>
                             ))}
                         </div>

@@ -33,12 +33,13 @@ const MovieMain = () => {
 
         {
           (item) ?
-          <div className="movieItem w-[100vw]">
+          <div className="MovieItem w-[100vw]">
           
             <section className="MoiveItem_Banner h-[95vh]">
           
-              <div className="Hero_content h-[90%] flex justify-around">
-                <div className="Image_Container flex h-full w-[50%]">
+              <div className="MoiveItem_Hero_content h-[90%] flex justify-around">
+
+                <div className="MoiveItem_Image_Container flex h-full w-[50%]">
                   {
                     (item.backdrop_path != null) ?
                     <img src={"http://image.tmdb.org/t/p/w500/"+item.backdrop_path} alt={item.original_title} 
@@ -47,25 +48,27 @@ const MovieMain = () => {
                     <p className=' w-max h-max rounded flex justify-center align-middle text-white m-auto'><MovieCreationIcon style={{fontSize:"15rem",margin:'auto'}}/></p>
                   }
                 </div>
+
                 <div className="Movie_Banner_Content flex flex-col justify-center w-[50%] text-white m-auto">
-                  <p className=' flex flex-wrap w-[90%] text-4xl mb-7'>{item.original_title}</p>
-                  <p className='flex flex-wrap w-[90%] mb-5'>{item.overview}</p>
+                  <p className='Movie_Banner_Content_title flex flex-wrap w-[90%] text-4xl'>{item.original_title}</p>
+                  <p className='Movie_Banner_Content_description flex flex-wrap w-[90%] mt-7'>{item.overview}</p>
                     {
                       (item.release_date) ?
-                      <p> Released on: <b>{item.release_date}</b></p>
+                      <p className='Movie_Banner_Content_release mt-5'> Release date: <b>{item.release_date}</b></p>
                       :null
                     }
                     {
                       (item.vote_average) ?
-                      <p>Rating: <b>{item.vote_average}</b></p>
+                      <p className='Movie_Banner_Content_rating'>Rating: <b>{item.vote_average}</b></p>
                       :null
                     }
                 </div>
+
               </div>
                 
-              <div className="Movie_Banner_Button h-[10%] w-max flex text-white mt-[-4%] ml-[5%]">
-                <button className='border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'><PlayCircleOutlineRoundedIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/>Watch Movie</button>
-                <button className='border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'><AddIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/> Add to Watchlist</button>
+              <div className="Movie_Banner_Button flex h-[10%] w-max text-white mt-[-4%] ml-[5%]">
+                <button className='Movie_Banner_watch border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'><PlayCircleOutlineRoundedIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/>Watch Movie</button>
+                <button className='Movie_Banner_watchlist border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'><AddIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/> Add to Watchlist</button>
               </div>
                 
             </section>
