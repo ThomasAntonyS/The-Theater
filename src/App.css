@@ -194,14 +194,15 @@ body{
     }
   }
   .Movie_Banner_Content{
-    width: 95vw;
+    width: 90vw;
     margin: 0px auto;
 
     .Movie_Banner_Content_title{
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      width: 100%;
     }
     .Movie_Banner_Content_description{
-      font-size: .9rem;
+      font-size: .8rem;
       margin-top: 5px;
       width: 100%;
       text-align: justify;
