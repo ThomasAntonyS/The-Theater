@@ -6,6 +6,7 @@ import Banner_3 from '../assets/Banner_3.mp4'
 import Banner_4 from '../assets/Banner_4.mp4'
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
 
@@ -15,22 +16,26 @@ const Banner = () => {
         {
             title:'Dune: Part Two',
             desc:'The epic saga continues as Paul Atreides faces political intrigue, mystical powers and the desert planet Arrakis, where spice flows like liquid gold.',
-            video:Banner_1
+            video:Banner_1,
+            link:'movie/693134'
         },
         {
             title:'12th Fail ',
             desc:'A heartfelt coming-of-age story set in India. A young student grapples with academic pressures, societal expectations, and the pursuit of dreams.',
-            video:Banner_2
+            video:Banner_2,
+            link:'movie/1163258'
         },
         {
             title:'Oppenheimer',
             desc:'A gripping historical drama centered around J. Robert Oppenheimer, the brilliant physicist behind the development of the atomic bomb during World War II. ',
-            video:Banner_3
+            video:Banner_3,
+            link:'movie/872585'
         },
         {
             title:'Spider-Man: Across the Spider-Verse',
             desc:'An animated adventure that transcends dimensions. Follow Miles Morales as he encounters alternate versions of Spider-Man, unraveling a web of multiverse mysteries.',
-            video:Banner_4
+            video:Banner_4,
+            link:'movie/569094'
         }
     ]
 
@@ -68,7 +73,7 @@ const Banner = () => {
 
             <div className=' mt-2'>
                 <button className='Banner_Movie_Watch h-max w-max bg-white text-black rounded-full px-4 py-2'><PlayCircleOutlineRoundedIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/>Watch Movie</button>
-                <button className='Banner_Movie_Info text-white h-max w-max bg-white bg-opacity-30 rounded-full mx-2 px-4 py-2'>More Info <span className=' text-1xl'><EastIcon fontSize='small'/></span></button>
+                <Link to={BannerMovies[count].link} className='Banner_Movie_Info text-white h-max w-max bg-white bg-opacity-30 rounded-full mx-2 px-4 py-2'>More Info <span className=' text-1xl'><EastIcon fontSize='small'/></span></Link>
             </div>
         </div>
 

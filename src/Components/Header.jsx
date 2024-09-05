@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -17,6 +16,7 @@ const Header = () => {
         setUserName(' ')
         setUserEmail(' ')
         setUserWatchlist([])
+        alert('Logout Sucessful.')
     }
 
   return (
