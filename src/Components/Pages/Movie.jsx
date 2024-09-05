@@ -14,8 +14,9 @@ const MovieMain = () => {
 
     const {id} = useParams()
     const [item, setItem] = useState({})
+    const [containsMovie,setContainMovie] = useState(true)
 
-    const {userWatchlist,setUserWatchlist} = useContext(ProfileContext)
+    const {loggedIn,userWatchlist,setUserWatchlist} = useContext(ProfileContext)
 
 
     useEffect(() => {
@@ -31,7 +32,22 @@ const MovieMain = () => {
 
     function handleWatchlist (e,watchlistMovie){
       e.preventDefault()
-      setUserWatchlist([...userWatchlist,watchlistMovie])
+      for (let index = 0; index < userWatchlist.length; index++) {
+        if(watchlistMovie.id === userWatchlist[index].id){
+          alert("Movie already exist")
+          setContainMovie(true)
+        }
+        else
+          setContainMovie(false)
+      }
+      if(!containsMovie)
+        setUserWatchlist(userWatchlist=>[...userWatchlist,watchlistMovie])
+
+      setContainMovie(false)
+    }
+
+    function handleWatchlistLoggedOut(){
+      alert("Log In in to save watchlist.")
     }
 
   return (
@@ -78,7 +94,8 @@ const MovieMain = () => {
                 <button className='Movie_Banner_watch border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10'>
                 <PlayCircleOutlineRoundedIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/>Watch Movie</button>
 
-                <button className='Movie_Banner_watchlist border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10' onClick={e=>handleWatchlist(e,item)}>
+                <button className='Movie_Banner_watchlist border-2 border-white w-max h-max px-6 py-2 mx-3 rounded hover:bg-white hover:bg-opacity-10' 
+                onClick={(loggedIn)?e=>handleWatchlist(e,item):handleWatchlistLoggedOut}>
                 <AddIcon style={{fontSize:'1.1rem',margin:'auto 5px',marginTop:'-2px'}}/> Add to Watchlist</button>
               </div>
                 
