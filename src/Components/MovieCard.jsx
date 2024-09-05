@@ -58,7 +58,7 @@ const baseImage = 'https://image.tmdb.org/t/p/w185'
                             :
                             <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
                         }
-                        <p className='flex flex-wrap text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
+                        <p className='Movie_card_MovieTitle h-[25%] overflow-hidden flex flex-wrap text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
                         <Link to={`movie/${movie.id}`} className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
                     </Link>
                 ))}

@@ -21,7 +21,7 @@ function Video({movieId}) {
         <>
         {
             (videos.length > 0) ?
-                <div className=' mb-16 '>
+                <div className='relative mb-10  '>
                     <p className='Videos_title text-white text-4xl mx-[6%] mb-5 '>Trailer and Videos</p>
                     <div className='videos flex flex-row overflow-x-scroll overflow-y-hidden h-[50vh] w-[90%] mx-auto'>
                     {
