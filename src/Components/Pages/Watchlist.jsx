@@ -21,13 +21,15 @@ const Watchlist = () => {
           <>
             {
               (userWatchlist.length>0)?
-                <>
+              <>
+                <section>
                   <PageLayout movies={userWatchlist}
                   title={'Your WatchList'}
                   description={"Add movies to your watchlist and keep track of films you want to see. Conveniently save titles to enjoy later, so you never forget a movie recommendation or new release. Enjoy seamless access whenever you're ready to watch."}
                   />
-                  <Footer/>
-                </>
+                </section>
+                <Footer/>
+              </>
               :
               <p className='Watchlist_empty text-white text-2xl w-max h-full mx-auto mt-[20%]'>Add Movies to your watchlist</p>
             }

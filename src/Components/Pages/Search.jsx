@@ -39,6 +39,9 @@ const Search = () => {
     }
     else
       setPageNo(totalPages)
+
+    if(pageNo==totalPages)
+      alert("No results found")
   }
 
   const baseImage = 'https://image.tmdb.org/t/p/w185'
@@ -65,11 +68,15 @@ const Search = () => {
         <button className=' w-max mx-3 bg-white bg-opacity-20 px-4 py-2 rounded hover:bg-opacity-15' onClick={fetchSearches}>Search</button>
       </div>
 
-      <div className="Refresh-button w-[100vw] flex justify-center my-6">
-        <button onClick={(e)=>handleRefresh(e)}
-        className='flex align-middle w-max mx-auto bg-white bg-opacity-20 px-4 py-2 rounded hover:bg-opacity-15'
-        ><CachedIcon className='mr-3'/> Refresh</button>
-      </div>
+      {(movie.length > 0)? 
+        <div className="Refresh-button w-[100vw] flex justify-center my-6">
+          <button onClick={(e)=>handleRefresh(e)}
+          className='flex align-middle w-max mx-auto bg-white bg-opacity-20 px-4 py-2 rounded hover:bg-opacity-15'
+          ><CachedIcon className='mr-3'/> Refresh</button>
+        </div>
+        :
+        null
+      }
 
       {
         (movie.length > 0) ?
@@ -80,7 +87,7 @@ const Search = () => {
                     <div className=' flex flex-col w-[95vw] overflow-hidden my-3 mx-auto '>
                         <div className='flex flex-wrap'>
                             {movie.map((movie, index) => (
-                                <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Page_Moviecard relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
+                                <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Page_Moviecard_Search relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
                                     {
                                       (movie.poster_path != null) ?
                                       <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>

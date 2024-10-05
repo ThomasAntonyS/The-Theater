@@ -23,7 +23,7 @@ const PageLayout = ({movies,title,description}) => {
             <div className="content flex flex-col w-max overflow-hidden mx-auto">
                 {(movies) ? (
                 <div className='Page_cards_container flex w-[85vw] overflow-hidden mx-auto my-3'>
-                    <div className='flex flex-wrap'>
+                    <div className='flex flex-wrap h-max'>
                         {movies.map((movie, index) => (
                             <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Page_Moviecard relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
                                 {
