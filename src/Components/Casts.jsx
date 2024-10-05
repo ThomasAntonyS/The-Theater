@@ -18,7 +18,7 @@ function Casts({movieId}) {
         {
             (casts.length > 0) ?
             <div className='Casts mb-16'>
-            <p className='Casts_card_title text-white text-4xl mx-[6%] '>Cast</p>
+            <p className='Casts_card_title text-white text-4xl mx-[6%] '>Characters</p>
             <div className=' flex overflow-x-scroll overflow-y-hidden w-[90%] mx-auto mt-5'>
                 {casts.map((cast) => (
                     <div className='Casts_card flex flex-wrap text-white w-[13vw] mx-3' key={cast.id}>

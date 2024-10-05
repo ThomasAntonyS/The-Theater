@@ -3,24 +3,42 @@ import Header from '../Header'
 import Footer from '../Footer'
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { Link,useNavigate } from 'react-router-dom'
+import CachedIcon from '@mui/icons-material/Cached';
 
 const Search = () => {
 
   const [movie,setMovie] = useState([])
+  const [pageNo,setPageNo] = useState(1)
+  const [totalPages,setTotalPages] = useState(0)
   const [searchMovie,setSearchMovie] = useState('')
   const navigate = useNavigate();
 
   const fetchSearches = async () => {
     const apiKey = process.env.REACT_APP_API_KEY
-    const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchMovie}&page=1&include_adult=false`);
+    const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchMovie}&page=${pageNo}&include_adult=false`);
     const search = await data.json();
-    setMovie(search.results)
+    if(search.results.length == 0 )
+      alert("Please enter a valid movie")
+    else{
+      setMovie(search.results)
+      setTotalPages(search.total_pages)
+    }
   }
 
   function handleNavigation(e,id){
     e.preventDefault()
     navigate(`/movie/${id}`)
     window.scrollTo(0,0)
+  }
+
+  function handleRefresh(e){
+    e.preventDefault()
+    if(pageNo<=totalPages){
+      setPageNo(pageNo+1)
+      fetchSearches()
+    }
+    else
+      setPageNo(totalPages)
   }
 
   const baseImage = 'https://image.tmdb.org/t/p/w185'
@@ -47,6 +65,11 @@ const Search = () => {
         <button className=' w-max mx-3 bg-white bg-opacity-20 px-4 py-2 rounded hover:bg-opacity-15' onClick={fetchSearches}>Search</button>
       </div>
 
+      <div className="Refresh-button w-[100vw] flex justify-center my-6">
+        <button onClick={(e)=>handleRefresh(e)}
+        className='flex align-middle w-max mx-auto bg-white bg-opacity-20 px-4 py-2 rounded hover:bg-opacity-15'
+        ><CachedIcon className='mr-3'/> Refresh</button>
+      </div>
 
       {
         (movie.length > 0) ?
