@@ -62,9 +62,9 @@ const Search = () => {
         placeholder='Search your movie...'
         className=' w-[30%] text-white bg-black border-b-2 outline-none mx-3 px-3 hover:border-b-2 border-b-white hover:bg-white hover:bg-opacity-15 ease-in transition-all delay-200' 
         value={searchMovie}
+        onKeyDown={(e)=>(e.key==="Enter")?fetchSearches():null}
         onChange={(e)=>setSearchMovie(e.target.value)}
         />
-
         <button className=' w-max mx-3 bg-white bg-opacity-20 px-4 py-2 rounded hover:bg-opacity-15' onClick={fetchSearches}>Search</button>
       </div>
 
