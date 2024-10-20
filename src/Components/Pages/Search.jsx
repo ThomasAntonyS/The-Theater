@@ -17,7 +17,7 @@ const Search = () => {
     const apiKey = process.env.REACT_APP_API_KEY
     const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchMovie}&page=${pageNo}&include_adult=false`);
     const search = await data.json();
-    if(search.results.length == 0 )
+    if(search.results.length === 0 )
       alert("Please enter a valid movie")
     else{
       setMovie(search.results)
@@ -40,7 +40,7 @@ const Search = () => {
     else
       setPageNo(totalPages)
 
-    if(pageNo==totalPages)
+    if(pageNo===totalPages)
       alert("No results found")
   }
 

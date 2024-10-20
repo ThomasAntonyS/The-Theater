@@ -9,14 +9,16 @@ import { ProfileContext } from '../Context/ProfileContextProvider';
 
 const Header = () => {
 
-    const {setUserName,setUserEmail,setUserWatchlist,setLoggedIn} = useContext(ProfileContext)
+    const {setUserName,setUserEmail,setUserWatchlist,setLoggedIn,loggedIn} = useContext(ProfileContext)
 
     function handleLogout(){
         setLoggedIn(false)
         setUserName(' ')
         setUserEmail(' ')
         setUserWatchlist([])
-        alert('Logout Sucessful.')
+        if(loggedIn){
+            alert('Logout Sucessful')
+        }
     }
 
   return (
