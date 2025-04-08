@@ -23,22 +23,24 @@ const Header = () => {
 
   return (
     <div>
-        <div className="Header-main absolute top-0 flex align-middle justify-between h-[10vh] w-[100%]  bg-black bg-opacity-25 z-20">
+        <div className="absolute top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-25 z-[100] px-4">
 
-            <div className="Header_Navigation flex w-[20vw] ml-6 text-white">
+            <div className="hidden lg:flex gap-2 text-white">
                 <Link className='default_style hover:opacity-70' to='/popular'>Popular</Link>
-                <Link className='default_style hover:opacity-70' to='/top_rated'>Top Rated</Link>
+                <span className='h-max my-auto'>|</span>
+                <Link className='default_style hover:opacity-70' to='/top_rated'>Top-Rated</Link>
+                <span className='h-max my-auto'>|</span>
                 <Link className='default_style hover:opacity-70' to='/upcoming'>Upcoming</Link>
             </div>
 
-            <div className="Header_Title flex align-middle w-[15vw] h-full ml-[-120px] mt-1 text-white font-bold">
-                <a href='/'><img src={Logo} alt="Logo" className=' h-[6vh] my-3'/></a>
+            <div className=" flex align-middle h-max my-auto text-white font-bold">
+                <a href='/'><img src={Logo} alt="Logo" className=' h-[2vh] lg:h-[4vh] lg:-mx-6 '/></a>
             </div>
 
-            <div className="Header_UserFunction flex w-[13vw] mr-6 text-white">
+            <div className=" flex text-white">
                 <Link className='default_style p-2 rounded-full hover:bg-white hover:bg-opacity-25' to='/search'>
                 {(window.screen.width<640)?<SearchIcon fontSize='small' /> : <SearchIcon/>}
-                </Link>
+                </Link> 
 
                 <Link className='default_style p-2 rounded-full  hover:bg-white hover:bg-opacity-25' to='/watchlist'>
                 {(window.screen.width<640)?<LiveTvIcon fontSize='small'/> : <LiveTvIcon/>}

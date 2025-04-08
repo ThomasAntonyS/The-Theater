@@ -12,10 +12,10 @@ const Footer = () => {
   }
 
   return (
-    <div className='Footer_Main relative h-[20vh] w-[100vw]'>
-        <p className='Footer_title absolute flex justify-center text-3xl w-full font-mono font-bold text-white mt-[10px]'>THE THEATER</p>
+    <div className='Footer_Main relative w-[100vw] bg-[#151515]'>
+        <p className='Footer_title flex justify-center text-3xl w-full font-mono font-bold text-white py-[2vh]'>THE THEATER</p>
 
-        <div className="Contact_and_Quick_Link flex absolute w-[90vw] h-[65%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="Contact_and_Quick_Link flex w-[100vw] py-[2vh]">
           <section className=" w-full h-full flex justify-around text-white">
 
               <div className='Quick_Link flex flex-row flex-wrap justify-between w-max h-max my-auto'>
@@ -33,8 +33,8 @@ const Footer = () => {
           </section>
         </div>
 
-        <center>
-            <p className='Copyright absolute bottom-0 mb-2 text-white'><span className=' mx-2'>&copy;</span>The Theater - All Rights Reserved, 2024</p>
+        <center className='bg-[#151515] py-[2vh]'>
+          <p className='Copyright text-white'><span className=' mx-2'>&copy;</span>The Theater - All Rights Reserved, 2024</p>
         </center>
     </div>
   )

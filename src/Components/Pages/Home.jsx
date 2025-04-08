@@ -13,7 +13,7 @@ const Home = () => {
 
       <Banner/>
 
-      <section className=' mt-[-8%]'>
+      <section>
         <MovieCard title={"Popular Movies"} 
         url={`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`}
         navLink={'popular'}

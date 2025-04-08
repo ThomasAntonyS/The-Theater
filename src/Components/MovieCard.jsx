@@ -1,76 +1,93 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
-const MovieCard = ({title,url,navLink}) => {
+const MovieCard = ({ title, url, navLink }) => {
+  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
-    const [movies,setMovies] = useState([])
-    const navigate = useNavigate()
+  const fetchMovie = async () => {
+    try {
+      const data = await fetch(url);
+      const movie = await data.json();
+      setMovies(movie.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    const fetchMovie = async () => {
-        try {
-            const data = await fetch(url);
-            const movie = await data.json();
-            setMovies(movie.results)
-        } catch (error) {
-            console.log(error);
-        }
-}
-useEffect(() => {
-    fetchMovie()
-}, [])
+  useEffect(() => {
+    fetchMovie();
+  }, []);
 
-function handleNavigation(e,id){
-    e.preventDefault()
-    navigate(`/movie/${id}`)
-    window.scrollTo(0,0)
-}
+  const handleNavigation = (e, id) => {
+    e.preventDefault();
+    navigate(`/movie/${id}`);
+    window.scrollTo(0, 0);
+  };
 
-const baseImage = 'https://image.tmdb.org/t/p/w185'
+  const baseImage = 'https://image.tmdb.org/t/p/w185';
 
   return (
-    
-    <div className='Card block overflow-hidden w-[95vw] mx-auto mt-8 mb-10'> 
-
-    {(movies.length > 0) ? (
+    <div className='Card block overflow-hidden w-[95vw] mx-auto mb-10'>
+      {movies.length > 0 && (
         <>
-        <div className='Card_Title_nav flex flex-col relative w-[100%]'>
-        <p className='Card_title text-3xl mx-3 text-white w-max h-max '>{title}</p>
-        {
-            (navLink)?
-            <Link 
-            className='Card_navigation flex align-middle absolute right-0 text-white bg-white bg-opacity-20 w-max h-max px-3 py-[.3rem] rounded-full my-auto'
-            to={navLink}
-            ><p className=' text-1xl h-max w-max'>See More <span className='text-[20px] my-auto'> &#8594;</span></p></Link>
-            :
-            null
-        }
-        </div>
+          {/* Header: Title left, See More right */}
+          <div className='Card_Title_nav flex flex-col sm:flex-row justify-between items-start sm:items-center w-full px-4'>
+            <p className='Card_title text-2xl sm:text-3xl text-white font-semibold mb-2 sm:mb-0'>
+              {title}
+            </p>
 
-        <div className='relative flex overflow-x-scroll overflow-y-hidden mx-6 my-3 w-[99%]'>
-            <div className='flex'>
-                {movies.map((movie, index) => (
-                    <Link onClick={(e)=>handleNavigation(e,movie.id)} key={index} className='Moviecard_main relative flex flex-wrap h-[50vh] w-[13vw] my-4 mr-6 '>
-                        {
-                            (movie.poster_path != null) ?
-                            <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
-                            :
-                            <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
-                        }
-                        <p className='Movie_card_MovieTitle h-[25%] overflow-hidden flex flex-wrap text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
-                        <Link to={`movie/${movie.id}`} className='absolute bottom-0 ml-1 text-slate-300 text-[.9rem] h-max w-max'>More Info<span className=' mt-[20px] text-slate-300 text-[1.3rem] h-max w-max px-1'>&#8594;</span></Link>
-                    </Link>
-                ))}
+            {navLink && (
+              <Link
+                className=''
+                to={navLink}
+              >
+                See More <span className='ml-2 text-xl'>&#8594;</span>
+              </Link>
+            )}
+          </div>
+
+          {/* Movie Cards */}
+          <div className='relative flex overflow-x-auto overflow-y-hidden px-4 py-3 w-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent'>
+            <div className='flex gap-4'>
+              {movies.map((movie, index) => (
+                <div
+                  key={index}
+                  onClick={(e) => handleNavigation(e, movie.id)}
+                  className=' relative flex-shrink-0 w-[70vw] sm:w-[40vw] md:w-[28vw] lg:w-[18vw] xl:w-[13vw] cursor-pointer group'
+                >
+                  {movie.poster_path ? (
+                    <img
+                      src={baseImage + movie.poster_path}
+                      alt={movie.title}
+                      className='h-[65%] w-full object-cover rounded-lg transition-transform duration-200 group-hover:scale-105'
+                    />
+                  ) : (
+                    <div className='h-[65%] w-full flex items-center justify-center bg-gray-800 rounded-lg text-white'>
+                      <MovieCreationIcon style={{ fontSize: '6rem' }} />
+                    </div>
+                  )}
+
+                  <p className=' overflow-hidden w-full text-white text-[0.9rem] sm:text-[1rem] mt-12 leading-tight truncate'>
+                    {movie.title}
+                  </p>
+
+                  <Link
+                    to={`/movie/${movie.id}`}
+                    className='absolute bottom-2 left-2 text-slate-300 text-sm sm:text-[0.9rem] hover:text-white transition'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    More Info<span className='text-base ml-1'>&#8594;</span>
+                  </Link>
+                </div>
+              ))}
             </div>
-        </div>
-    </>
-    ) :
-    null
-    }
+          </div>
+        </>
+      )}
     </div>
-  )
+  );
+};
 
-}
-
-export default MovieCard
+export default MovieCard;
