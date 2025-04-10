@@ -1,50 +1,62 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
-const PageLayout = ({movies,title,description}) => {
+const PageLayout = ({ movies, title, description }) => {
 
     const navigate = useNavigate();
 
-    function handleNavigation(e,id){
-        e.preventDefault()
-        navigate(`/movie/${id}`)
-        window.scrollTo(0,0)
+    function handleNavigation(e, id) {
+        e.preventDefault();
+        navigate(`/movie/${id}`);
+        window.scrollTo(0, 0);
     }
 
-    const baseImage = 'https://image.tmdb.org/t/p/w185'
+    const baseImage = 'https://image.tmdb.org/t/p/w185';
 
     return (
-    
-        <div className='MoviePage_Card flex flex-col overflow-hidden w-[100vw] mx-auto'>
+        <div className='MoviePage_Card flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
 
-            <p className='Page_card_title text-white w-max text-4xl mx-auto mt-[15vh] mb-[3vh]'>{title}</p>
-            <p className='Page_card_description text-white w-[75%] text-1xl mx-auto mb-[7vh] text-center'>{description}</p>
-    
-            <div className="content flex flex-col w-max overflow-hidden mx-auto">
-                {(movies) ? (
-                <div className='Page_cards_container flex w-[85vw] overflow-hidden mx-auto my-3'>
-                    <div className='flex flex-wrap h-max'>
+            <p className='Page_card_title text-white text-3xl sm:text-4xl mx-auto mt-[10vh] mb-4 text-center'>
+                {title}
+            </p>
+
+            <p className='Page_card_description text-white text-base sm:text-lg md:text-xl w-full sm:w-[90%] md:w-[75%] mx-auto mb-8 text-center'>
+                {description}
+            </p>
+
+            <div className="content flex flex-col w-full items-center mt-8">
+                {movies ? (
+                    <div className='Page_cards_container flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
                         {movies.map((movie, index) => (
-                            <Link key={index} onClick={(e)=>handleNavigation(e,movie.id)} className='Page_Moviecard relative flex flex-wrap h-[50vh] w-[13vw] my-4 mx-[30px]'>
-                                {
-                                    (movie.poster_path != null) ?
-                                    <img src={baseImage + movie.poster_path} alt={movie.title} className=' h-[65%] w-fill object-fill rounded-[10px]'/>
-                                    :
-                                    <p className='h-[65%] flex justify-center align-middle text-white'><MovieCreationIcon style={{fontSize:"10rem",margin:'auto'}}/></p>
-                                }
-                                <p className='Page_MovieTitle text-white text-[1rem] ml-1 mt-[-20px]'>{movie.title}</p>
+                            <Link
+                                key={index}
+                                onClick={(e) => handleNavigation(e, movie.id)}
+                                className='Page_Moviecard relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
+                            >
+                                {movie.poster_path ? (
+                                    <img
+                                        src={baseImage + movie.poster_path}
+                                        alt={movie.title}
+                                        className='h-auto w-full object-fill rounded-[10px]'
+                                    />
+                                ) : (
+                                    <div className='h-[180px] w-full flex items-center justify-center bg-gray-800 rounded-[10px]'>
+                                        <MovieCreationIcon style={{ fontSize: "5rem", color: "white" }} />
+                                    </div>
+                                )}
+                                <p className='Page_MovieTitle w-full text-white text-sm text-center mt-2 truncate'>
+                                    {movie.title}
+                                </p>
                             </Link>
                         ))}
                     </div>
-                </div>
-            ) :
-                <p className=' text-white text-2xl'>Loading...</p>
-            }
+                ) : (
+                    <p className='text-white text-2xl'>Loading...</p>
+                )}
             </div>
 
         </div>
-      )
-    
-}
+    );
+};
 
-export default PageLayout
+export default PageLayout;

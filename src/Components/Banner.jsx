@@ -48,7 +48,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative h-[100vh] w-full overflow-hidden">
+    <div className="relative h-[100vh] w-full overflow-hidden mb-6">
       {/* Video Background */}
       <video
         src={BannerMovies[count].video}

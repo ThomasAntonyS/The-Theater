@@ -44,10 +44,10 @@ const Popular = () => {
         </section>
 
         <section className='Pagination flex justify-between mt-[3vh] mb-[5vh]'>
-            <div className='Pagination_content flex justify-between w-[15%] m-auto'>
-                <button className='Page_left w-max px-4 py-2 rounded-full text-white text-[20px]  bg-white bg-opacity-35' onClick={handleLeft}><WestIcon fontSize='small'/></button>
+            <div className='Pagination_content flex justify-between w-[50%] sm:w-[15%] m-auto'>
+                <button className='Page_left w-max px-3 py-2 rounded-full text-white text-[20px]  bg-white bg-opacity-35' onClick={handleLeft}><WestIcon fontSize='small'/></button>
                 <p className='flex justify-center my-auto w-[50%] text-white'>{pageCount}</p>
-                <button className='Page_right w-max px-4 py-2 rounded-full text-white text-[20px] bg-white bg-opacity-35' onClick={()=>{setPageCount(pageCount+1);window.scrollTo(0,0)}}><EastIcon fontSize='small'/></button>
+                <button className='Page_right w-max px-3 py-2 rounded-full text-white text-[20px] bg-white bg-opacity-35' onClick={()=>{setPageCount(pageCount+1);window.scrollTo(0,0)}}><EastIcon fontSize='small'/></button>
             </div>
         </section>
 
