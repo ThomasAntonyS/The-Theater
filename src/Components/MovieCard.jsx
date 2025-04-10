@@ -33,17 +33,17 @@ const MovieCard = ({ title, url, navLink }) => {
       {movies.length > 0 && (
         <>
           {/* Header: Title left, See More right */}
-          <div className='Card_Title_nav flex flex-col sm:flex-row justify-between items-start sm:items-center w-full px-4'>
-            <p className='Card_title text-2xl sm:text-3xl text-white font-semibold mb-2 sm:mb-0'>
+          <div className=' flex flex-col sm:flex-row justify-between items-start sm:items-center w-full px-4'>
+            <p className=' text-2xl sm:text-3xl text-white font-semibold mb-2 sm:mb-0'>
               {title}
             </p>
 
             {navLink && (
               <Link
-                className=''
+                className=' text-white border-b-2'
                 to={navLink}
               >
-                See More <span className='ml-2 text-xl'>&#8594;</span>
+                See More <span className=' text-xl'>&#8594;</span>
               </Link>
             )}
           </div>

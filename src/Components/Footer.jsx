@@ -33,7 +33,7 @@ const Footer = () => {
           </section>
         </div>
 
-        <center className='bg-[#151515] py-[2vh]'>
+        <center className='bg-[#151515] py-[2vh] w-[80%] mx-auto'>
           <p className='Copyright text-white'><span className=' mx-2'>&copy;</span>The Theater - All Rights Reserved, 2024</p>
         </center>
     </div>
