@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div>
-        <div className="fixed flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-60 z-[100] px-4">
+        <div className="fixed top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-60 z-[100] px-4">
 
             <div className="hidden lg:flex gap-2 text-white">
                 <Link className='default_style hover:opacity-70' to='/popular'>Popular</Link>
