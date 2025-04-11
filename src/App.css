@@ -9,8 +9,8 @@
 }
 /* width */
 ::-webkit-scrollbar {
-  height: 8px;
-  width: 10px;
+  height: 4px;
+  width: 5px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
