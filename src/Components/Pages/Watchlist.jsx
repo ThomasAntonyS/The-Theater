@@ -19,7 +19,6 @@ const Watchlist = () => {
 
       <div className='Watchlist_Container text-white min-h-screen bg-black px-4 py-8 mb-[10vh]'>
         {
-          loggedIn ? (
             userWatchlist.length > 0 ? (
               <>
                 <section className='max-w-screen-xl mx-auto my-[15vh]'>
@@ -36,16 +35,16 @@ const Watchlist = () => {
                           alt={movie.title}
                           className='w-full h-auto rounded-lg shadow-lg object-cover'
                         />
-                        <div className='absolute top-2 right-2'>
+                        <div className='mt-2 text-center'>
+                          <h3 className='text-sm font-semibold my-2'>{movie.title}</h3>
+                        </div>
+                        <div className=' w-full'>
                           <button
                             onClick={() => handleRemove(movie.id)}
-                            className='bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700 transition'
+                            className='bg-white/50 w-full text-[1.2rem] text-white text-xs px-2 py-3 rounded hover:bg-white/20 transition my-2'
                           >
                             Remove
                           </button>
-                        </div>
-                        <div className='mt-2 text-center'>
-                          <h3 className='text-sm font-semibold'>{movie.title}</h3>
                         </div>
                       </div>
                     ))}
@@ -56,16 +55,6 @@ const Watchlist = () => {
             ) : (
               <p className='text-white text-xl text-center mt-32'>Your watchlist is empty. Start adding some movies!</p>
             )
-          ) : (
-            <div className='flex items-center justify-center min-h-screen text-white'>
-              <Link
-                to='/sign_in'
-                className='px-6 py-3 border border-white rounded bg-white bg-opacity-10 hover:bg-opacity-20 transition'
-              >
-                Click here to Sign In / Sign Up to view your watchlist
-              </Link>
-            </div>
-          )
         }
       </div>
     </>

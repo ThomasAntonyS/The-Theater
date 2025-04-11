@@ -7,11 +7,14 @@ import Footer from '../Footer';
 import MovieCard from '../MovieCard';
 import { ProfileContext } from '../../Context/ProfileContextProvider';
 import MovieHeroSection from '../MovieHeroSection';
+import { Tailspin } from 'ldrs/react'; 
+import 'ldrs/react/Tailspin.css';
 
 const MovieMain = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
-  const { loggedIn, userWatchlist, setUserWatchlist } = useContext(ProfileContext);
+  const [loading, setLoading] = useState(false);
+  const { userWatchlist, setUserWatchlist } = useContext(ProfileContext);
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -20,14 +23,15 @@ const MovieMain = () => {
   }, [id]);
 
   const fetchItem = async () => {
+    setLoading(true);
     try {
       const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`);
       const data = await res.json();
       setItem(data);
-      
     } catch (error) {
       console.error('Failed to fetch movie:', error);
     }
+    setLoading(false);
   };
 
   const handleWatchlist = (e) => {
@@ -35,24 +39,30 @@ const MovieMain = () => {
     const exists = userWatchlist.some(movie => movie.id === item.id);
     if (!exists) {
       setUserWatchlist(prev => [...prev, item]);
-      alert(`${item.title} added to wishlist.`)
+      alert(`${item.title} added to wishlist.`);
     } else {
       alert('Movie already exists in watchlist');
     }
   };
 
-  const handleWatchlistLoggedOut = () => {
-    alert('Log in to save watchlist.');
-  };
-
   return (
     <>
       <Header />
-      {item && (
+
+      {loading ? (
+        <div className="w-full h-screen flex items-center justify-center bg-black">
+          <Tailspin
+            size={50}
+            stroke={5}
+            speed={0.9}
+            color="white"
+          />
+        </div>
+      ) : item && (
         <div className="w-full bg-black text-white">
           <MovieHeroSection
             item={item}
-            handleWatchlist={loggedIn ? handleWatchlist : handleWatchlistLoggedOut}
+            handleWatchlist={handleWatchlist}
           />
           <Video movieId={id} />
           <Casts movieId={id} />

@@ -16,7 +16,7 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
 
   return (
     <section
-      className="relative h-screen sm:h-[85vh] w-full bg-cover bg-center text-white mb-16"
+      className="relative h-screen sm:h-[90vh] w-full bg-cover text-white mb-16"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`,
       }}
