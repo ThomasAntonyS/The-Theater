@@ -16,13 +16,13 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
 
   return (
     <section
-      className="relative  h-screen sm:h-[85vh] w-full bg-cover bg-center text-white mb-16"
+      className="relative h-screen sm:h-[85vh] w-full bg-cover bg-center text-white mb-16"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`,
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-0" />
+      <div className="absolute bottom-[-5px] inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-0" />
 
       {/* Parent Container for main and footer */}
       <div className="absolute bottom-5 w-full z-10 flex flex-col px-4 sm:px-6 md:px-12 lg:px-16">

@@ -35,6 +35,7 @@ const MovieMain = () => {
     const exists = userWatchlist.some(movie => movie.id === item.id);
     if (!exists) {
       setUserWatchlist(prev => [...prev, item]);
+      alert(`${item.title} added to wishlist.`)
     } else {
       alert('Movie already exists in watchlist');
     }
