@@ -28,18 +28,18 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
       <div className="absolute bottom-5 w-full z-10 flex flex-col px-4 sm:px-6 md:px-12 lg:px-16">
         <div className=" flex flex-col flex-grow">
           <div className="flex flex-col sm:justify-between gap-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow text-left">
+            <h2 className=" font-manrope text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow text-left">
               {item.original_title || item.title}
             </h2>
-            <h3 className=' truncate'>
-                {item.overview}
+            <h3 className=' font-nunito truncate'>
+              {item.overview}
             </h3>
           </div>
         </div>
 
         <div className=" mt-5 py-4 text-gray-300 text-sm rounded-md">
           <div className="flex flex-col md:flex-row md:justify-between gap-4">
-            <div className="flex flex-wrap align-middle gap-4">
+            <div className="flex flex-wrap align-middle gap-4 font-nunito">
               <p className=' h-max my-auto'>
                 <span className="text-red-500 font-semibold">Published:</span>{' '}
                 {formatDate(item.release_date)}
@@ -50,14 +50,14 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
               </p>
             </div>
 
-            <div className="flex gap-6 flex-wrap text-sm">
+            <div className="flex gap-6 flex-wrap text-sm font-nunito">
               <p className=' h-max my-auto'>❤️ {mockLikes.toLocaleString()}</p>
               <p className=' h-max my-auto'>💬 {mockComments.toLocaleString()}</p>
               <p className=' h-max my-auto'>🔁 {mockShares.toLocaleString()}</p>
             </div>
             <button
               onClick={handleWatchlist}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm sm:text-base w-full sm:w-auto"
+              className="bg-red-600 hover:bg-red-700 font-nunito text-white px-4 py-2 rounded-md text-sm sm:text-base w-full sm:w-auto"
             >
               Add to Watchlist
             </button>

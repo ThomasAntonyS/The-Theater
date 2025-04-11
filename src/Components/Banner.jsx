@@ -76,14 +76,14 @@ const Banner = () => {
 
       {/* Content */}
       <div className="absolute bottom-20 left-4 sm:left-10 w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] z-30 text-white space-y-4">
-        <p className="bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-sm">
+        <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-[.9rem]">
           New Movie
         </p>
-        <h1 className="text-3xl sm:text-4xl font-bold">{BannerMovies[count].title}</h1>
-        <p className="text-sm sm:text-base max-w-[90%]">
+        <h1 className="text-3xl sm:text-4xl font-semibold font-manrope">{BannerMovies[count].title}</h1>
+        <p className="text-sm sm:text-2xl max-w-[90%] font-nunito">
           {BannerMovies[count].desc}
         </p>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap text-[1.2rem] items-center gap-3 font-nunito">
           <button className="flex w-max items-center bg-white text-black px-4 py-2 rounded-full text-sm hover:bg-gray-200 transition">
             <PlayCircleOutlineRoundedIcon className="mr-2 text-base" />
             Watch Movie
@@ -101,7 +101,7 @@ const Banner = () => {
       <div className="absolute bottom-8 flex space-x-2 z-30 w-full">
         <div className=' w-[95%] relative flex items-end justify-end'>
             {BannerMovies.map((_, index) => (
-              <div key={index} className=" right-10 w-12 h-2 mx-2 rounded-full bg-white transition-all duration-300" style={{
+              <div key={index} className=" right-10 w-12 h-[5px] mx-2 rounded-full bg-white transition-all duration-300" style={{
                 opacity: index === count ? 1 : 0.3
               }} />
             ))}

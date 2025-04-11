@@ -50,8 +50,8 @@ const Search = () => {
       <div className="text-white min-h-screen bg-black mt-[10vh]">
         {/* Intro Section */}
         <section className="text-center px-4 sm:px-8 lg:px-16 py-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">Find Your Movie</h1>
-          <p className="text-base sm:text-lg text-gray-300 max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 font-manrope">Find Your Movie</h1>
+          <p className="text-base sm:text-lg text-gray-300 max-w-4xl mx-auto font-nunito">
             If you’re searching for your next movie, consider diving into a world where emotions
             run deep and stories captivate. From epic adventures and heartfelt dramas to thrilling
             mysteries and side-splitting comedies, there's a film for every mood.
@@ -59,18 +59,18 @@ const Search = () => {
         </section>
 
         {/* Search Box */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 px-4">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 px-4 mx-auto sm:w-[60%]">
           <input
             type="text"
             placeholder="Search your movie..."
-            className="w-full sm:w-1/2 bg-black text-white border-b-2 border-white focus:outline-none px-4 py-2 placeholder-gray-300 hover:bg-opacity-20 transition-all"
+            className="w-full font-nunito sm:w-1/2 bg-black text-white border-b-2 border-white focus:outline-none px-4 py-2 placeholder-gray-300 hover:bg-opacity-20 transition-all"
             value={searchMovie}
             onKeyDown={(e) => (e.key === 'Enter' ? fetchSearches() : null)}
             onChange={(e) => setSearchMovie(e.target.value)}
           />
           <button
             onClick={fetchSearches}
-            className="bg-white bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
+            className="bg-white font-manrope bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
           >
             Search
           </button>
@@ -81,7 +81,7 @@ const Search = () => {
           <div className="flex justify-center mb-6">
             <button
               onClick={handleRefresh}
-              className="flex items-center gap-2 bg-white bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
+              className="flex font-nunito items-center gap-2 bg-white bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
             >
               <CachedIcon />
               Refresh
@@ -110,12 +110,12 @@ const Search = () => {
                       <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
                     </div>
                   )}
-                  <p className="text-sm text-center">{movie.title}</p>
+                  <p className="text-sm text-center font-nunito">{movie.title}</p>
                 </Link>
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-400 animate-pulse my-10">
+            <p className="text-center text-white animate-pulse my-10 font-nunito">
               Search your favorite movie
             </p>
           )}

@@ -14,24 +14,24 @@ const PageLayout = ({ movies, title, description }) => {
     const baseImage = 'https://image.tmdb.org/t/p/w185';
 
     return (
-        <div className='MoviePage_Card flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
+        <div className=' flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
 
-            <p className='Page_card_title text-white text-3xl sm:text-4xl mx-auto mt-[10vh] mb-4 text-center'>
+            <p className=' text-white text-3xl sm:text-4xl mx-auto mt-[10vh] mb-4 text-center font-manrope'>
                 {title}
             </p>
 
-            <p className='Page_card_description text-white text-base sm:text-lg md:text-xl w-full sm:w-[90%] md:w-[75%] mx-auto mb-8 text-center'>
+            <p className=' font-nunito text-white text-base sm:text-lg md:text-xl w-full sm:w-[90%] md:w-[75%] mx-auto mb-8 text-center'>
                 {description}
             </p>
 
-            <div className="content flex flex-col w-full items-center mt-8">
+            <div className=" flex flex-col w-full items-center mt-8">
                 {movies ? (
-                    <div className='Page_cards_container flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
+                    <div className=' flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
                         {movies.map((movie, index) => (
                             <Link
                                 key={index}
                                 onClick={(e) => handleNavigation(e, movie.id)}
-                                className='Page_Moviecard relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
+                                className=' relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
                             >
                                 {movie.poster_path ? (
                                     <img
@@ -44,14 +44,14 @@ const PageLayout = ({ movies, title, description }) => {
                                         <MovieCreationIcon style={{ fontSize: "5rem", color: "white" }} />
                                     </div>
                                 )}
-                                <p className='Page_MovieTitle w-full text-white text-sm text-center mt-2 truncate'>
+                                <p className=' w-full text-white text-[1.1rem] text-center mt-2 truncate font-nunito'>
                                     {movie.title}
                                 </p>
                             </Link>
                         ))}
                     </div>
                 ) : (
-                    <p className='text-white text-2xl'>Loading...</p>
+                    <p className='text-white text-2xl font-nunito'>Loading...</p>
                 )}
             </div>
 

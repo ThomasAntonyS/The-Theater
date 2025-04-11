@@ -20,14 +20,14 @@ function Casts({ movieId }) {
     return (
         <>
             {casts.length > 0 ? (
-                <div className='Casts mb-16'>
-                    <p className='Casts_card_title text-white text-2xl sm:text-3xl md:text-4xl mx-4 sm:mx-[3%] mb-4'>
+                <div className=' mb-16'>
+                    <p className=' text-white text-2xl font-manrope sm:text-3xl md:text-4xl mx-4 sm:mx-[3%] mb-4'>
                         Characters
                     </p>
                     <div className='flex overflow-x-auto no-scrollbar space-x-4 px-4 sm:w-[95%] mx-auto'>
                         {casts.map((cast) => (
                             <div
-                                className='Casts_card flex-shrink-0 text-white w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] flex flex-col'
+                                className=' flex-shrink-0 text-white w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] flex flex-col'
                                 key={cast.id}
                             >
                                 {cast.profile_path ? (
@@ -42,18 +42,18 @@ function Casts({ movieId }) {
                                     </div>
                                 )}
 
-                                <p className='Casts_card_data mt-2 text-sm sm:text-base'>
-                                    <i>Actor:</i> {cast.original_name}
+                                <p className=' mt-2 text-sm sm:text-base'>
+                                    <i className=' font-manrope'>Actor:</i> {cast.original_name}
                                 </p>
-                                <p className='Casts_card_data text-sm sm:text-base'>
-                                    <i>Role:</i> {cast.character || "NA"}
+                                <p className=' text-sm sm:text-base'>
+                                    <i className=' font-manrope'>Role:</i> {cast.character || "NA"}
                                 </p>
                             </div>
                         ))}
                     </div>
                 </div>
             ) : (
-                <p className="text-white text-center">Loading...</p>
+                <p className="text-white text-center font-nunito">Loading...</p>
             )}
         </>
     );

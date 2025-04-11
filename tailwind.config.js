@@ -4,8 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        manrope: ['Manrope', 'sans-serif'],
+        nunito: ['Nunito', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
-

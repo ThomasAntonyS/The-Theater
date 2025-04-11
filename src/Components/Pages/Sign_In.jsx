@@ -34,7 +34,7 @@ const Sign_In = () => {
 
       <form
         onSubmit={handleSubmit}
-        className='SignIn_Container absolute z-10 flex flex-col w-[90%] sm:w-[70%] md:w-[50%] lg:w-[30%] bg-black bg-opacity-65 rounded-lg px-6 py-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
+        className=' absolute font-nunito z-10 flex flex-col w-[90%] sm:w-[70%] md:w-[50%] lg:w-[30%] bg-black bg-opacity-65 rounded-lg px-6 py-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
       >
         <img src={Logo} alt="Logo" className='w-[60%] md:w-[70%] mx-auto mb-6' />
 
@@ -86,12 +86,12 @@ const Sign_In = () => {
 
         <button
           type='submit'
-          className='w-full mt-4 py-3 rounded text-white bg-white bg-opacity-20 hover:bg-opacity-30 transition'
+          className='w-full mt-4 py-3 font-manrope rounded text-white bg-white bg-opacity-20 hover:bg-opacity-30 transition'
         >
           Sign In
         </button>
 
-        <Link to='/sign_up' className='text-white text-sm mt-6 mx-auto hover:underline'>
+        <Link to='/sign_up' className='text-white text-[1.2rem] mt-6 mx-auto hover:underline'>
           Don't have an account?
         </Link>
       </form>

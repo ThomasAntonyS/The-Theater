@@ -22,8 +22,8 @@ const Watchlist = () => {
             userWatchlist.length > 0 ? (
               <>
                 <section className='max-w-screen-xl mx-auto my-[15vh]'>
-                  <h1 className='text-3xl md:text-4xl font-bold mb-4'>Your Watchlist</h1>
-                  <p className='text-sm md:text-base text-gray-300 mb-8'>
+                  <h1 className='text-3xl md:text-4xl font-semibold mb-4 font-manrope'>Your Watchlist</h1>
+                  <p className='text-sm md:text-base text-gray-300 mb-8 font-nunito'>
                     Add movies to your watchlist and keep track of films you want to see. Conveniently save titles to enjoy later, so you never forget a movie recommendation or new release. Enjoy seamless access whenever you're ready to watch.
                   </p>
 
@@ -36,12 +36,12 @@ const Watchlist = () => {
                           className='w-full h-auto rounded-lg shadow-lg object-cover'
                         />
                         <div className='mt-2 text-center'>
-                          <h3 className='text-sm font-semibold my-2'>{movie.title}</h3>
+                          <h3 className='text-[1.2rem] font-semibold font-nunito my-2'>{movie.title}</h3>
                         </div>
                         <div className=' w-full'>
                           <button
                             onClick={() => handleRemove(movie.id)}
-                            className='bg-white/50 w-full text-[1.2rem] text-white text-xs px-2 py-3 rounded hover:bg-white/20 transition my-2'
+                            className='bg-white/50 font-nunito w-full text-[1.25rem] text-white text-xs px-2 py-3 rounded hover:bg-white/20 transition my-2'
                           >
                             Remove
                           </button>
@@ -53,7 +53,7 @@ const Watchlist = () => {
                 <Footer />
               </>
             ) : (
-              <p className='text-white text-xl text-center mt-32'>Your watchlist is empty. Start adding some movies!</p>
+              <p className='text-white text-xl text-center mt-32 font-nunito'>Your watchlist is empty. Start adding some movies!</p>
             )
         }
       </div>

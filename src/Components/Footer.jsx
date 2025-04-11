@@ -13,9 +13,9 @@ const Footer = () => {
 
   return (
     <div className=' relative w-[100vw] bg-[#151515]'>
-        <p className=' flex justify-center text-3xl w-full font-mono font-bold text-white py-[2vh]'>THE THEATER</p>
+        <p className=' flex justify-center text-3xl w-full text-white py-[2vh] font-manrope font-semibold'>THE THEATER</p>
 
-        <div className=" flex w-[80vw] justify-center mx-auto sm:w-[100vw] py-[2vh]">
+        <div className=" flex w-[80vw] justify-center mx-auto sm:w-[100vw] py-[2vh] font-nunito">
           <section className=" w-full h-full flex justify-around text-white">
 
               <div className='flex flex-col items-center gap-y-3 sm:gap-y-0 sm:items-start sm:flex-row flex-wrap sm:justify-between w-max h-max my-auto'>
@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
 
         <center className='bg-[#151515] py-[2vh] w-[80%] mx-auto'>
-          <p className='Copyright text-white'><span className=' mx-2'>&copy;</span>The Theater - All Rights Reserved, 2024</p>
+          <p className=' text-white font-manrope'><span className=' mx-2'>&copy;</span>The Theater - All Rights Reserved, 2024</p>
         </center>
     </div>
   )

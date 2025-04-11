@@ -20,7 +20,7 @@ function Video({ movieId }) {
         <>
             {videos.length > 0 && (
                 <div className='relative mb-10'>
-                    <p className='Videos_title text-white text-2xl sm:text-3xl md:text-4xl mx-4 sm:mx-[3%] mb-5'>
+                    <p className='font-manrope text-white text-2xl sm:text-3xl md:text-4xl mx-4 sm:mx-[3%] mb-5'>
                         Trailer and Videos
                     </p>
                     <div className='videos flex overflow-x-auto no-scrollbar space-x-6 px-4 sm:px-6 w-[95%] mx-auto'>
@@ -28,7 +28,7 @@ function Video({ movieId }) {
                             video && (
                                 <div
                                     key={video.id}
-                                    className='trailers flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] aspect-video rounded-xl overflow-hidden'
+                                    className=' flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] aspect-video rounded-xl overflow-hidden'
                                 >
                                     <iframe
                                         title={video.name}
