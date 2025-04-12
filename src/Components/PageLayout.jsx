@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
+import { Tailspin } from 'ldrs/react'; 
+import 'ldrs/react/Tailspin.css';
 
 const PageLayout = ({ movies, title, description }) => {
 
@@ -51,7 +53,9 @@ const PageLayout = ({ movies, title, description }) => {
                         ))}
                     </div>
                 ) : (
-                    <p className='text-white text-2xl font-nunito'>Loading...</p>
+                    <div className="w-full h-screen flex items-start justify-center bg-black">
+                      <Tailspin size={50} stroke={5} speed={0.9} color="white" />
+                    </div>
                 )}
             </div>
 
