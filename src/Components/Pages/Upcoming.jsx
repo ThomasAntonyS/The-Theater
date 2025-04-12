@@ -14,7 +14,7 @@ const Upcoming = () => {
 
     const getMovies = async() =>{
         const apiKey = process.env.REACT_APP_API_KEY
-        const data = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${pageCount}`)
+        const data = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${pageCount}&include_adult=false`)
         const response = await data.json()
         setMovie(response.results)
     }

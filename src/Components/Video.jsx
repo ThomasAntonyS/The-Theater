@@ -9,7 +9,7 @@ function Video({ movieId }) {
 
     const fetchVideo = async () => {
         const apiKey = process.env.REACT_APP_API_KEY;
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US`);
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=en-US&include_adult=false`);
         const movie = await data.json();
         setVideos(movie.results);
     };

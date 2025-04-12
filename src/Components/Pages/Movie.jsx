@@ -25,7 +25,7 @@ const MovieMain = () => {
   const fetchItem = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`);
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&include_adult=false`);
       const data = await res.json();
       setItem(data);
     } catch (error) {

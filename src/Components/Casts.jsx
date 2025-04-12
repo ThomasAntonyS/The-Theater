@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Casts({ movieId }) {
     const [casts, setCasts] = useState([]);
+    const navigate = useNavigate()
 
     const fetchCast = async () => {
         const apiKey = process.env.REACT_APP_API_KEY;
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en-US`);
+        const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en-US&include_adult=false`);
         const casts = await data.json();
         setCasts(casts.cast);
     };
@@ -18,6 +19,12 @@ function Casts({ movieId }) {
 
     const baseImage = 'https://image.tmdb.org/t/p/w185';
 
+    const handleCastNavigation = (e,id) =>{
+        e.preventDefault()
+        navigate(`/cast/${id}`)
+        window.scrollTo(0,0)
+    }
+
     return (
         <>
             {casts.length > 0 ? (
@@ -27,7 +34,8 @@ function Casts({ movieId }) {
                     </p>
                     <div className='flex overflow-x-auto no-scrollbar space-x-4 px-4 sm:w-[95%] mx-auto'>
                         {casts.map((cast) => (
-                            <Link to={`/cast/${cast.id}`}
+                            <Link
+                                onClick={e=>handleCastNavigation(e,cast.id)}
                                 className=' flex-shrink-0 text-white w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] flex flex-col'
                                 key={cast.id}
                             >
