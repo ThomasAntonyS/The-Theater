@@ -75,7 +75,7 @@ const Banner = () => {
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-20 left-4 sm:left-10 w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] z-30 text-white space-y-4">
+      <div className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] z-30 text-white space-y-4">
         <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-[.9rem]">
           New Movie
         </p>
