@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
+import { Link } from 'react-router-dom';
 
 function Casts({ movieId }) {
     const [casts, setCasts] = useState([]);
@@ -26,7 +27,7 @@ function Casts({ movieId }) {
                     </p>
                     <div className='flex overflow-x-auto no-scrollbar space-x-4 px-4 sm:w-[95%] mx-auto'>
                         {casts.map((cast) => (
-                            <div
+                            <Link to={`/cast/${cast.id}`}
                                 className=' flex-shrink-0 text-white w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] flex flex-col'
                                 key={cast.id}
                             >
@@ -48,7 +49,7 @@ function Casts({ movieId }) {
                                 <p className=' text-sm sm:text-base'>
                                     <i className=' font-manrope'>Role:</i> {cast.character || "NA"}
                                 </p>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

@@ -75,7 +75,7 @@ const MovieCard = ({ title, url, navLink }) => {
 
                   <Link
                     to={`/movie/${movie.id}`}
-                    className='absolute bottom-2 left-2 text-slate-300 text-sm sm:text-[1rem] hover:text-white transition'
+                    className='absolute bottom-2 text-slate-300 text-sm sm:text-[1rem] hover:text-white transition'
                     onClick={(e) => e.stopPropagation()}
                   >
                     More Info<span className='text-base ml-1'>&#8594;</span>

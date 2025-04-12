@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import { ProfileContext } from '../../Context/ProfileContextProvider';
 
 const Watchlist = () => {
-  const { loggedIn, userWatchlist, setUserWatchlist } = useContext(ProfileContext);
+  const {userWatchlist, setUserWatchlist } = useContext(ProfileContext);
 
-  // Remove movie from watchlist
   const handleRemove = (movieId) => {
     const updatedList = userWatchlist.filter(movie => movie.id !== movieId);
     setUserWatchlist(updatedList);
@@ -30,14 +29,16 @@ const Watchlist = () => {
                   <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                     {userWatchlist.map((movie) => (
                       <div key={movie.id} className='relative group'>
-                        <img
-                          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                          alt={movie.title}
-                          className='w-full h-auto rounded-lg shadow-lg object-cover'
-                        />
-                        <div className='mt-2 text-center'>
-                          <h3 className='text-[1.2rem] font-semibold font-nunito my-2'>{movie.title}</h3>
-                        </div>
+                        <Link to={`/movie/${movie.id}`}>
+                          <img
+                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                            alt={movie.title}
+                            className='w-full h-auto rounded-lg shadow-lg object-cover'
+                          />
+                          <div className='mt-2 text-center'>
+                            <h3 className='text-[1.2rem] font-semibold font-nunito my-2'>{movie.title}</h3>
+                          </div>
+                        </Link>
                         <div className=' w-full'>
                           <button
                             onClick={() => handleRemove(movie.id)}

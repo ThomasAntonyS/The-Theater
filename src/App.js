@@ -10,6 +10,7 @@ import Sign_In from './Components/Pages/Sign_In'
 import Sign_Up from './Components/Pages/Sign_Up'
 import ProfileContextProvider from './Context/ProfileContextProvider'
 import './App.css'
+import CastMovies from './Components/Pages/CastMovies'
 
 
 function App() {
@@ -42,8 +43,13 @@ function App() {
             />
 
             <Route
-            path={'movie/:id'}
+            path={'/movie/:id'}
             element={<Movie/>}
+            />
+
+            <Route
+            path={'/cast/:id'}
+            element={<CastMovies/>}
             />
 
             <Route
