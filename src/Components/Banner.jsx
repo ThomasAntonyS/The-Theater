@@ -75,12 +75,12 @@ const Banner = () => {
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[70%] md:w-[50%] lg:w-[40%] z-30 text-white space-y-4">
+      <div className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-30 text-white space-y-4">
         <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-[.9rem]">
           New Movie
         </p>
         <h1 className="text-3xl sm:text-4xl font-semibold font-manrope">{BannerMovies[count].title}</h1>
-        <p className="text-sm sm:text-2xl max-w-[90%] font-nunito">
+        <p className="text-sm sm:text-[1.5rem] sm:leading-[30px] max-w-[90%] font-nunito">
           {BannerMovies[count].desc}
         </p>
         <div className="flex flex-wrap text-[1.2rem] items-center gap-3 font-nunito">
