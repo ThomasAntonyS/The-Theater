@@ -33,14 +33,17 @@ body{
 #menu_icon{ 
   display: none;
 }
-.default_style{
-  height: max-content;
-  width: max-content;
-  margin:auto;
-}
 .blink_animation{
   animation: blink 2s infinite ease-in-out;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes blink {
     0%{
       opacity: 1;

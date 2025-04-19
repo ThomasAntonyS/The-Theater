@@ -49,7 +49,6 @@ const Banner = () => {
 
   return (
     <div className="relative h-[100vh] w-full overflow-hidden mb-6">
-      {/* Video Background */}
       <video
         src={BannerMovies[count].video}
         autoPlay
@@ -75,7 +74,7 @@ const Banner = () => {
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-30 text-white space-y-4">
+      <div data-aos="fade-bottom" data-aos-duration="1000" className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-30 text-white space-y-4">
         <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-[.9rem]">
           New Movie
         </p>

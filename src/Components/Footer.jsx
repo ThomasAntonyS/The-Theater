@@ -1,43 +1,80 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../assets/Logo.png'; 
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
 
-  const navigate = useNavigate()
+  const handleNavigation = (e, link) => {
+    e.preventDefault();
+    navigate(link);
+    window.scrollTo(0, 0);
+  };
 
-  const handleNavigation =(e,link) =>{
-    e.preventDefault()
-    navigate(link)
-    window.scrollTo(0,0)
-  }
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      alert(`Subscribed with ${email}`);
+      setEmail('');
+    }
+  };
 
   return (
-    <div className=' relative w-[100vw] bg-[#151515]'>
-        <p className=' flex justify-center text-3xl w-full text-white py-[2vh] font-manrope font-semibold'>THE THEATER</p>
-
-        <div className=" flex w-[80vw] justify-center mx-auto sm:w-[100vw] py-[2vh] font-nunito">
-          <section className=" w-full h-full flex justify-around text-white">
-
-              <div className='flex flex-col items-center gap-y-3 sm:gap-y-0 sm:items-start sm:flex-row flex-wrap sm:justify-between w-max h-max my-auto'>
-                <Link onClick={(e)=>handleNavigation(e,'/')} className='Links w-max mx-2 my-[2px] hover:opacity-70'>Home</Link>
-                <span className=' hidden sm:flex w-max mx-2'>|</span>
-                <Link onClick={(e)=>handleNavigation(e,'/popular')}  className='Links w-max mx-2 my-[2px] hover:opacity-70'>Popular</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/top_rated')}  className='Links w-max mx-2 my-[2px] hover:opacity-70'>Top Rated</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/upcoming')} className='Links w-max mx-2 my-[2px] hover:opacity-70'>Upcomimg</Link>
-                <span className='hidden sm:flex w-max mx-2'>|</span>
-                <Link onClick={(e)=>handleNavigation(e,'/sign_up')}  className='Links w-max mx-2 my-[2px] hover:opacity-70'>Sign Up</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/sign_in')}  className='Links w-max mx-2 my-[2px] hover:opacity-70'>Sign In</Link>
-                <Link onClick={(e)=>handleNavigation(e,'/watchlist')}  className='Links w-max mx-2 my-[2px] hover:opacity-70'>WatchList</Link>
-              </div>
-
-          </section>
+    <footer data-aos="fade-bottom" data-aos-duration="1000" className="w-full bg-[#151515] text-white font-nunito">
+      <div className="flex flex-col sm:flex-row items-center justify-between w-[90%] gap-8 sm:py-11 mx-auto py-6">
+        <div className="flex items-center gap-3 mb-4 sm:mb-0">
+          <img src={Logo} alt="Logo" className="h-[5vh] sm:h-[4vh]" />
         </div>
 
-        <center className='bg-[#151515] py-[2vh] w-[80%] mx-auto'>
-          <p className=' text-white font-manrope'><span className=' mx-2'>&copy;</span>The Theater - All Rights Reserved, 2024</p>
-        </center>
-    </div>
-  )
-}
+        {/* Subscribe section */}
+        <form
+          onSubmit={handleSubscribe}
+          className="flex flex-col sm:flex-row items-center gap-3"
+        >
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Subscribe for new updates"
+            className="px-4 py-2 rounded-md bg-[#262626] border border-gray-600 focus:outline-none text-white w-[250px]"
+          />
+          <button
+            type="submit"
+            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition text-white"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
 
-export default Footer
+      <div className="flex flex-wrap justify-center gap-4 py-4 border-t border-white w-[90%] mx-auto">
+        {[
+          { label: 'Home', to: '/' },
+          { label: 'Popular', to: '/popular' },
+          { label: 'Top Rated', to: '/top_rated' },
+          { label: 'Upcoming', to: '/upcoming' },
+          { label: 'Sign Up', to: '/sign_up' },
+          { label: 'Sign In', to: '/sign_in' },
+          { label: 'WatchList', to: '/watchlist' },
+        ].map(({ label, to }, i) => (
+          <Link
+            key={i}
+            onClick={(e) => handleNavigation(e, to)}
+            className="hover:opacity-75 transition"
+          >
+            {label}
+          </Link>
+        ))}
+      </div>
+
+      {/* Copyright */}
+      <div className="text-center text-sm text-gray-400 py-4">
+        &copy; {new Date().getFullYear()} THE THEATER - All Rights Reserved.
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
