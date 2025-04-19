@@ -1,10 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import EastIcon from '@mui/icons-material/East';
+import WestIcon from '@mui/icons-material/West';
 
 const MovieSlider = ({ movies }) => {
   const navigate = useNavigate();
   const scrollRef = useRef(null);
   const baseImage = 'https://image.tmdb.org/t/p/w300';
+
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
 
   const handleClick = (id) => {
     navigate(`/movie/${id}`);
@@ -15,28 +20,54 @@ const MovieSlider = ({ movies }) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
       const scrollAmount = clientWidth * 0.8;
+      const newScrollLeft = direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
+
       scrollRef.current.scrollTo({
-        left: direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        left: newScrollLeft,
         behavior: 'smooth',
       });
     }
   };
 
+  const checkScrollPosition = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 0);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.addEventListener('scroll', checkScrollPosition);
+      checkScrollPosition();
+
+      return () => {
+        el.removeEventListener('scroll', checkScrollPosition);
+      };
+    }
+  }, []);
+
   return (
     <div className='relative w-full py-4 px-4'>
-      <button
-        onClick={() => scroll('left')}
-        className='absolute left-0 top-[45%] z-10 bg-black bg-opacity-90 border text-[2rem] px-4 text-white rounded-full hover:bg-opacity-80 transition'
-      >
-        &#8592;
-      </button>
 
-      <button
-        onClick={() => scroll('right')}
-        className='absolute right-0 top-[45%] z-10 bg-black bg-opacity-90 border text-white text-[2rem] px-4 rounded-full hover:bg-opacity-80 transition'
-      >
-        &#8594;
-      </button>
+      {!atStart && (
+        <button
+          onClick={() => scroll('left')}
+          className="w-max text-2xl px-3 py-2 absolute left-4 border top-[45%] z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition"
+        >
+          <WestIcon />
+        </button>
+      )}
+
+      {!atEnd && (
+        <button
+          onClick={() => scroll('right')}
+          className="w-max text-2xl px-3 py-2 absolute right-4 border top-[45%] z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition"
+        >
+          <EastIcon />
+        </button>
+      )}
 
       <div
         ref={scrollRef}
