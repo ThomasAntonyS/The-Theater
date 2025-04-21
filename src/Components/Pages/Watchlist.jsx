@@ -7,9 +7,13 @@ import { ProfileContext } from '../../Context/ProfileContextProvider';
 const Watchlist = () => {
   const {userWatchlist, setUserWatchlist } = useContext(ProfileContext);
 
-  const handleRemove = (movieId) => {
-    const updatedList = userWatchlist.filter(movie => movie.id !== movieId);
-    setUserWatchlist(updatedList);
+  const handleRemove = (movieName,movieId) => {
+    const promptVal = prompt(`Type "yes" to remove: ${movieName}`)
+    if(promptVal=="yes"){
+      const updatedList = userWatchlist.filter(movie => movie.id !== movieId);
+      setUserWatchlist(updatedList);
+    }
+    else return;
   };
 
   return (
@@ -26,7 +30,7 @@ const Watchlist = () => {
                     Add movies to your watchlist and keep track of films you want to see. Conveniently save titles to enjoy later, so you never forget a movie recommendation or new release. Enjoy seamless access whenever you're ready to watch.
                   </p>
 
-                  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+                  <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
                     {userWatchlist.map((movie) => (
                       <div key={movie.id} className='relative group'>
                         <Link to={`/movie/${movie.id}`}>
@@ -41,7 +45,7 @@ const Watchlist = () => {
                         </Link>
                         <div className=' w-full'>
                           <button
-                            onClick={() => handleRemove(movie.id)}
+                            onClick={() => handleRemove(movie.title,movie.id)}
                             className='bg-white/50 font-nunito w-full text-[1.25rem] text-white text-xs px-2 py-3 rounded hover:bg-white/20 transition my-2'
                           >
                             Remove

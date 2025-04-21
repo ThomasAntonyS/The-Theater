@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
-import CachedIcon from '@mui/icons-material/Cached';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Search = () => {
@@ -25,40 +24,39 @@ const Search = () => {
     }
   };
 
-  function handleNavigation(e, id) {
+  useEffect(() => {
+    if (searchMovie) fetchSearches();
+  }, [pageNo]);
+
+  const handleNavigation = (e, id) => {
     e.preventDefault();
     navigate(`/movie/${id}`);
     window.scrollTo(0, 0);
-  }
+  };
 
-  function handleRefresh(e) {
+  const handleRefresh = (e) => {
     e.preventDefault();
     if (pageNo < totalPages) {
-      setPageNo(pageNo + 1);
-      fetchSearches();
+      setPageNo((prev) => prev + 1);
     } else {
       alert('No more results');
     }
-  }
+  };
 
   const baseImage = 'https://image.tmdb.org/t/p/w185';
 
   return (
     <>
       <Header />
-
       <div className="text-white min-h-screen bg-black mt-[10vh]">
-        {/* Intro Section */}
         <section className="text-center px-4 sm:px-8 lg:px-16 py-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 font-manrope">Find Your Movie</h1>
           <p className="text-base sm:text-lg text-gray-300 max-w-4xl mx-auto font-nunito">
             If you’re searching for your next movie, consider diving into a world where emotions
-            run deep and stories captivate. From epic adventures and heartfelt dramas to thrilling
-            mysteries and side-splitting comedies, there's a film for every mood.
+            run deep and stories captivate.
           </p>
         </section>
 
-        {/* Search Box */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 px-4 mx-auto sm:w-[60%]">
           <input
             type="text"
@@ -76,20 +74,6 @@ const Search = () => {
           </button>
         </div>
 
-        {/* Refresh Button */}
-        {movie.length > 0 && (
-          <div className="flex justify-center mb-6">
-            <button
-              onClick={handleRefresh}
-              className="flex font-nunito items-center gap-2 bg-white bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
-            >
-              <CachedIcon />
-              Refresh
-            </button>
-          </div>
-        )}
-
-        {/* Movie Results */}
         <section className="px-4 my-16">
           {movie.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
@@ -97,7 +81,7 @@ const Search = () => {
                 <Link
                   key={index}
                   onClick={(e) => handleNavigation(e, movie.id)}
-                  className=" p-2 rounded hover:scale-105 transition-transform"
+                  className="p-2 rounded hover:scale-105 transition-transform"
                 >
                   {movie.poster_path ? (
                     <img
@@ -113,15 +97,22 @@ const Search = () => {
                   <p className="text-sm text-center font-nunito">{movie.title}</p>
                 </Link>
               ))}
+              {movie.length > 0 && (
+                <div className="flex justify-center mb-6">
+                  <button
+                    onClick={handleRefresh}
+                    className="flex font-nunito items-center gap-2 bg-white bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
+                  >
+                    Next <span className="w-max h-max my-auto">→</span>
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
-            <p className="text-center text-white animate-pulse my-10 font-nunito">
-              Search your favorite movie
-            </p>
+            <p className="text-center text-white animate-pulse my-10 font-nunito">Search your favorite movie</p>
           )}
         </section>
       </div>
-
       <Footer />
     </>
   );
