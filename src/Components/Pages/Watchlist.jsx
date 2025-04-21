@@ -40,7 +40,7 @@ const Watchlist = () => {
                             className='w-full h-auto rounded-lg shadow-lg object-cover'
                           />
                           <div className='mt-2 text-center'>
-                            <h3 className='text-[1.2rem] font-semibold font-nunito my-2'>{movie.title}</h3>
+                            <h3 className='text-[1.2rem] font-semibold font-nunito my-2 truncate'>{movie.title}</h3>
                           </div>
                         </Link>
                         <div className=' w-full'>
