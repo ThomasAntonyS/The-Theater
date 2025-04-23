@@ -93,7 +93,7 @@ function Casts({ movieId }) {
 
                     <div
                         ref={scrollRef}
-                        className='flex overflow-x-auto no-scrollbar gap-4 px-5 sm:w-[95%] mx-auto scroll-smooth'
+                        className='flex overflow-x-auto no-scrollbar gap-4 px-5 py-4 sm:w-[95%] mx-auto scroll-smooth'
                     >
                         {casts.map((cast) => (
                             <Link
