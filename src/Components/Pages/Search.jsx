@@ -76,38 +76,40 @@ const Search = () => {
 
         <section className="px-4 my-16">
           {movie.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
-              {movie.map((movie, index) => (
-                <Link
-                  key={index}
-                  onClick={(e) => handleNavigation(e, movie.id)}
-                  className="p-2 rounded hover:scale-105 transition-transform"
-                >
-                  {movie.poster_path ? (
-                    <img
-                      src={baseImage + movie.poster_path}
-                      alt={movie.title}
-                      className="w-full h-auto rounded-lg mb-2"
-                    />
-                  ) : (
-                    <div className="w-full h-[240px] flex items-center justify-center rounded-lg mb-2">
-                      <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
-                    </div>
-                  )}
-                  <p className="text-sm text-center font-nunito">{movie.title}</p>
-                </Link>
-              ))}
+            <>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
+                {movie.map((movie, index) => (
+                  <Link
+                    key={index}
+                    onClick={(e) => handleNavigation(e, movie.id)}
+                    className="p-2 rounded hover:scale-105 transition-transform"
+                  >
+                    {movie.poster_path ? (
+                      <img
+                        src={baseImage + movie.poster_path}
+                        alt={movie.title}
+                        className="w-full h-auto rounded-lg mb-2"
+                      />
+                    ) : (
+                      <div className="w-full h-[240px] flex items-center justify-center rounded-lg mb-2">
+                        <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
+                      </div>
+                    )}
+                    <p className="text-sm text-center font-nunito">{movie.title}</p>
+                  </Link>
+                ))}
+              </div>
               {movie.length > 0 && (
-                <div className="flex justify-center mb-6">
+                <div className="flex justify-center my-12">
                   <button
                     onClick={handleRefresh}
                     className="flex font-nunito items-center gap-2 bg-white bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
                   >
                     Next <span className="w-max h-max my-auto">→</span>
-                  </button>
-                </div>
+                </button>
+              </div>
               )}
-            </div>
+            </>
           ) : (
             <p className="text-center text-white animate-pulse my-10 font-nunito">Search your favorite movie</p>
           )}

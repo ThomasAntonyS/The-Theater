@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MovieSlider from './MovieSlider'
+import MovieSlider from './MovieSlider';
 
 const MovieCard = ({ title, url, navLink }) => {
   const [movies, setMovies] = useState([]);
@@ -20,7 +20,7 @@ const MovieCard = ({ title, url, navLink }) => {
   }, []);
 
   return (
-    <div data-aos="fade-right" data-aos-duration="1000" className='Card w-[95vw] mx-auto mb-10'>
+    <div data-aos="fade-right" data-aos-duration="1000" className='w-[95vw] mx-auto mb-10'>
       {movies.length > 0 && (
         <>
           <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center w-full px-4'>
@@ -40,4 +40,3 @@ const MovieCard = ({ title, url, navLink }) => {
 };
 
 export default MovieCard;
-

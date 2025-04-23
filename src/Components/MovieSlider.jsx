@@ -86,13 +86,13 @@ const MovieSlider = ({ movies }) => {
                 className='w-full h-[35vh] object-cover rounded-t-lg'
               />
             ) : (
-              <div className='h-[25vh] w-full flex items-center justify-center bg-gray-700 rounded-t-lg text-white text-5xl'>
+              <div className='h-[35vh] w-full flex items-center justify-center bg-gray-700 rounded-t-lg text-white text-5xl'>
                 🎬
               </div>
             )}
             <div className='p-2'>
-              <p className='text-white text-sm truncate'>{movie.title}</p>
-              <span className='text-gray-400 text-xs group-hover:text-white'>
+              <p className='text-white text-sm truncate font-manrope'>{movie.title}</p>
+              <span className='text-gray-400 text-xs group-hover:text-white font-nunito hover:underline pb-1'>
                 More Info →
               </span>
             </div>

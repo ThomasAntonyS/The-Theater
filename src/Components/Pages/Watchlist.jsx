@@ -58,7 +58,7 @@ const Watchlist = () => {
                 <Footer />
               </>
             ) : (
-              <p className='text-white text-xl text-center mt-32 font-nunito'>Your watchlist is empty. Start adding some movies!</p>
+              <p className='text-white text-xl text-center mt-32 font-nunito my-[15vh]'>Your watchlist is empty. Start adding some movies!</p>
             )
         }
       </div>
