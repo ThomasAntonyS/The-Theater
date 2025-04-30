@@ -8,8 +8,8 @@ const Watchlist = () => {
   const {userWatchlist, setUserWatchlist } = useContext(ProfileContext);
 
   const handleRemove = (movieName,movieId) => {
-    const promptVal = prompt(`Type "yes" to remove: ${movieName}`)
-    if(promptVal=="yes"){
+    const promptVal = prompt(`Type "ok" to remove: ${movieName}`)
+    if(promptVal=="ok"){
       const updatedList = userWatchlist.filter(movie => movie.id !== movieId);
       setUserWatchlist(updatedList);
     }
@@ -20,12 +20,12 @@ const Watchlist = () => {
     <>
       <Header />
 
-      <div className='Watchlist_Container text-white min-h-screen bg-black px-4 py-8 mb-[10vh]'>
+      <div className='Watchlist_Container text-white min-h-screen bg-black'>
         {
             userWatchlist.length > 0 ? (
               <>
-                <section className='max-w-screen-xl mx-auto my-[15vh]'>
-                  <h1 className='text-3xl md:text-4xl font-semibold mb-4 font-manrope'>Your Watchlist</h1>
+                <section className='max-w-screen-xl mx-auto my-[15vh] px-4'>
+                  <h1 className='text-3xl md:text-4xl text-center sm:text-left font-semibold mb-4 font-manrope'>Your Watchlist</h1>
                   <p className='text-sm md:text-base text-gray-300 mb-8 font-nunito'>
                     Add movies to your watchlist and keep track of films you want to see. Conveniently save titles to enjoy later, so you never forget a movie recommendation or new release. Enjoy seamless access whenever you're ready to watch.
                   </p>
@@ -46,7 +46,7 @@ const Watchlist = () => {
                         <div className=' w-full'>
                           <button
                             onClick={() => handleRemove(movie.title,movie.id)}
-                            className='bg-white/50 font-nunito w-full text-[1.25rem] text-white text-xs px-2 py-3 rounded hover:bg-white/20 transition my-2'
+                            className='bg-white text-black font-bold font-nunito w-full text-[1.3rem] text-xs px-2 py-3 rounded hover:bg-white/50 transition my-2'
                           >
                             Remove
                           </button>

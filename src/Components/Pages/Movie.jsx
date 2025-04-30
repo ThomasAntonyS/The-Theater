@@ -9,12 +9,19 @@ import { ProfileContext } from '../../Context/ProfileContextProvider';
 import MovieHeroSection from '../MovieHeroSection';
 import { Tailspin } from 'ldrs/react'; 
 import 'ldrs/react/Tailspin.css';
+import FloatingPopup from '../FloatingPopup';
 
 const MovieMain = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(false);
   const { userWatchlist, setUserWatchlist } = useContext(ProfileContext);
+  const [popup, setPopup] = useState({
+    isOpen: false,
+    message: '',
+    isError: false,
+  });
+  
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -37,13 +44,26 @@ const MovieMain = () => {
   const handleWatchlist = (e) => {
     e.preventDefault();
     const exists = userWatchlist.some(movie => movie.id === item.id);
+  
     if (!exists) {
       setUserWatchlist(prev => [...prev, item]);
-      alert(`${item.title} added to wishlist.`);
+      setPopup({
+        isOpen: true,
+        message: `${item.title} added to watchlist!`,
+        isError: false,
+      });
     } else {
-      alert('Movie already exists in watchlist');
+      setPopup({
+        isOpen: true,
+        message: 'Movie already exists in watchlist.',
+        isError: true,
+      });
     }
-  };
+  
+    setTimeout(() => {
+      setPopup({ isOpen: false, message: '', isError: false });
+    }, 5000);
+  };  
 
   return (
     <>
@@ -64,7 +84,6 @@ const MovieMain = () => {
             item={item}
             handleWatchlist={handleWatchlist}
           />
-          <Video movieId={id} />
           <Casts movieId={id} />
           <MovieCard
             url={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`}
@@ -73,6 +92,14 @@ const MovieMain = () => {
           <Footer />
         </div>
       )}
+      {popup.isOpen && (
+      <FloatingPopup
+        message={popup.message}
+        isError={popup.isError}
+        onClose={() => setPopup({ ...popup, isOpen: false })}
+      />
+)}
+
     </>
   );
 };
