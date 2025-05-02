@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link} from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
@@ -32,25 +32,28 @@ const Header = () => {
       <div className="fixed font-manrope top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-70 z-[100] px-4">
         <div className="hidden lg:flex gap-2 text-white">
           <Link
-            className="h-max w-max my-auto hover:opacity-70"
+            className="h-max w-max my-auto hover:opacity-70 hover:underline"
             to="/popular"
             onClick={scrollToTop}
+            title='Popular Movies'
           >
             Popular
           </Link>
           <span className="h-max my-auto">|</span>
           <Link
-            className="h-max w-max my-auto hover:opacity-70"
+            className="h-max w-max my-auto hover:opacity-70 hover:underline"
             to="/top_rated"
             onClick={scrollToTop}
+            title='Top Rated Movies'
           >
             Top-Rated
           </Link>
           <span className="h-max my-auto">|</span>
           <Link
-            className="h-max w-max my-auto hover:opacity-70"
+            className="h-max w-max my-auto hover:opacity-70 hover:underline"
             to="/upcoming"
             onClick={scrollToTop}
+            title='Upcoming Movies'
           >
             Upcoming
           </Link>
@@ -73,9 +76,9 @@ const Header = () => {
             onClick={scrollToTop}
           >
             {window.screen.width < 640 ? (
-              <SearchIcon fontSize="small" />
+              <SearchIcon fontSize="small" titleAccess='Search' />
             ) : (
-              <SearchIcon />
+              <SearchIcon titleAccess='Search'/>
             )}
           </Link>
 
@@ -85,9 +88,9 @@ const Header = () => {
             onClick={scrollToTop}
           >
             {window.screen.width < 640 ? (
-              <LiveTvIcon fontSize="small" />
+              <LiveTvIcon fontSize="small" titleAccess='Watchlist'/>
             ) : (
-              <LiveTvIcon />
+              <LiveTvIcon titleAccess='Watchlist'/>
             )}
           </Link>
 
@@ -98,9 +101,9 @@ const Header = () => {
               onClick={scrollToTop}
             >
               {window.screen.width < 640 ? (
-                <LoginIcon fontSize="small" />
+                <LoginIcon fontSize="small" titleAccess='Log-In'/>
               ) : (
-                <LoginIcon />
+                <LoginIcon titleAccess='Log-In'/>
               )}
             </Link>
 
@@ -114,9 +117,9 @@ const Header = () => {
               }}
             >
               {window.screen.width < 640 ? (
-                <LogoutIcon fontSize="small" />
+                <LogoutIcon fontSize="small" titleAccess='Log-Out'/>
               ) : (
-                <LogoutIcon />
+                <LogoutIcon titleAccess='Log-Out'/>
               )}
             </button>
           </div>

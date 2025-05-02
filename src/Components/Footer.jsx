@@ -24,7 +24,7 @@ const Footer = () => {
     <footer data-aos="fade-bottom" data-aos-duration="1000" className="w-full bg-[#151515] text-white font-nunito">
       <div className="flex flex-col sm:flex-row items-center justify-between w-[90%] gap-8 sm:py-11 mx-auto py-6">
         <div className="flex items-center gap-3 mb-4 sm:mb-0">
-          <img src={Logo} alt="Logo" className="h-[5vh] sm:h-[4vh]" />
+          <img src={Logo} alt="Logo" className="h-[4vh] sm:h-[4vh]" />
         </div>
 
         {/* Subscribe section */}

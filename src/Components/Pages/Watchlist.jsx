@@ -31,10 +31,10 @@ const Watchlist = () => {
     <>
       <Header />
 
-      <div className="Watchlist_Container text-white min-h-screen bg-black relative px-4">
+      <div className=" text-white min-h-screen bg-black relative mt-[5vh]">
         {userWatchlist.length > 0 ? (
           <>
-            <section className="max-w-screen-xl mx-auto py-20">
+            <section className="max-w-screen-xl mx-auto py-20 px-4">
               <h1 className="text-2xl sm:text-3xl md:text-4xl text-center sm:text-left font-semibold mb-4 font-manrope">
                 Your Watchlist
               </h1>
@@ -67,15 +67,15 @@ const Watchlist = () => {
                 ))}
               </div>
             </section>
-            <Footer />
           </>
         ) : (
           <div className="flex items-center justify-center min-h-[60vh]">
-            <p className="text-white text-lg sm:text-2xl text-center font-nunito">
+            <p className="text-white text-lg sm:text-2xl text-center font-nunito px-4">
               Your watchlist is empty. Start adding some movies!
             </p>
           </div>
         )}
+        <Footer />
 
         {/* Delete Confirmation Modal */}
         {showModal && selectedMovie && (

@@ -69,7 +69,7 @@ function Casts({ movieId }) {
     return (
         <>
             {casts.length > 0 ? (
-                <div className='relative mb-16 w-[95%] sm:w-full mx-auto'>
+                <div className='relative mb-16 w-[95%] sm:w-full mx-auto' data-aos="fade-right" data-aos-duration="1000" >
                     <p className='text-white text-2xl font-manrope sm:text-3xl md:text-4xl mx-4 sm:mx-[3%] mb-4'>
                         Characters
                     </p>

@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../Header';
 import Casts from '../Casts';
-import Video from '../Video';
 import Footer from '../Footer';
 import MovieCard from '../MovieCard';
 import { ProfileContext } from '../../Context/ProfileContextProvider';
@@ -10,6 +9,7 @@ import MovieHeroSection from '../MovieHeroSection';
 import { Tailspin } from 'ldrs/react'; 
 import 'ldrs/react/Tailspin.css';
 import FloatingPopup from '../FloatingPopup';
+import MovieDescription from '../MovieDescription';
 
 const MovieMain = () => {
   const { id } = useParams();
@@ -84,6 +84,7 @@ const MovieMain = () => {
             item={item}
             handleWatchlist={handleWatchlist}
           />
+          <MovieDescription item={item}/>
           <Casts movieId={id} />
           <MovieCard
             url={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`}
