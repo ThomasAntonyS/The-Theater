@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
@@ -10,8 +10,10 @@ const Search = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [searchMovie, setSearchMovie] = useState('');
   const navigate = useNavigate();
+  const inputRef = useRef(null)
 
   const fetchSearches = async () => {
+    if(inputRef.current) inputRef.current.blur()
     const apiKey = process.env.REACT_APP_API_KEY;
     const data = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchMovie}&page=${pageNo}&include_adult=false`
@@ -59,6 +61,7 @@ const Search = () => {
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 px-4 mx-auto sm:w-[60%]">
           <input
+            ref={inputRef}
             type="text"
             placeholder="Search your movie..."
             className="w-full font-nunito sm:w-1/2 bg-black text-white border-b-2 border-white focus:outline-none px-4 py-2 placeholder-gray-300 hover:bg-opacity-20 transition-all"

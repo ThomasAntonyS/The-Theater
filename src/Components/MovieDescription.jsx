@@ -78,7 +78,7 @@ const MovieDescription = ({ item }) => {
                       src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
                       alt={company.name}
                       title={company.name}
-                      className="h-10 object-contain bg-white rounded-md p-1"
+                      className="h-10 object-contain bg-white/70 rounded-md p-1"
                     />
                   ) : null
                 )}

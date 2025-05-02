@@ -70,7 +70,8 @@ const CastMovies = () => {
 
         {/* Movies */}
         <section className="px-4 my-16">
-          {castMovies.length > 0 ? (
+          <p className='gap-6 max-w-7xl mx-auto mb-5 font-manrope text-[1.4rem]'><b>Obtained results:</b> {filteredMovies.length} / {castMovies.length}</p>
+          {castMovies.length > 0 ? (   
             filteredMovies.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
                 {filteredMovies.map((movie, index) => (
