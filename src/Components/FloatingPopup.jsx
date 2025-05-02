@@ -8,10 +8,9 @@ const FloatingPopup = ({ message, isError, onClose }) => {
   return (
     <div
       role="alert"
-      className="fixed top-[10%] right-4 z-50 bg-white shadow-lg px-4 py-3 rounded-md border border-gray-200 w-[90%] sm:w-[22rem] md:w-[26rem] lg:w-[30rem] xl:w-[34rem] max-w-full flex flex-col gap-3 overflow-hidden"
+      className="fixed top-[12%] right-4 z-50 bg-white shadow-lg px-4 py-3 rounded-md border border-gray-200 w-[90%] sm:w-[22rem] md:w-[26rem] lg:w-[30rem] xl:w-[34rem] max-w-full flex flex-col gap-3 overflow-hidden"
     >
       <div className="flex items-center gap-3">
-        {/* Icon (vertically centered with message) */}
         <div className="flex items-center justify-center">
           {isError ? (
             <FiAlertTriangle className="text-red-700 w-6 h-6" />
