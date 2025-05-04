@@ -95,7 +95,7 @@ const Banner = () => {
         <p className="text-sm line-clamp-3 sm:text-[1.5rem] sm:leading-[30px] max-w-[90%] font-nunito">
           {BannerMovies[count].desc}
         </p>
-        <div className="flex flex-wrap text-[1.2rem] items-center gap-3 font-nunito">
+        <div className="flex flex-wrap text-[1.2rem] items-center gap-3 font-nunito w-max">
           <button className="flex items-center bg-white text-black px-4 py-2 rounded-full text-sm hover:bg-gray-200 transition">
             <PlayCircleOutlineRoundedIcon className="mr-2 text-base" />
             Watch Movie
