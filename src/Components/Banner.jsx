@@ -24,18 +24,18 @@ const Banner = () => {
       banner_tag: 'Mind-Bending Classic',
     },
     {
-      title: 'Top Gun: Maverick',
-      desc: 'After more than thirty years of service as one of the Navy’s top aviators, and dodging the advancement in rank that would ground him, Pete “Maverick” Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission',
-      video: TopGun,
-      link: 'movie/361743',
-      banner_tag: 'Box Office Hit',
-    },
-    {
       title: 'Interstellar',
       desc: 'The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.',
       video: Interstellar,
       link: 'movie/157336',
       banner_tag: 'Sci-Fi Masterpiece',
+    },
+    {
+      title: 'Top Gun: Maverick',
+      desc: 'After more than thirty years of service as one of the Navy’s top aviators, and dodging the advancement in rank that would ground him, Pete “Maverick” Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission',
+      video: TopGun,
+      link: 'movie/361743',
+      banner_tag: 'Box Office Hit',
     },
     {
       title: 'The Dark Knight',
@@ -66,10 +66,10 @@ const Banner = () => {
       <button
         onClick={() => setMuted(!muted)}
         title={muted? "UnMute":"Mute"}
-        className=" absolute flex w-max bottom-12 right-2 sm:bottom-16 sm:right-5 z-30 bg-white p-3 rounded-md shadow-lg hover:bg-opacity-80 transition duration-200 font-manrope font-bold"
+        className=" absolute flex w-max bottom-12 right-2 sm:bottom-16 sm:right-5 z-30 bg-white p-3 rounded-md shadow-lg hover:bg-opacity-80
+         transition duration-200 font-manrope font-bold animate-bounce"
       >
-        {muted ? <VolumeOffIcon fontSize="small" className='h-max my-auto'/> : <VolumeUpIcon fontSize="small" className='h-max my-auto'/>}
-        <span className='hidden sm:flex h-max my-auto'>{muted ? "Unmute":"Mute"}</span>
+        {muted ? <VolumeOffIcon fontSize='medium' className='h-max my-auto'/> : <VolumeUpIcon className='h-max my-auto' fontSize='medium'/>}
       </button>
 
       <div className="absolute inset-0 flex justify-between items-center px-4 z-20">
