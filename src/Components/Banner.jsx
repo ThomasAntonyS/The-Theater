@@ -55,7 +55,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative h-[100dvh] w-full overflow-hidden mb-6">
+    <div className="relative h-[95vh] w-full overflow-hidden mb-6">
       <video
         src={BannerMovies[count].video}
         autoPlay
