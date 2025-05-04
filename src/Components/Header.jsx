@@ -29,7 +29,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className="fixed font-manrope top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-70 z-[100] px-4">
+      <div className="fixed font-manrope top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-50 backdrop-blur-md z-[100] px-4">
         <div className="hidden lg:flex gap-2 text-white">
           <Link
             className="h-max w-max my-auto hover:opacity-70 hover:underline"

@@ -36,7 +36,7 @@ const MovieDescription = ({ item }) => {
         </div>
 
         {/* Details */}
-        <div className="flex-1 text-left my-auto">
+        <div className="overflow-x-hidden flex-1 text-left my-auto" data-aos="fade-in" data-aos-duration="1000">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-manrope">{title}</h2>
 
           {tagline && (

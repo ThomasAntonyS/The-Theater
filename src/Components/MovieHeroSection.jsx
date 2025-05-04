@@ -1,5 +1,6 @@
 import React from 'react';
 import PlaceHolderImage from '../assets/placeholder_movie.png'
+import { RiMovieLine } from "react-icons/ri";
 
 const MovieHeroSection = ({ item, handleWatchlist }) => {
   const formatDate = (dateString) => {
@@ -10,10 +11,6 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
       day: 'numeric',
     });
   };
-
-  const mockLikes = Math.round(item.popularity * 100) || 2548;
-  const mockComments = item.vote_count || 21;
-  const mockShares = Math.floor(item.popularity * 10) || 564;
 
   return (
     <section className="relative h-[70vh] sm:h-[90vh] w-screen text-white mb-16 overflow-hidden">
@@ -39,15 +36,15 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
             <h2 className="font-manrope text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow text-left">
               {item.original_title || item.title}
             </h2>
-            <h3 className="font-nunito truncate">{item.overview}</h3>
+            <h3 className=" text-[1.2rem] font-nunito line-clamp-2">{item.overview}</h3>
           </div>
         </div>
 
         <div className="mt-5 py-4 text-gray-300 text-sm rounded-md">
           <div className="flex flex-col md:flex-row md:justify-between gap-4">
-            <div className="flex flex-wrap align-middle gap-4 font-nunito">
+            <div className="flex flex-wrap text-[1.1rem] align-middle gap-4 font-nunito">
               <p className="h-max my-auto">
-                <span className="text-red-500 font-semibold">Published:</span>{' '}
+                <span className="text-red-500 font-semibold">Release Date:</span>{' '}
                 {formatDate(item.release_date)}
               </p>
               <p className="h-max my-auto">
@@ -56,18 +53,12 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
               </p>
             </div>
 
-            <div className="flex gap-6 flex-wrap text-sm font-nunito">
-              <p className="h-max my-auto">❤️ {mockLikes.toLocaleString()}</p>
-              <p className="h-max my-auto">💬 {mockComments.toLocaleString()}</p>
-              <p className="h-max my-auto">🔁 {mockShares.toLocaleString()}</p>
-            </div>
-
             <button
               onClick={handleWatchlist}
               title='Add to your watchlist'
-              className="bg-red-600 hover:bg-red-700 font-nunito text-white px-4 py-2 rounded-md text-sm sm:text-base w-full sm:w-auto"
+              className="flex h-max w-max my-auto bg-red-600 hover:bg-red-700 font-nunito text-white px-4 py-2 rounded-md text-sm sm:text-base sm:w-auto"
             >
-              Add to Watchlist
+              <span className='h-max my-auto mx-2'><RiMovieLine size={23} /></span>Add to Watchlist 
             </button>
           </div>
         </div>
