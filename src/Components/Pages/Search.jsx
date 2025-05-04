@@ -39,6 +39,10 @@ const Search = () => {
   const handleRefresh = (e) => {
     e.preventDefault();
     if (pageNo < totalPages) {
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
       setPageNo((prev) => prev + 1);
     } else {
       alert('No more results');
