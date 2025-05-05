@@ -11,6 +11,7 @@ import Sign_Up from './Components/Pages/Sign_Up'
 import ProfileContextProvider from './Context/ProfileContextProvider'
 import './App.css'
 import CastMovies from './Components/Pages/CastMovies'
+import NotFound from './Components/Pages/NotFound'
 
 
 function App() {
@@ -70,6 +71,11 @@ function App() {
             <Route
             path={'/sign_up'}
             element={<Sign_Up/>}
+            />
+
+            <Route
+            path='/*'
+            element={<NotFound/>}
             />
 
         </Routes>

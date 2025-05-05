@@ -37,7 +37,7 @@ const Popular = () => {
 
         <section>
             <PageLayout movies={movie} 
-            title={"Most Linked"} 
+            title={"Most Liked"} 
             description={"A comprehensive collection of all movies, meticulously curated and organized, offers an extensive archive of cinematic masterpieces, spanning various genres, eras, and cultures, providing an invaluable resource for film enthusiasts."}
             path={"popular"}
             />
