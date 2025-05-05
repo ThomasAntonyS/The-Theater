@@ -1,5 +1,5 @@
 import React from 'react';
-import NotFoundImage from '../../assets/NotFound.png';
+import NotFoundImage from '../../assets/NotFound.jpg';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Header'
 import { FaAnglesRight } from "react-icons/fa6";
