@@ -5,7 +5,8 @@ import WestIcon from '@mui/icons-material/West';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { Link } from 'react-router-dom';
-
+import { Miyagi } from 'ldrs/react';
+import 'ldrs/react/Miyagi.css';
 import Inception from '../assets/Inception.mp4';
 import TopGun from '../assets/TopGun.mp4';
 import Interstellar from '../assets/Interstellar.mp4';
@@ -14,6 +15,7 @@ import Batman from '../assets/Batman.mp4';
 const Banner = () => {
   const [count, setCount] = useState(0);
   const [muted, setMuted] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const BannerMovies = [
     {
@@ -47,31 +49,45 @@ const Banner = () => {
   ];
 
   const handleLeftClick = () => {
+    setLoading(true);
     setCount((prev) => (prev === 0 ? BannerMovies.length - 1 : prev - 1));
   };
 
   const handleRightClick = () => {
+    setLoading(true);
     setCount((prev) => (prev === BannerMovies.length - 1 ? 0 : prev + 1));
   };
 
   return (
     <div className="relative h-[95vh] w-full overflow-hidden mb-6">
+      {loading && (
+        <div className="absolute top-0 left-0 w-full h-full z-30 flex items-center justify-center bg-black bg-opacity-50">
+          <Miyagi size="50" stroke="3.5" speed="0.9" color="white" />
+        </div>
+      )}
+
       <video
         src={BannerMovies[count].video}
         autoPlay
         muted={muted}
+        onLoadedData={() => setLoading(false)}
+        onWaiting={() => setLoading(true)}
         className="absolute top-0 left-0 w-full h-full object-cover -z-10"
       />
 
       <button
         onClick={() => setMuted(!muted)}
-        title={muted? "UnMute":"Mute"}
-        className=" absolute flex w-max bottom-12 right-2 sm:bottom-16 sm:right-5 z-30 bg-white p-3 rounded-md shadow-lg hover:bg-opacity-80
-         transition duration-200 font-manrope font-bold animate-bounce"
+        title={muted ? "UnMute" : "Mute"}
+        className="absolute flex w-max bottom-12 right-2 sm:bottom-16 sm:right-5 z-30 bg-white p-3 rounded-md shadow-lg hover:bg-opacity-80 transition duration-200 font-manrope font-bold animate-bounce"
       >
-        {muted ? <VolumeOffIcon fontSize='medium' className='h-max my-auto'/> : <VolumeUpIcon className='h-max my-auto' fontSize='medium'/>}
+        {muted ? (
+          <VolumeOffIcon fontSize="medium" className="h-max my-auto" />
+        ) : (
+          <VolumeUpIcon fontSize="medium" className="h-max my-auto" />
+        )}
       </button>
 
+      {/* Arrows */}
       <div className="absolute inset-0 flex justify-between items-center px-4 z-20">
         <button
           onClick={handleLeftClick}
@@ -87,7 +103,7 @@ const Banner = () => {
         </button>
       </div>
 
-      <div className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-20 text-white space-y-4"  data-aos="fade-bottom" data-aos-duration="1000">
+      <div className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-20 text-white space-y-4" data-aos="fade-bottom" data-aos-duration="1000">
         <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-[.9rem]">
           {BannerMovies[count].banner_tag}
         </p>
