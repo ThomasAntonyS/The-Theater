@@ -5,8 +5,8 @@ import WestIcon from '@mui/icons-material/West';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { Link } from 'react-router-dom';
-import { Miyagi } from 'ldrs/react';
-import 'ldrs/react/Miyagi.css';
+import { Ping } from 'ldrs/react'
+import 'ldrs/react/Ping.css'
 import Inception from '../assets/Inception.mp4';
 import TopGun from '../assets/TopGun.mp4';
 import Interstellar from '../assets/Interstellar.mp4';
@@ -61,8 +61,8 @@ const Banner = () => {
   return (
     <div className="relative h-[95vh] w-full overflow-hidden mb-6">
       {loading && (
-        <div className="absolute top-0 left-0 w-full h-full z-30 flex items-center justify-center bg-black bg-opacity-50">
-          <Miyagi size="50" stroke="3.5" speed="0.9" color="white" />
+        <div className="absolute top-0 left-0 w-full h-full z-30 flex items-center justify-center bg-black bg-opacity-95">
+          <Ping size='60' stroke="3.5" speed="1.2" color="white" />
         </div>
       )}
 
