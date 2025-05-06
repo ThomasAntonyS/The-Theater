@@ -56,7 +56,7 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
             <button
               onClick={handleWatchlist}
               title='Add to your watchlist'
-              className="flex h-max w-max my-auto bg-red-600 hover:bg-red-700 font-nunito text-white px-4 py-2 rounded-md text-sm sm:text-base sm:w-auto"
+              className="flex h-max w-max my-auto bg-red-600 hover:bg-red-700 font-nunito text-white px-4 py-2 rounded-md text-sm sm:text-base sm:w-max"
             >
               <span className='h-max my-auto mx-2'><RiMovieLine size={23} /></span>Add to Watchlist 
             </button>

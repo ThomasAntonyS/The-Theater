@@ -103,7 +103,7 @@ const Banner = () => {
         </button>
       </div>
 
-      <div className="absolute bottom-14 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-20 text-white space-y-4" data-aos="fade-bottom" data-aos-duration="1000">
+      <div className="absolute bottom-12 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-20 text-white space-y-4" data-aos="fade-bottom" data-aos-duration="1000">
         <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-[.9rem]">
           {BannerMovies[count].banner_tag}
         </p>
