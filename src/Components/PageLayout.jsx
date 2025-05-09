@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
+import StarIcon from '@mui/icons-material/Star';
 import { Tailspin } from 'ldrs/react'; 
 import 'ldrs/react/Tailspin.css';
 
@@ -16,25 +17,30 @@ const PageLayout = ({ movies, title, description }) => {
     const baseImage = 'https://image.tmdb.org/t/p/w185';
 
     return (
-        <div className=' flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
+        <div className='flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
 
-            <p className=' text-white text-3xl sm:text-4xl mx-auto mt-[10vh] mb-4 text-center font-manrope'>
+            <p className='text-white text-3xl sm:text-4xl mx-auto mt-[10vh] mb-4 text-center font-manrope'>
                 {title}
             </p>
 
-            <p className=' font-nunito text-white text-base sm:text-lg md:text-xl w-full sm:w-[90%] md:w-[75%] mx-auto mb-8 text-center'>
+            <p className='font-nunito text-white text-base sm:text-lg md:text-xl w-full sm:w-[90%] md:w-[75%] mx-auto mb-8 text-center'>
                 {description}
             </p>
 
-            <div className=" flex flex-col w-full items-center mt-8">
+            <div className="flex flex-col w-full items-center mt-8">
                 {movies ? (
-                    <div className=' flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
+                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
                         {movies.map((movie, index) => (
                             <Link
                                 key={index}
                                 onClick={(e) => handleNavigation(e, movie.id)}
-                                className=' relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
+                                className='relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
                             >
+                                <div className="absolute top-1 right-1 bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
+                                    <StarIcon style={{ fontSize: '1rem' }} />
+                                    <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+                                </div>
+
                                 {movie.poster_path ? (
                                     <img
                                         src={baseImage + movie.poster_path}
@@ -46,7 +52,7 @@ const PageLayout = ({ movies, title, description }) => {
                                         <MovieCreationIcon style={{ fontSize: "5rem", color: "white" }} />
                                     </div>
                                 )}
-                                <p className=' w-full text-white text-[1.1rem] text-center mt-2 truncate font-nunito'>
+                                <p className='w-full text-white text-[1.1rem] text-center mt-2 truncate font-nunito'>
                                     {movie.title}
                                 </p>
                             </Link>
@@ -54,7 +60,7 @@ const PageLayout = ({ movies, title, description }) => {
                     </div>
                 ) : (
                     <div className="w-full h-screen flex items-start justify-center bg-black">
-                      <Tailspin size={50} stroke={5} speed={0.9} color="white" />
+                        <Tailspin size={50} stroke={5} speed={0.9} color="white" />
                     </div>
                 )}
             </div>

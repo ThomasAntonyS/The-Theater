@@ -4,6 +4,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { Tailspin } from 'ldrs/react'; 
+import StarIcon from '@mui/icons-material/Star';
 import 'ldrs/react/Tailspin.css';
 
 const CastMovies = () => {
@@ -62,7 +63,7 @@ const CastMovies = () => {
           <input
             type="text"
             placeholder="Search movie by title..."
-            className="w-[80%] sm:w-[60%] bg-white/10 text-white border-b-2 border-white focus:outline-none px-4 py-2 placeholder-gray-300 hover:bg-opacity-20 transition-all font-nunito"
+            className="w-[80%] sm:w-[60%] bg-white/10 text-white border-b-2 border-white focus:outline-none p-2 placeholder-gray-300 hover:bg-opacity-20 transition-all font-nunito"
             onChange={(e) => setSearchQuery(e.target.value)}
             value={searchQuery}
           />
@@ -70,7 +71,7 @@ const CastMovies = () => {
 
         {/* Movies */}
         <section className="px-4 my-16">
-          <p className='gap-6 max-w-7xl mx-auto mb-5 font-manrope text-[1.4rem]'><b>Obtained results:</b> {filteredMovies.length} / {castMovies.length}</p>
+          <p className='gap-6 max-w-7xl mx-auto mb-5 font-manrope text-[1.4rem]'><b>Obtained results:</b> <span className=' text-[2rem] font-bold'>{filteredMovies.length}</span> / {castMovies.length}</p>
           {castMovies.length > 0 ? (   
             filteredMovies.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
@@ -80,17 +81,25 @@ const CastMovies = () => {
                     onClick={(e) => handleNavigation(e, movie.id)}
                     className="p-2 rounded hover:scale-105 transition-transform"
                   >
-                    {movie.poster_path ? (
-                      <img
-                        src={baseImage + movie.poster_path}
-                        alt={movie.title}
-                        className="w-full h-auto rounded-lg mb-2"
-                      />
-                    ) : (
-                      <div className="w-full h-[240px] flex items-center justify-center rounded-lg mb-2 bg-gray-800">
-                        <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
-                      </div>
-                    )}
+                    <div className="relative">
+                      {movie.poster_path ? (
+                        <img
+                          src={baseImage + movie.poster_path}
+                          alt={movie.title}
+                          className="w-full h-auto rounded-lg mb-2"
+                        />
+                      ) : (
+                        <div className="w-full h-[240px] flex items-center justify-center rounded-lg mb-2 bg-gray-800">
+                          <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
+                        </div>
+                      )}
+
+                        <div className="absolute top-1 right-1 bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
+                            <StarIcon style={{ fontSize: '1rem' }} />
+                            <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+                        </div>
+                    </div>
+
                     <p className="text-sm text-center font-nunito">{movie.title}</p>
                   </Link>
                 ))}

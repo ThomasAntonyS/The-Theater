@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import PageLayout from '../PageLayout';
 import Header from '../Header'
 import Footer from '../Footer';
-import WestIcon from '@mui/icons-material/West'
-import EastIcon from '@mui/icons-material/East';
 
 const Popular = () => {
 
@@ -45,9 +43,9 @@ const Popular = () => {
 
         <section className='Pagination flex justify-between mt-[3vh] mb-[5vh]'>
             <div className='Pagination_content flex justify-between w-[50%] sm:w-[15%] m-auto'>
-                <button className='Page_left w-max px-3 py-2 rounded-full text-white text-[20px]  bg-white bg-opacity-35' onClick={handleLeft}><WestIcon fontSize='small'/></button>
+                <button className='Page_left w-max px-4 py-2 rounded-md text-white text-[20px]  bg-white bg-opacity-35' onClick={handleLeft}>&#8592;</button>
                 <p className='flex justify-center my-auto w-[50%] text-white font-nunito'>{pageCount}</p>
-                <button className='Page_right w-max px-3 py-2 rounded-full text-white text-[20px] bg-white bg-opacity-35' onClick={()=>{setPageCount(pageCount+1);window.scrollTo(0,0)}}><EastIcon fontSize='small'/></button>
+                <button className='Page_right w-max px-4 py-2 rounded-md text-white text-[20px] bg-white bg-opacity-35' onClick={()=>{setPageCount(pageCount+1);window.scrollTo(0,0)}}>&#8594;</button>
             </div>
         </section>
 
