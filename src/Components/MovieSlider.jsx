@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
+import StarIcon from '@mui/icons-material/Star';
 
 const MovieSlider = ({ movies }) => {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const MovieSlider = ({ movies }) => {
           <div
             key={index}
             onClick={() => handleClick(movie.id)}
-            className='flex-shrink-0 w-[65vw] sm:w-[40vw] md:w-[28vw] lg:w-[18vw] xl:w-[13vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
+            className='relative flex-shrink-0 w-[65vw] sm:w-[40vw] md:w-[28vw] lg:w-[18vw] xl:w-[13vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
           >
             {movie.poster_path ? (
               <img
@@ -90,6 +91,12 @@ const MovieSlider = ({ movies }) => {
                 🎬
               </div>
             )}
+
+            <div className="absolute top-2 right-2 bg-black bg-opacity-80 backdrop-blur-md text-white font-manrope text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
+              <StarIcon style={{ fontSize: '1rem', height:'max', margin:'auto 0px' }} />
+              <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+            </div>
+
             <div className='p-2'>
               <p className='text-white text-sm truncate font-manrope'>{movie.title}</p>
               <span className='text-gray-400 text-xs group-hover:text-white font-nunito hover:underline pb-1'>
