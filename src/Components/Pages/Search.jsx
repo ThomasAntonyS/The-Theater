@@ -11,7 +11,7 @@ const Search = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [searchMovie, setSearchMovie] = useState('');
   const navigate = useNavigate();
-  const inputRef = useRef(null)
+  const inputRef = useRef(null);
 
   const fetchSearches = async () => {
     if (inputRef.current) inputRef.current.blur();
@@ -20,8 +20,10 @@ const Search = () => {
       `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${searchMovie}&page=${pageNo}&include_adult=false`
     );
     const search = await data.json();
-    if (search.results.length === 0) alert('Please enter a valid movie');
-    else {
+    if (search.results.length === 0) {
+      alert('Please enter a valid movie');
+      setMovie([]);
+    } else {
       setMovie(search.results);
       setTotalPages(search.total_pages);
     }
@@ -37,20 +39,21 @@ const Search = () => {
     window.scrollTo(0, 0);
   };
 
-  const handleRefresh = (e) => {
-    e.preventDefault();
-    if (pageNo < totalPages) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      setPageNo((prev) => prev + 1);
-    } else {
-      alert('No more results');
+  const baseImage = 'https://image.tmdb.org/t/p/w185';
+
+  const handlePrev = () => {
+    if (pageNo > 1) {
+      setPageNo((prev) => prev - 1);
+      window.scrollTo(0, 0);
     }
   };
 
-  const baseImage = 'https://image.tmdb.org/t/p/w185';
+  const handleNext = () => {
+    if (pageNo < totalPages) {
+      setPageNo((prev) => prev + 1);
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
     <>
@@ -71,11 +74,14 @@ const Search = () => {
             placeholder="Search your movie..."
             className="w-full font-nunito sm:w-1/2 bg-black text-white border-b-2 border-white focus:outline-none px-2 py-2 placeholder-gray-300 hover:bg-opacity-20 transition-all"
             value={searchMovie}
-            onKeyDown={(e) => (e.key === 'Enter' ? fetchSearches() : null)}
+            onKeyDown={(e) => e.key === 'Enter' && fetchSearches()}
             onChange={(e) => setSearchMovie(e.target.value)}
           />
           <button
-            onClick={fetchSearches}
+            onClick={() => {
+              setPageNo(1);
+              fetchSearches();
+            }}
             className="bg-white font-manrope bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
           >
             Search
@@ -94,7 +100,7 @@ const Search = () => {
                   >
                     <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
                       <StarIcon style={{ fontSize: '1rem' }} />
-                      <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+                      <p className="h-max my-auto">{movie.vote_average.toFixed(1)}</p>
                     </div>
 
                     {movie.poster_path ? (
@@ -112,16 +118,24 @@ const Search = () => {
                   </Link>
                 ))}
               </div>
-              {movie.length > 0 && (
-                <div className="flex justify-center my-12">
-                  <button
-                    onClick={handleRefresh}
-                    className="flex font-nunito items-center gap-2 bg-white bg-opacity-20 px-6 py-2 rounded hover:bg-opacity-30 transition-all"
-                  >
-                    Next <span className="w-max h-max my-auto">→</span>
-                  </button>
-                </div>
-              )}
+
+              <div className="flex justify-center items-center gap-6 my-12 font-nunito text-white">
+                <button
+                  onClick={handlePrev}
+                  disabled={pageNo === 1}
+                  className="px-4 py-2 bg-white bg-opacity-20 rounded hover:bg-opacity-30 disabled:opacity-30"
+                >
+                  ←
+                </button>
+                <span className="text-lg">{pageNo} / {totalPages}</span>
+                <button
+                  onClick={handleNext}
+                  disabled={pageNo === totalPages}
+                  className="px-4 py-2 bg-white bg-opacity-20 rounded hover:bg-opacity-30 disabled:opacity-30"
+                >
+                  →
+                </button>
+              </div>
             </>
           ) : (
             <p className="text-center text-white animate-pulse my-10 font-nunito">Search your favorite movie</p>
