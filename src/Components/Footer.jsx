@@ -45,6 +45,7 @@ const Footer = () => {
 
   const quickLinks = [
     { label: 'Home', to: '/' },
+    { label: 'Search', to: '/search' },    
     { label: 'Popular', to: '/popular' },
     { label: 'Top Rated', to: '/top_rated' },
     { label: 'Upcoming', to: '/upcoming' },

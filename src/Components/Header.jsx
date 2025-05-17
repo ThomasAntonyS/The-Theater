@@ -29,8 +29,19 @@ const Header = () => {
 
   return (
     <div>
-      <div className="fixed font-manrope top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-50 backdrop-blur-md z-[100] px-4">
-        <div className="hidden lg:flex gap-2 text-white text-[1.2rem]">
+      <div className="fixed font-manrope top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-50 backdrop-blur-md z-[100] px-6">
+        
+        <div className="flex items-center h-full overflow-hidden text-white font-bold ">
+          <a href="/" onClick={scrollToTop} className="h-full w-full flex items-center">
+            <img
+              src={Logo}
+              alt="Logo"
+              className=" h-[70%] w-full object-contain"
+            />
+          </a>
+        </div>
+
+        <div className="hidden lg:flex gap-2 text-white text-[1.2rem] sm:ml-[6.5%]">
           <Link
             className="h-max w-max my-auto hover:opacity-70 hover:underline"
             to="/popular"
@@ -58,17 +69,6 @@ const Header = () => {
             Upcoming
           </Link>
         </div>
-
-        <div className="flex items-center h-full overflow-hidden text-white font-bold lg:-ml-[5%]">
-          <a href="/" onClick={scrollToTop} className="h-full w-full flex items-center">
-            <img
-              src={Logo}
-              alt="Logo"
-              className=" h-[70%] w-full object-contain"
-            />
-          </a>
-        </div>
-
 
         <div className=" flex text-white text-[1.2rem]">
           <Link
