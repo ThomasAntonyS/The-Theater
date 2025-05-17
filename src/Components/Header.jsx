@@ -59,7 +59,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="flex items-center h-full overflow-hidden text-white font-bold">
+        <div className="flex items-center h-full overflow-hidden text-white font-bold lg:-ml-[5%]">
           <a href="/" onClick={scrollToTop} className="h-full w-full flex items-center">
             <img
               src={Logo}
