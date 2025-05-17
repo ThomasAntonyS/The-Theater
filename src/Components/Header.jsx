@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <div>
       <div className="fixed font-manrope top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-50 backdrop-blur-md z-[100] px-4">
-        <div className="hidden lg:flex gap-2 text-white">
+        <div className="hidden lg:flex gap-2 text-white text-[1.2rem]">
           <Link
             className="h-max w-max my-auto hover:opacity-70 hover:underline"
             to="/popular"
@@ -59,17 +59,18 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className=" flex align-middle h-max my-auto text-white font-bold">
-          <a href="/" onClick={scrollToTop}>
+        <div className="flex items-center h-full overflow-hidden text-white font-bold">
+          <a href="/" onClick={scrollToTop} className="h-full w-full flex items-center">
             <img
               src={Logo}
               alt="Logo"
-              className=" h-[2vh] lg:h-[4vh] lg:-mx-6 "
+              className=" h-[70%] w-full object-contain"
             />
           </a>
         </div>
 
-        <div className=" flex text-white">
+
+        <div className=" flex text-white text-[1.2rem]">
           <Link
             className="h-max w-max my-auto p-2 rounded-full hover:bg-white hover:bg-opacity-25"
             to="/search"
