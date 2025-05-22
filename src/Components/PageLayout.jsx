@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import StarIcon from '@mui/icons-material/Star';
 import { Tailspin } from 'ldrs/react'; 
@@ -6,11 +6,7 @@ import 'ldrs/react/Tailspin.css';
 
 const PageLayout = ({ movies, title, description, pageCount, setPageCount, totalPages }) => {
 
-    const navigate = useNavigate();
-
-    function handleNavigation(e, id) {
-        e.preventDefault();
-        navigate(`/movie/${id}`);
+    function handleNavigation() {
         window.scrollTo(0, 0);
     }
 
@@ -42,8 +38,9 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
                     <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
                         {movies.map((movie, index) => (
                             <Link
+                                to={`/movie/${movie.id}`}
                                 key={index}
-                                onClick={(e) => handleNavigation(e, movie.id)}
+                                onClick={(e) => handleNavigation()}
                                 className='relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
                             >
                                 <div className="absolute top-1 right-1 bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
