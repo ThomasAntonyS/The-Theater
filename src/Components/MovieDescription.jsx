@@ -61,7 +61,7 @@ const MovieDescription = ({ item }) => {
                 <Link to={`/genre/${genre.id}`}
                   key={genre.id}
                   onClick={() => handleGenreClick()}
-                  className="text-gray-300 hover:text-white hover:underline"
+                  className="text-gray-300 hover:text-white underline"
                 >
                   {genre.name}
                 </Link>
