@@ -12,6 +12,8 @@ const Watchlist = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  document.title = "The Theater | Watchlist"
+
   const openModal = (movie) => {
     setSelectedMovie(movie);
     setShowModal(true);

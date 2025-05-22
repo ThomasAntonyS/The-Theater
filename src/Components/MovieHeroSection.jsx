@@ -25,11 +25,8 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
         className={`absolute inset-0 h-max sm:h-full w-full sm:object-cover ${item.backdrop_path?"sm:object-top":"sm:object-center"} sm:aspect-auto mt-[10vh] sm:mt-0`}
       />
 
-
-      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-0" />
 
-      {/* Content */}
       <div className="absolute bottom-5 w-full z-10 flex flex-col px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="flex flex-col flex-grow">
           <div className="flex flex-col sm:justify-between gap-4">

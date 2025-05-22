@@ -26,6 +26,13 @@ const MovieMain = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
+    if (item) {
+      document.title = item.original_title + ` - ${item.tagline}` || item.title+ ` - ${item.tagline}` || 'Movie App';
+    }
+  }, [item]);
+
+
+  useEffect(() => {
     if (id) fetchItem();
   }, [id]);
 

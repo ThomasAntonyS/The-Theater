@@ -17,6 +17,8 @@ const Sign_Up = () => {
     return password === confirmPassword;
   };
 
+    document.title = "The Theater - Create an account"
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!checkPasswordsMatch()) {

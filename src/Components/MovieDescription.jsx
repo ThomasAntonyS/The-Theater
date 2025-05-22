@@ -1,6 +1,8 @@
-import React from 'react';
+import { Link } from "react-router-dom";
+
 
 const MovieDescription = ({ item }) => {
+
   if (!item) return null;
 
   const {
@@ -19,9 +21,12 @@ const MovieDescription = ({ item }) => {
 
   const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
   const country = production_countries?.map((c) => c.name).join(', ') || 'N/A';
-  const genre = genres?.map((g) => g.name).join(', ') || 'N/A';
   const year = release_date ? new Date(release_date).getFullYear() : 'N/A';
   const language = spoken_languages?.map((l) => l.english_name).join(', ') || 'N/A';
+
+  const handleGenreClick = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="px-4 md:px-12 py-10 text-white bg-black w-full" data-aos="fade-right" data-aos-duration="1000">
@@ -49,9 +54,20 @@ const MovieDescription = ({ item }) => {
             <p>
               <span className="font-semibold text-white">Country:</span> {country}
             </p>
-            <p>
-              <span className="font-semibold text-white">Genre:</span> {genre}
-            </p>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-semibold text-white mr-2">Genre:</span>
+              {genres?.map((genre) => (
+                <Link to={`/genre/${genre.id}`}
+                  key={genre.id}
+                  onClick={() => handleGenreClick()}
+                  className="text-gray-300 hover:text-white hover:underline"
+                >
+                  {genre.name}
+                </Link>
+              ))}
+            </div>
+
             <p>
               <span className="font-semibold text-white">Year:</span> {year}
             </p>
@@ -62,11 +78,10 @@ const MovieDescription = ({ item }) => {
               <span className="font-semibold text-white">Duration:</span> {runtime} min
             </p>
             <p>
-              <span className="font-semibold text-white">Rating:</span> ⭐ {vote_average}
+              <span className="font-semibold text-white">Rating:</span> ⭐ {(vote_average)?vote_average.toFixed(1):"N/A"}
             </p>
           </div>
 
-          {/* Production Companies */}
           {production_companies?.length > 0 && (
             <div className="mt-8">
               <h3 className="text-white font-semibold mb-2 font-manrope">Production Companies:</h3>

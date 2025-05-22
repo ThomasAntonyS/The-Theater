@@ -22,7 +22,7 @@ const CastMovies = () => {
       const personRes = await fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}&include_adult=false`);
       const personData = await personRes.json();
       setCastName(personData.name);
-
+      document.title = personData.name + "'s Movies"
       const res = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${apiKey}&include_adult=false`);
       const data = await res.json();
       setCastMovies(data.cast);

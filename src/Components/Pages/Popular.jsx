@@ -8,6 +8,8 @@ const Popular = () => {
     const [movie, setMovie] = useState([]);
     const [totalPages, setTotalPages] = useState();
 
+    document.title = "The Theater | Popular"
+
     useEffect(() => {
         getMovies();
         window.scrollTo(0, 0);

@@ -12,6 +12,7 @@ import ProfileContextProvider from './Context/ProfileContextProvider'
 import './App.css'
 import CastMovies from './Components/Pages/CastMovies'
 import NotFound from './Components/Pages/NotFound'
+import GenreMoviesPage from './Components/GenreMoviesPage'
 
 
 function App() {
@@ -71,6 +72,11 @@ function App() {
             <Route
             path={'/sign_up'}
             element={<Sign_Up/>}
+            />
+
+            <Route
+            path='/genre/:genreId'
+            element={<GenreMoviesPage/>}
             />
 
             <Route

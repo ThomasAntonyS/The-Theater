@@ -112,10 +112,11 @@ const Banner = () => {
           {BannerMovies[count].desc}
         </p>
         <div className="flex flex-wrap text-[1.2rem] items-center gap-3 font-nunito w-max">
-          <button className="flex items-center bg-white text-black px-4 py-2 rounded-full text-sm hover:bg-gray-200 transition">
+          <Link to={`/${BannerMovies[count].link}`}
+          className="flex items-center bg-white text-black px-4 py-2 rounded-full text-sm hover:bg-gray-200 transition">
             <PlayCircleOutlineRoundedIcon className="mr-2 text-base" />
             Watch Movie
-          </button>
+          </Link>
           <Link
             to={`/${BannerMovies[count].link}`}
             className="text-white bg-white bg-opacity-30 hover:bg-opacity-50 px-4 py-2 rounded-full text-sm transition"

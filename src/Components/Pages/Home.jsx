@@ -5,6 +5,8 @@ import Footer from '../Footer'
 
 const Home = () => {
 
+  document.title = "The Theater | Home"
+
   const apiKey = process.env.REACT_APP_API_KEY
 
   return (

@@ -11,6 +11,8 @@ const Sign_In = () => {
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
 
+  document.title = "The Theater - Sign-in to your account"
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (email === userEmail && password === userPassword) {

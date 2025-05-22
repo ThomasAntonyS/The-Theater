@@ -6,6 +6,7 @@ import { FaAnglesRight } from "react-icons/fa6";
 
 const NotFound = () => {
   const navigate = useNavigate();
+  document.title = "404 - Not Found"
 
   return (
     <div className="relative h-screen w-screen">

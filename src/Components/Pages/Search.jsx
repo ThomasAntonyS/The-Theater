@@ -13,6 +13,8 @@ const Search = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
 
+  document.title = "Search for your favourite movies"
+
   const fetchSearches = async () => {
     if (inputRef.current) inputRef.current.blur();
     const apiKey = process.env.REACT_APP_API_KEY;

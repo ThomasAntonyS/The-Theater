@@ -1,19 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
 import StarIcon from '@mui/icons-material/Star';
 
 const MovieSlider = ({ movies }) => {
-  const navigate = useNavigate();
   const scrollRef = useRef(null);
   const baseImage = 'https://image.tmdb.org/t/p/w300';
 
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
-  const handleClick = (id) => {
-    navigate(`/movie/${id}`);
+  const handleClick = () => {
     window.scrollTo(0, 0);
   };
 
@@ -75,9 +73,9 @@ const MovieSlider = ({ movies }) => {
         className='flex gap-4 py-3 overflow-x-scroll no-scrollbar scroll-smooth'
       >
         {movies.map((movie, index) => (
-          <div
+          <Link to={`/movie/${movie.id}`}
             key={index}
-            onClick={() => handleClick(movie.id)}
+            onClick={() => handleClick()}
             className='relative flex-shrink-0 w-[65vw] sm:w-[40vw] md:w-[28vw] lg:w-[18vw] xl:w-[13vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
           >
             {movie.poster_path ? (
@@ -103,7 +101,7 @@ const MovieSlider = ({ movies }) => {
                 More Info →
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
