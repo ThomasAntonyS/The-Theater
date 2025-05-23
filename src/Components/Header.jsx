@@ -72,7 +72,7 @@ const Header = () => {
 
         <div className=" flex text-white text-[1.2rem]">
           <Link
-            className="h-max w-max my-auto px-3 py-2 mx-1 rounded-full hover:bg-white hover:bg-opacity-25"
+            className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full hover:bg-white hover:bg-opacity-25"
             to="/search"
             onClick={scrollToTop}
           >
@@ -84,7 +84,7 @@ const Header = () => {
           </Link>
 
           <Link
-            className="h-max w-max my-auto px-3 py-2 mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
+            className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
             to="/watchlist"
             onClick={scrollToTop}
           >
@@ -97,7 +97,7 @@ const Header = () => {
 
           <div className="LogIn_Out_section flex flex-row align-middle h-max my-auto">
             <Link
-              className="h-max w-max my-auto px-3 py-2 mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
+              className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
               to="/sign_up"
               onClick={scrollToTop}
             >
@@ -111,7 +111,7 @@ const Header = () => {
             <p className=" w-max h-max my-auto">|</p>
 
             <button
-              className="h-max w-max my-auto px-3 py-2 mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
+              className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
               onClick={() => {
                 handleLogout();
                 scrollToTop();
