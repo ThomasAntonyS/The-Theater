@@ -55,7 +55,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full bg-[#151515] text-white font-nunito" data-aos="fade-up" data-aos-duration="1000">
+    <footer className="w-full bg-[#151515] text-white font-nunito mt-[10vh]" data-aos="fade-up" data-aos-duration="1000">
       <div className="w-[90%] mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
         <div className="flex flex-col gap-4">

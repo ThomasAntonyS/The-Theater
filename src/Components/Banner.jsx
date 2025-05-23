@@ -78,7 +78,7 @@ const Banner = () => {
       <button
         onClick={() => setMuted(!muted)}
         title={muted ? "UnMute" : "Mute"}
-        className="absolute flex w-max bottom-12 right-2 sm:bottom-16 sm:right-5 z-30 bg-white p-3 rounded-md shadow-lg hover:bg-opacity-80 transition duration-200 font-manrope font-bold animate-bounce"
+        className="absolute flex w-max bottom-12 right-2 sm:bottom-16 sm:right-5 z-30 bg-white p-2 rounded-md shadow-lg hover:bg-opacity-80 transition duration-200 font-manrope font-bold animate-bounce"
       >
         {muted ? (
           <VolumeOffIcon fontSize="medium" className="h-max my-auto" />
@@ -126,7 +126,7 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 flex space-x-2 z-30 w-full">
+      <div className="absolute hidden sm:flex bottom-8 space-x-2 z-30 w-full">
         <div className="w-[95%] relative flex items-end justify-end">
           {BannerMovies.map((_, index) => (
             <div

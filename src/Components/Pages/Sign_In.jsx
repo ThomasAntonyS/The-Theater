@@ -83,9 +83,9 @@ const Sign_In = () => {
 
           {/* Sign Up Link */}
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-300 font-nunito">
+            <p className="text-md text-gray-300 font-nunito">
               Don't have an account?{' '}
-              <Link to="/sign_up" className="text-blue-500 hover:text-blue-600">Sign Up</Link>
+              <Link to="/sign_up" className="text-blue-500 underline hover:text-blue-600">Sign Up</Link>
             </p>
           </div>
         </form>

@@ -13,6 +13,7 @@ import './App.css'
 import CastMovies from './Components/Pages/CastMovies'
 import NotFound from './Components/Pages/NotFound'
 import GenreMoviesPage from './Components/GenreMoviesPage'
+import CollectionPage from './Components/Pages/CollectionsPage'
 
 
 function App() {
@@ -77,6 +78,11 @@ function App() {
             <Route
             path='/genre/:genreId'
             element={<GenreMoviesPage/>}
+            />
+
+            <Route
+            path ='/collection/:collectionId'
+            element={<CollectionPage/>}
             />
 
             <Route

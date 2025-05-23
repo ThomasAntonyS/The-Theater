@@ -17,6 +17,7 @@ const MovieDescription = ({ item }) => {
     runtime,
     vote_average,
     production_companies,
+    belongs_to_collection
   } = item;
 
   const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
@@ -61,7 +62,7 @@ const MovieDescription = ({ item }) => {
                 <Link to={`/genre/${genre.id}`}
                   key={genre.id}
                   onClick={() => handleGenreClick()}
-                  className="text-gray-300 hover:text-white hover:underline"
+                  className="text-gray-300 hover:text-white underline"
                 >
                   {genre.name}
                 </Link>
@@ -80,6 +81,18 @@ const MovieDescription = ({ item }) => {
             <p>
               <span className="font-semibold text-white">Rating:</span> ⭐ {(vote_average)?vote_average.toFixed(1):"N/A"}
             </p>
+            {belongs_to_collection ? (
+              <div className="mb-2">
+                <span className="font-semibold text-white mr-2">Collection:</span>
+                <Link
+                  to={`/collection/${belongs_to_collection.id}`}
+                  onClick={handleGenreClick}
+                  className="text-gray-300 hover:text-white underline"
+                >
+                  {belongs_to_collection.name}
+                </Link>
+              </div>
+            ) : null}
           </div>
 
           {production_companies?.length > 0 && (
