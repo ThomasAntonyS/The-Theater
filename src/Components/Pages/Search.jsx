@@ -158,7 +158,7 @@ const Search = () => {
                       </div>
                     )}
                     <div>
-                      <p className="font-semibold font-manrope">{movie.title}</p>
+                      <p className="font-semibold font-manrope line-clamp-1">{movie.title}</p>
                       <p className="text-sm text-black font-nunito">
                         {movie.release_date ? movie.release_date.slice(0, 4) : 'N/A'} |{' '}
                         {movie.vote_average != null ? Number(movie.vote_average).toFixed(1) : 'N/A'}

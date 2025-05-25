@@ -100,7 +100,7 @@ const CastMovies = () => {
                         </div>
                     </div>
 
-                    <p className="text-sm text-center font-nunito line-clamp-2">{movie.title}</p>
+                    <p className="text-sm text-center font-nunito line-clamp-1">{movie.title}</p>
                   </Link>
                 ))}
               </div>

@@ -96,7 +96,7 @@ const MovieSlider = ({ movies }) => {
             </div>
 
             <div className='p-2'>
-              <p className='text-white text-sm truncate font-manrope'>{movie.title}</p>
+              <p className='text-white text-sm truncate font-manrope line-clamp-1'>{movie.title}</p>
               <span className='text-gray-400 text-xs group-hover:text-white font-nunito hover:underline pb-1'>
                 More Info →
               </span>

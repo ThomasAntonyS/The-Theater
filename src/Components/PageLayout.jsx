@@ -59,7 +59,7 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
                                         <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
                                     </div>
                                 )}
-                                <p className='w-full text-white text-[1.1rem] text-center mt-2 truncate font-nunito line-clamp-2'>
+                                <p className='w-full text-white text-[1.1rem] text-center mt-2 truncate font-nunito line-clamp-1'>
                                     {movie.title}
                                 </p>
                             </Link>
