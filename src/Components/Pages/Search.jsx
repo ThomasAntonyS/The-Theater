@@ -197,7 +197,7 @@ const Search = () => {
                         <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
                       </div>
                     )}
-                    <p className="text-sm text-center font-nunito">{movie.title}</p>
+                    <p className="text-sm text-center font-nunito line-clamp-2">{movie.title}</p>
                   </Link>
                 ))}
               </div>

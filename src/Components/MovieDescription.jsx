@@ -34,11 +34,17 @@ const MovieDescription = ({ item }) => {
       <div className="max-w-6xl flex flex-col md:flex-row gap-10">
         {/* Poster */}
         <div className="w-full md:w-1/3 my-auto">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="w-full rounded-lg shadow-lg"
-          />
+          {(imageUrl!="")?
+            <img
+              src={imageUrl}
+              alt={title}
+              className="w-full rounded-lg shadow-lg font-manropet-"
+            />
+            :
+            <div className='h-[35vh] w-full flex items-center justify-center bg-black text-white text-5xl'>
+              🎬
+            </div>
+          } 
         </div>
 
         {/* Details */}
