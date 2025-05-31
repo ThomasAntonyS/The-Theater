@@ -59,7 +59,7 @@ const Footer = () => {
       <div className="w-[90%] mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
         <div className="flex flex-col gap-4">
-          <img src={Logo} alt="Logo" className="h-auto max-w-[120px]" />
+          <img src={Logo} alt="Logo" className="h-[7vh] w-[7vh]" />
           <p className="text-sm text-gray-400 leading-relaxed">
             Dive into the world of movies with <span className="font-semibold">The Theater</span>. Stay updated on the latest hits, cult classics, and hidden gems.
           </p>
