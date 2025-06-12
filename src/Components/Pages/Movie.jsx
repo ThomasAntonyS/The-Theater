@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../Header';
 import Casts from '../Casts';
 import Footer from '../Footer';
@@ -21,6 +21,7 @@ const MovieMain = () => {
     message: '',
     isError: false,
   });
+  const navigate = useNavigate()
   
 
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -41,6 +42,10 @@ const MovieMain = () => {
     try {
       const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&include_adult=false`);
       const data = await res.json();
+      if(data.success === false){
+        navigate('/*')
+        return
+      }
       setItem(data);
     } catch (error) {
       console.error('Failed to fetch movie:', error);
