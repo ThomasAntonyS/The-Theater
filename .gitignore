@@ -7,7 +7,7 @@
 
 
 .env
-
+testAPI.http
 # testing
 /coverage
 

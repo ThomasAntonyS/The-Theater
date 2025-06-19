@@ -41,6 +41,7 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
                                 to={`/movie/${movie.id}`}
                                 key={index}
                                 onClick={(e) => handleNavigation()}
+                                target="_blank"
                                 className='relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
                             >
                                 <div className="absolute top-1 right-1 bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
