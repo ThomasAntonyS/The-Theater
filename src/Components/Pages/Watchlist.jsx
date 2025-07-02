@@ -62,7 +62,7 @@ const Watchlist = () => {
                     </div>
 
                     <div className="mt-2 text-center">
-                      <h3 className="text-sm sm:text-base font-semibold font-nunito truncate line-clamp-2">
+                      <h3 className="text-sm sm:text-base font-semibold font-nunito truncate">
                         {movie.title}
                       </h3>
                     </div>

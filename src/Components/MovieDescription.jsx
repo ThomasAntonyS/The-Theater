@@ -38,7 +38,7 @@ const MovieDescription = ({ item }) => {
             <img
               src={imageUrl}
               alt={title}
-              className="w-full rounded-lg shadow-lg font-manropet-"
+              className="w-full rounded-lg shadow-lg"
             />
             :
             <div className='h-[35vh] w-full flex items-center justify-center bg-black text-white text-5xl'>
@@ -55,7 +55,7 @@ const MovieDescription = ({ item }) => {
             <p className="text-lg text-gray-400 italic mb-4 font-nunito">"{tagline}"</p>
           )}
 
-          <p className="text-base md:text-lg text-gray-300 mb-6 font-nunito line-clamp-5">{overview}</p>
+          <p className="text-base md:text-lg text-gray-300 mb-6 font-nunito line-clamp-5 text-justify">{overview}</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm md:text-base text-gray-300 font-manrope">
             <p>

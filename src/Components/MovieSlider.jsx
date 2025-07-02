@@ -48,12 +48,12 @@ const MovieSlider = ({ movies }) => {
   }, []);
 
   return (
-    <div className='relative w-full py-4 px-4'>
+    <div className='relative w-full py-4 px-4 '>
 
       {!atStart && (
         <button
           onClick={() => scroll('left')}
-          className="w-max text-2xl px-3 py-2 absolute left-4 border top-[45%] z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition"
+          className="hidden sm:block w-max text-2xl px-3 py-2 absolute left-2 sm:left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition focus:outline-none"
         >
           <WestIcon />
         </button>
@@ -62,7 +62,7 @@ const MovieSlider = ({ movies }) => {
       {!atEnd && (
         <button
           onClick={() => scroll('right')}
-          className="w-max text-2xl px-3 py-2 absolute right-4 border top-[45%] z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition"
+          className="hidden sm:block w-max text-2xl px-3 py-2 absolute right-2 sm:right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition focus:outline-none"
         >
           <EastIcon />
         </button>
@@ -76,28 +76,28 @@ const MovieSlider = ({ movies }) => {
           <Link to={`/movie/${movie.id}`}
             key={index}
             onClick={() => handleClick()}
-            className='relative flex-shrink-0 w-[65vw] sm:w-[40vw] md:w-[28vw] lg:w-[18vw] xl:w-[13vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
+            className='relative flex-shrink-0 w-[55vw] sm:w-[35vw] md:w-[25vw] lg:w-[15vw] xl:w-[12vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
           >
             {movie.poster_path ? (
               <img
                 src={baseImage + movie.poster_path}
                 alt={movie.title}
-                className='w-full h-[35vh] object-cover rounded-t-lg'
+                className='w-full h-auto aspect-[2/3] object-cover rounded-t-lg'
               />
             ) : (
-              <div className='h-[35vh] w-full flex items-center justify-center bg-gray-700 rounded-t-lg text-white text-5xl'>
+              <div className='w-full h-auto aspect-[2/3] flex items-center justify-center bg-gray-700 rounded-t-lg text-white text-5xl'>
                 🎬
               </div>
             )}
 
-            <div className="absolute top-2 right-2 bg-black bg-opacity-80 backdrop-blur-md text-white font-manrope text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
-              <StarIcon style={{ fontSize: '1rem', height:'max', margin:'auto 0px' }} />
-              <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+            <div className="absolute top-2 right-2 bg-black bg-opacity-80 backdrop-blur-sm text-white font-manrope text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
+              <StarIcon style={{ fontSize: '0.9rem' }} />
+              <p className='h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
             </div>
 
             <div className='p-2'>
-              <p className='text-white text-sm truncate font-manrope line-clamp-1'>{movie.title}</p>
-              <span className='text-gray-400 text-xs group-hover:text-white font-nunito hover:underline pb-1'>
+              <p className='text-white text-sm sm:text-base font-manrope truncate'>{movie.title}</p>
+              <span className='text-gray-400 text-xs sm:text-sm group-hover:text-white font-nunito hover:underline pb-1'>
                 More Info →
               </span>
             </div>

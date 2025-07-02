@@ -10,6 +10,7 @@ import { Tailspin } from 'ldrs/react';
 import 'ldrs/react/Tailspin.css';
 import FloatingPopup from '../FloatingPopup';
 import MovieDescription from '../MovieDescription';
+import MovieProviders from '../MovieProviders';
 
 const MovieMain = () => {
   const { id } = useParams();
@@ -97,6 +98,7 @@ const MovieMain = () => {
             handleWatchlist={handleWatchlist}
           />
           <MovieDescription item={item}/>
+          <MovieProviders movieId={id}/>
           <Casts movieId={id} />
           <MovieCard
             url={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`}
