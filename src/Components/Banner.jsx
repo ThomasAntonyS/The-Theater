@@ -88,7 +88,7 @@ const Banner = () => {
   const imageUrl = isMobile ? currentMovie.poster_image : currentMovie.backdrop_image;
 
   return (
-    <div className="relative h-[95vh] w-full overflow-hidden mb-6">
+    <div className="relative h-[90vh] sm:h-[85vh] lg:h-[95vh] w-full overflow-hidden mb-6">
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full z-30 flex items-center justify-center bg-black bg-opacity-95">
           <Ping size='60' stroke="3.5" speed="1.2" color="white" />
@@ -129,7 +129,7 @@ const Banner = () => {
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-manrope leading-tight">
           {currentMovie.title}
         </h1>
-        <p className="text-sm sm:text-base md:text-lg line-clamp-2 max-w-[90%] font-nunito leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg line-clamp-2 font-nunito leading-relaxed">
           {currentMovie.desc}
         </p>
         <div className="flex flex-wrap text-base items-center gap-3 font-nunito">
@@ -147,11 +147,11 @@ const Banner = () => {
         </div>
       </div>
 
-      <div className="absolute flex bottom-4 right-10 space-x-2 z-30 justify-end">
+      <div className="absolute flex bottom-4 right-7 sm:right-6 space-x-2 z-30 justify-end">
         {bannerMovies.map((_, index) => (
           <div
             key={index}
-            className="w-4 md:w-12 h-[5px] mx-1 rounded-full bg-white transition-all duration-300 cursor-pointer"
+            className="w-4 md:w-12 h-[3.5px] mx-1 rounded-full bg-white transition-all duration-300 cursor-pointer"
             style={{ opacity: index === count ? 1 : 0.3 }}
             onClick={() => {
               handleNavigationClick(index);
