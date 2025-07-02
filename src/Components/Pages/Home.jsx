@@ -22,7 +22,7 @@ const Home = () => {
       />
       </section>
 
-      <MovieCard title={"Trending"} 
+      <MovieCard title={"Upcoming"} 
       url={`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1&include_adult=false`}
       navLink={'upcoming'}
       />

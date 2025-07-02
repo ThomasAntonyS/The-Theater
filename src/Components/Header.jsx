@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,8 +12,8 @@ const Header = () => {
 
   function handleLogout() {
     setLoggedIn(false);
-    setUserName(' ');
-    setUserEmail(' ');
+    setUserName('');
+    setUserEmail('');
     setUserWatchlist([]);
     if (loggedIn) {
       alert('Logout Successful');
@@ -22,106 +22,94 @@ const Header = () => {
 
   const scrollToTop = () => {
     window.scrollTo({
-        top:0,
-        behavior:"smooth"
+      top: 0,
+      behavior: 'smooth'
     });
   };
 
   return (
     <div>
-      <div className="fixed font-manrope top-0 flex align-middle justify-between h-[10vh] w-[100vw] overflow-x-hidden bg-black bg-opacity-50 backdrop-blur-md z-[100] px-6">
-        
-        <div className="flex items-center h-full overflow-hidden text-white font-bold ">
-          <a href="/" onClick={scrollToTop} className="h-full w-full flex items-center">
+      <div className="fixed font-manrope top-0 flex items-center justify-between h-[10vh] w-full bg-black bg-opacity-50 backdrop-blur-md z-[100] px-4 sm:px-6 md:px-8">
+
+        <div className="flex items-center h-full text-white font-bold">
+          <Link to="/" onClick={scrollToTop} className="h-full flex items-center">
             <img
               src={Logo}
               alt="Logo"
-              className=" h-[70%] w-full object-contain"
+              className="h-[60%] sm:h-[70%] object-contain"
             />
-          </a>
+          </Link>
         </div>
 
-        <div className="hidden lg:flex gap-2 text-white text-[1.2rem] sm:ml-[9%]">
+        <div className="hidden md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center ml-[13%]">
           <Link
-            className="h-max w-max my-auto hover:opacity-70 hover:underline"
+            className="hover:opacity-70 hover:underline"
             to="/popular"
             onClick={scrollToTop}
             title='Popular Movies'
           >
             Popular
           </Link>
-          <span className="h-max my-auto">|</span>
+          <span className="text-gray-400">|</span>
           <Link
-            className="h-max w-max my-auto hover:opacity-70 hover:underline"
+            className="hover:opacity-70 hover:underline"
             to="/top_rated"
             onClick={scrollToTop}
             title='Top Rated Movies'
           >
             Top-Rated
           </Link>
-          <span className="h-max my-auto">|</span>
+          <span className="text-gray-400">|</span>
           <Link
-            className="h-max w-max my-auto hover:opacity-70 hover:underline"
-            to="/upcoming"
+            className="hover:opacity-70 hover:underline"
+            to="/trending"
             onClick={scrollToTop}
-            title='Upcoming Movies'
+            title='Trending Movies'
           >
-            Upcoming
+            Trending
           </Link>
         </div>
 
-        <div className=" flex text-white text-[1.2rem]">
+        <div className="flex items-center text-white">
           <Link
-            className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full hover:bg-white hover:bg-opacity-25"
+            className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
             to="/search"
             onClick={scrollToTop}
+            title='Search'
           >
-            {window.screen.width < 640 ? (
-              <SearchIcon fontSize="small" titleAccess='Search' />
-            ) : (
-              <SearchIcon titleAccess='Search'/>
-            )}
+            <SearchIcon />
           </Link>
 
           <Link
-            className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
+            className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
             to="/watchlist"
             onClick={scrollToTop}
+            title='Watchlist'
           >
-            {window.screen.width < 640 ? (
-              <LiveTvIcon fontSize="small" titleAccess='Watchlist'/>
-            ) : (
-              <LiveTvIcon titleAccess='Watchlist'/>
-            )}
+            <LiveTvIcon />
           </Link>
 
-          <div className="LogIn_Out_section flex flex-row align-middle h-max my-auto">
+          <div className="flex items-center">
             <Link
-              className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
+              className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
               to="/sign_up"
               onClick={scrollToTop}
+              title='Log-In'
             >
-              {window.screen.width < 640 ? (
-                <LoginIcon fontSize="small" titleAccess='Log-In'/>
-              ) : (
-                <LoginIcon titleAccess='Log-In'/>
-              )}
+              <LoginIcon />
             </Link>
 
-            <p className=" w-max h-max my-auto">|</p>
+            <p className="text-gray-400 mx-1 sm:mx-2">|</p>
 
             <button
-              className="h-max w-max my-auto px-3 py-2 sm:mx-1 rounded-full  hover:bg-white hover:bg-opacity-25"
+              className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
               onClick={() => {
                 handleLogout();
                 scrollToTop();
               }}
+              title='Log-Out'
             >
-              {window.screen.width < 640 ? (
-                <LogoutIcon fontSize="small" titleAccess='Log-Out'/>
-              ) : (
-                <LogoutIcon titleAccess='Log-Out'/>
-              )}
+              <LogoutIcon />
             </button>
           </div>
         </div>

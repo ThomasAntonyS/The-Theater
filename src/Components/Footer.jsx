@@ -47,6 +47,7 @@ const Footer = () => {
     { label: 'Home', to: '/' },
     { label: 'Search', to: '/search' },    
     { label: 'Popular', to: '/popular' },
+    { label: 'Trending', to: '/trending' },  
     { label: 'Top Rated', to: '/top_rated' },
     { label: 'Upcoming', to: '/upcoming' },
     { label: 'WatchList', to: '/watchlist' },

@@ -14,6 +14,7 @@ import CastMovies from './Components/Pages/CastMovies'
 import NotFound from './Components/Pages/NotFound'
 import GenreMoviesPage from './Components/GenreMoviesPage'
 import CollectionPage from './Components/Pages/CollectionsPage'
+import Trending from './Components/Pages/Trending'
 
 
 function App() {
@@ -43,6 +44,11 @@ function App() {
             <Route
             path='/upcoming'
             element={<Upcoming/>}
+            />
+
+            <Route
+            path='/trending'
+            element={<Trending/>}
             />
 
             <Route

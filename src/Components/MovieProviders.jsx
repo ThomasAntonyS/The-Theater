@@ -20,7 +20,6 @@ const MovieProviders = ({ movieId }) => {
         const userRegion = "IN"; 
         if (data.results && data.results[userRegion]) {
           setProviders(data.results[userRegion]);
-          console.log(data.results[userRegion])
         } else {
           setProviders(null);
         }
