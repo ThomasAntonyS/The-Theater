@@ -4,7 +4,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { Tailspin } from 'ldrs/react'; 
 import 'ldrs/react/Tailspin.css';
 
-const PageLayout = ({ movies, title, description, pageCount, setPageCount, totalPages }) => {
+const PageLayout = ({ movies, title, description, pageCount, setPageCount, totalPages,loading }) => {
 
     function handleNavigation() {
         window.scrollTo(0, 0);
@@ -34,7 +34,7 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
             </p>
 
             <div className="flex flex-col w-full items-center mt-8">
-                {movies ? (
+                {!loading ? (
                     <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
                         {movies.map((movie, index) => (
                             <Link
@@ -67,7 +67,7 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
                         ))}
                     </div>
                 ) : (
-                    <div className="w-full h-screen flex items-start justify-center bg-black">
+                    <div className="w-full h-screen mt-[10vh] flex items-start justify-center bg-black">
                         <Tailspin size={50} stroke={5} speed={0.9} color="white" />
                     </div>
                 )}

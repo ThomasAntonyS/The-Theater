@@ -7,6 +7,7 @@ const Trending = () => {
   const [pageCount, setPageCount] = useState(1);
   const [movie, setMovie] = useState([]);
   const [totalPages, setTotalPages] = useState();
+  const [loading,setLoading] = useState(false)
 
   document.title = "The Theater | Trending";
 
@@ -18,12 +19,17 @@ const Trending = () => {
   const getTrendingMovies = async () => {
     const apiKey = process.env.REACT_APP_API_KEY;
     try {
+      setLoading(true)
       const data = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&language=en-US&language=en-US&page=${pageCount}&include_adult=false&page=${pageCount}`);
       const response = await data.json();
       setMovie(response.results);
       setTotalPages(response.total_pages);
     } catch (error) {
       console.error("Error fetching trending movies:", error);
+      setLoading(false)
+    }
+    finally{
+      setLoading(false)
     }
   };
 
@@ -42,6 +48,7 @@ const Trending = () => {
           pageCount={pageCount}
           setPageCount={setPageCount}
           totalPages={totalPages}
+          loading={loading}
         />
       </section>
 

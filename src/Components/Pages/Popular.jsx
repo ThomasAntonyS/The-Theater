@@ -7,6 +7,7 @@ const Popular = () => {
     const [pageCount, setPageCount] = useState(1);
     const [movie, setMovie] = useState([]);
     const [totalPages, setTotalPages] = useState();
+    const [loading,setLoading] = useState(false)
 
     document.title = "The Theater | Popular"
 
@@ -16,11 +17,21 @@ const Popular = () => {
     }, [pageCount]);
 
     const getMovies = async () => {
-        const apiKey = process.env.REACT_APP_API_KEY;
-        const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${pageCount}&include_adult=false`);
-        const response = await data.json();
-        setMovie(response.results);
-        setTotalPages(response.total_pages);
+        try{
+            setLoading(true)
+            const apiKey = process.env.REACT_APP_API_KEY;
+            const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${pageCount}&include_adult=false`);
+            const response = await data.json();
+            setMovie(response.results);
+            setTotalPages(response.total_pages);
+        }
+        catch(err){
+            console.error(err)
+            setLoading(false)
+        }
+        finally{
+            setLoading(false)
+        }
     };
 
     return (
@@ -38,6 +49,7 @@ const Popular = () => {
                     pageCount={pageCount}
                     setPageCount={setPageCount}
                     totalPages={totalPages}
+                    loading={loading}
                 />
             </section>
 

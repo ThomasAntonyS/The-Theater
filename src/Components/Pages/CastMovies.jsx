@@ -12,13 +12,14 @@ const CastMovies = () => {
   const [castMovies, setCastMovies] = useState([]);
   const [castName, setCastName] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [loading,setLoading] = useState(false)
   const navigate = useNavigate();
   const baseImage = 'https://image.tmdb.org/t/p/w185';
 
   const fetchCastMovies = async () => {
     try {
+      setLoading(true)
       const apiKey = process.env.REACT_APP_API_KEY;
-
       const personRes = await fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}&include_adult=false`);
       const personData = await personRes.json();
       setCastName(personData.name);
@@ -28,6 +29,10 @@ const CastMovies = () => {
       setCastMovies(data.cast);
     } catch (error) {
       console.error('Error fetching cast movies:', error);
+      setLoading(false)
+    }
+    finally{
+      setLoading(false)
     }
   };
 
@@ -72,7 +77,7 @@ const CastMovies = () => {
         {/* Movies */}
         <section className="px-4 my-16">
           <p className='gap-6 max-w-7xl mx-auto mb-5 font-manrope text-[1.4rem]'><b>Obtained results:</b> <span className=' text-[2rem] font-bold'>{filteredMovies.length}</span> / {castMovies.length}</p>
-          {castMovies.length > 0 ? (   
+          {castMovies.length > 0 && !loading ? (   
             filteredMovies.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
                 {filteredMovies.map((movie, index) => (
@@ -108,7 +113,7 @@ const CastMovies = () => {
               <p className="text-center text-white animate-pulse my-10 font-nunito">No matching results.</p>
             )
           ) : (
-            <div className="w-full h-screen flex items-start justify-center bg-black">
+            <div className="w-full h-screen flex items-start justify-center bg-black mt-[10vh]">
               <Tailspin size={50} stroke={5} speed={0.9} color="white" />
             </div>
           )}
