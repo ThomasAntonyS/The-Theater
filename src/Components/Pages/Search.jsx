@@ -225,7 +225,7 @@ const Search = () => {
                   <Link
                     key={movie.id}
                     onClick={(e) => handleNavigation(e, movie.id)}
-                    className="relative p-2 rounded-lg bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-all duration-300 transform hover:scale-105 group"
+                    className="relative p-2 rounded-lg transition-all duration-300 transform hover:scale-105 group"
                   >
                     <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10 font-nunito shadow-md">
                       <StarIcon style={{ fontSize: '1rem', color: '#FFD700' }} />
@@ -236,14 +236,14 @@ const Search = () => {
                       <img
                         src={baseImage + movie.poster_path}
                         alt={movie.title}
-                        className="w-full h-auto object-cover rounded-lg mb-2 shadow-sm"
+                        className="w-full h-[90%] object-cover rounded-lg mb-2 shadow-sm"
                       />
                     ) : (
                       <div className="w-full h-[240px] flex items-center justify-center rounded-lg mb-2 bg-gray-800">
                         <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
                       </div>
                     )}
-                    <p className="text-sm sm:text-base text-center font-manrope font-semibold line-clamp-2 mt-1 px-1">
+                    <p className="text-sm sm:text-base text-center font-manrope font-semibold truncate mt-1 px-1">
                       {movie.title}
                     </p>
                   </Link>
