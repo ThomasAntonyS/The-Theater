@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../assets/Logo.png';
@@ -41,7 +39,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="hidden md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center ml-[13%]">
+        <div className="hidden md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center ml-[7%]">
           <Link
             className="hover:opacity-70 hover:underline"
             to="/popular"
@@ -70,14 +68,14 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="flex items-center text-white">
+        <div className="flex gap-x-2 items-center text-white">
           <Link
             className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
             to="/search"
             onClick={scrollToTop}
             title='Search'
           >
-            <SearchIcon />
+            <p className=' h-max my-auto flex flex-row-reverse gap-x-1'>Search <span><SearchIcon style={{marginTop:"-3px"}}/></span></p>
           </Link>
 
           <Link
@@ -86,32 +84,9 @@ const Header = () => {
             onClick={scrollToTop}
             title='Watchlist'
           >
-            <LiveTvIcon />
+            <p className=' h-max my-auto flex flex-row-reverse gap-x-2'>WatchList <span><LiveTvIcon style={{marginTop:"-5px"}}/></span></p>
           </Link>
 
-          <div className="flex items-center">
-            <Link
-              className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
-              to="/sign_up"
-              onClick={scrollToTop}
-              title='Log-In'
-            >
-              <LoginIcon />
-            </Link>
-
-            <p className="text-gray-400 mx-1 sm:mx-2">|</p>
-
-            <button
-              className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
-              onClick={() => {
-                handleLogout();
-                scrollToTop();
-              }}
-              title='Log-Out'
-            >
-              <LogoutIcon />
-            </button>
-          </div>
         </div>
       </div>
     </div>
