@@ -18,8 +18,9 @@ const MovieSlider = ({ movies }) => {
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollAmount = Math.max(clientWidth * 0.7, 200); 
-      const newScrollLeft = direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
+      const scrollAmount = Math.max(clientWidth * 0.7, 200);
+      const newScrollLeft =
+        direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
       scrollRef.current.scrollTo({
         left: newScrollLeft,
         behavior: 'smooth',
@@ -50,7 +51,7 @@ const MovieSlider = ({ movies }) => {
         window.removeEventListener('resize', checkScrollPosition);
       };
     }
-  }, [movies]); // Re-run effect if movies change
+  }, [movies]);
 
   return (
     <div className='relative w-full py-4'>
@@ -58,7 +59,9 @@ const MovieSlider = ({ movies }) => {
       {/* Left Scroll Button */}
       <button
         onClick={() => scroll('left')}
-        className={`absolute left-2  top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 transition-opacity duration-300 focus:outline-none ${atStart ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'}`}
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 transition-opacity duration-300 focus:outline-none ${
+          atStart ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'
+        }`}
       >
         <WestIcon className="text-xl sm:text-2xl" />
       </button>
@@ -66,41 +69,50 @@ const MovieSlider = ({ movies }) => {
       {/* Right Scroll Button */}
       <button
         onClick={() => scroll('right')}
-        className={`absolute right-2  top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 sm:p-3 transition-opacity duration-300 focus:outline-none ${atEnd ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'}`}
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 sm:p-3 transition-opacity duration-300 focus:outline-none ${
+          atEnd ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'
+        }`}
       >
         <EastIcon className="text-xl sm:text-2xl" />
       </button>
 
+      {/* Movie List */}
       <div
         ref={scrollRef}
-        className='flex gap-4 py-3 overflow-x-scroll no-scrollbar scroll-smooth px-4 sm:px-6 md:px-8'
+        className='flex gap-6  py-3 overflow-x-scroll no-scrollbar scroll-smooth px-4 sm:px-6 md:px-8'
       >
         {movies.map((movie, index) => (
-          <Link to={`/movie/${movie.id}`}
+          <Link
+            to={`/movie/${movie.id}`}
             key={index}
-            onClick={() => handleClick()}
-            className='relative flex-shrink-0 w-[50vw] sm:w-[30vw] md:w-[20vw] lg:w-[15vw] xl:w-[12vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
+            onClick={handleClick}
+            className='relative flex-shrink-0 w-[60vw] sm:w-[40vw] md:w-[28vw] lg:w-[20vw] xl:w-[16vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
           >
+            {/* Movie Poster */}
             {movie.poster_path ? (
               <img
                 src={baseImage + movie.poster_path}
                 alt={movie.title}
-                className='w-full h-auto aspect-[2/3] object-cover rounded-t-lg'
+                className='w-full aspect-[1/1.3] object-cover rounded-t-lg'
               />
             ) : (
-              <div className='w-full h-auto aspect-[2/3] flex items-center justify-center bg-gray-700 rounded-t-lg text-white text-5xl'>
+              <div className='w-full aspect-[1/1.3] flex items-center justify-center bg-gray-700 rounded-t-lg text-white text-5xl'>
                 🎬
               </div>
             )}
 
+            {/* Rating Badge */}
             <div className="absolute top-2 right-2 bg-black bg-opacity-80 backdrop-blur-sm text-white font-manrope text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
               <StarIcon style={{ fontSize: '0.9rem' }} />
               <p className='h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
             </div>
 
+            {/* Movie Info */}
             <div className='p-2'>
-              <p className='text-white text-sm sm:text-base font-manrope truncate'>{movie.title}</p>
-              <span className='text-gray-400 text-xs sm:text-sm group-hover:text-white font-nunito hover:underline pb-1'>
+              <p className='text-white text-sm sm:text-lg font-manrope truncate'>
+                {movie.title}
+              </p>
+              <span className='text-gray-400 text-xs sm:text-sm group-hover:text-white font-nunito hover:underline'>
                 More Info →
               </span>
             </div>
