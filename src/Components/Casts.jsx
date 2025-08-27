@@ -15,7 +15,7 @@ function Casts({ movieId }) {
 
     const fetchCast = async () => {
         try {
-            const apiKey = process.env.REACT_APP_API_KEY;
+            const apiKey = import.meta.env.VITE_API_KEY;
             const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en-US`);
             const casts = await data.json();
             setCasts(casts.cast);

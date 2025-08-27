@@ -3,8 +3,8 @@ import Header from '../Header';
 import Footer from '../Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import StarIcon from '@mui/icons-material/Star';
-import CloseIcon from '@mui/icons-material/Close'; // Import CloseIcon
-import SearchIcon from '@mui/icons-material/Search'; // Import SearchIcon
+import CloseIcon from '@mui/icons-material/Close'; 
+import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Search = () => {
@@ -17,7 +17,7 @@ const Search = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const debounceTimeout = useRef(null);
-  const suggestionsRef = useRef(null); // Ref for suggestions box
+  const suggestionsRef = useRef(null); 
 
   useEffect(() => {
     document.title = 'Search for your favourite movies';
@@ -42,7 +42,7 @@ const Search = () => {
       return;
     }
     if (inputRef.current) inputRef.current.blur();
-    const apiKey = process.env.REACT_APP_API_KEY;
+    const apiKey = import.meta.env.VITE_API_KEY;
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${encodeURIComponent(
@@ -100,7 +100,7 @@ const Search = () => {
 
     if (query.trim()) {
       debounceTimeout.current = setTimeout(async () => {
-        const apiKey = process.env.REACT_APP_API_KEY;
+        const apiKey = import.meta.env.VITE_PI_KEY;
         try {
           const response = await fetch(
             `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${encodeURIComponent(

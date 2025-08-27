@@ -17,7 +17,7 @@ const Trending = () => {
   }, [pageCount]);
 
   const getTrendingMovies = async () => {
-    const apiKey = process.env.REACT_APP_API_KEY;
+    const apiKey = import.meta.env.VITE_API_KEY;
     try {
       setLoading(true)
       const data = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&language=en-US&language=en-US&page=${pageCount}&include_adult=false&page=${pageCount}`);

@@ -11,7 +11,7 @@ const GenreMoviesPage = () => {
   const [pageCount, setPageCount] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     const fetchMoviesAndGenre = async () => {

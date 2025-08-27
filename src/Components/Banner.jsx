@@ -26,7 +26,7 @@ const Banner = () => {
   useEffect(() => {
     const fetchTrendingMovies = async () => {
       setLoading(true);
-      const apiKey = process.env.REACT_APP_API_KEY;
+      const apiKey = import.meta.env.VITE_API_KEY;
       try {
         const response = await fetch(
           `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&include_adult=false`

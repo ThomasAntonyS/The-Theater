@@ -19,7 +19,7 @@ const CastMovies = () => {
   const fetchCastMovies = async () => {
     try {
       setLoading(true)
-      const apiKey = process.env.REACT_APP_API_KEY;
+      const apiKey = import.meta.env.VITE_API_KEY;
       const personRes = await fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}&include_adult=false`);
       const personData = await personRes.json();
       setCastName(personData.name);

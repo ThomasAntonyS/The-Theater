@@ -25,7 +25,7 @@ const MovieMain = () => {
   const navigate = useNavigate()
   
 
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     if (item) {

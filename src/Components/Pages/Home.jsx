@@ -7,7 +7,7 @@ const Home = () => {
 
   document.title = "The Theater | Home"
 
-  const apiKey = process.env.REACT_APP_API_KEY
+  const apiKey = import.meta.env.VITE_API_KEY
 
   return (
     <>
