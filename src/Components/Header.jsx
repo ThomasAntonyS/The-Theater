@@ -1,22 +1,9 @@
-import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import Logo from '../assets/Logo.png';
-import { ProfileContext } from '../Context/ProfileContextProvider';
 
 const Header = () => {
-  const { setUserName, setUserEmail, setUserWatchlist, setLoggedIn, loggedIn } = useContext(ProfileContext);
-
-  function handleLogout() {
-    setLoggedIn(false);
-    setUserName('');
-    setUserEmail('');
-    setUserWatchlist([]);
-    if (loggedIn) {
-      alert('Logout Successful');
-    }
-  }
 
   const scrollToTop = () => {
     window.scrollTo({
