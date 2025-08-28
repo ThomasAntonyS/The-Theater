@@ -100,7 +100,7 @@ const Search = () => {
 
     if (query.trim()) {
       debounceTimeout.current = setTimeout(async () => {
-        const apiKey = import.meta.env.VITE_PI_KEY;
+        const apiKey = import.meta.env.VITE_API_KEY;
         try {
           const response = await fetch(
             `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${encodeURIComponent(

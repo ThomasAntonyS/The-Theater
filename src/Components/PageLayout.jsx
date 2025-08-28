@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import StarIcon from '@mui/icons-material/Star';
 import { Tailspin } from 'ldrs/react'; 
@@ -6,7 +6,11 @@ import 'ldrs/react/Tailspin.css';
 
 const PageLayout = ({ movies, title, description, pageCount, setPageCount, totalPages,loading }) => {
 
-    function handleNavigation() {
+    const navigate = useNavigate()
+
+    function handleNavigation(e,movieId) {
+        e.preventDefault()
+        navigate(`/movie/${movieId}`)
         window.scrollTo(0, 0);
     }
 
@@ -35,12 +39,11 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
 
             <div className="flex flex-col w-full items-center mt-8">
                 {!loading ? (
-                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
+                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6 hover:cursor-pointer'>
                         {movies.map((movie, index) => (
-                            <Link
-                                to={`/movie/${movie.id}`}
+                            <div
                                 key={index}
-                                onClick={(e) => handleNavigation()}
+                                onClick={(e) => handleNavigation(e,movie.id)}
                                 target="_blank"
                                 className='relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
                             >
@@ -63,7 +66,7 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
                                 <p className='w-full text-white text-[1.1rem] text-center mt-2 truncate font-nunito '>
                                     {movie.title}
                                 </p>
-                            </Link>
+                            </div>
                         ))}
                     </div>
                 ) : (
