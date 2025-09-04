@@ -35,13 +35,14 @@ const PageLayout = ({ movies, title, description, path, pageCount, totalPages,lo
 
             <div className="flex flex-col w-full items-center mt-8">
                 {!loading ? (
-                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6 hover:cursor-pointer'>
+                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
                         {movies.map((movie, index) => (
                             <div
                                 key={index}
                                 onClick={(e) => handleNavigation(e,movie.id)}
                                 target="_blank"
-                                className='relative flex flex-col items-center w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto'
+                                title={movie.title}
+                                className='relative flex flex-col w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer'
                             >
                                 <div className="absolute top-1 right-1 bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
                                     <StarIcon style={{ fontSize: '1rem' }} />
@@ -52,14 +53,14 @@ const PageLayout = ({ movies, title, description, path, pageCount, totalPages,lo
                                     <img
                                         src={baseImage + movie.poster_path}
                                         alt={movie.title}
-                                        className='aspect-[2/3] w-full object-cover rounded-[10px]'
+                                        className='aspect-[2/3] w-full object-cover'
                                     />
                                 ) : (
                                     <div className='aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-[10px]'>
                                         <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
                                     </div>
                                 )}
-                                <p className='w-full text-white text-[1.1rem] text-center mt-2 truncate font-nunito '>
+                                <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/60 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover '>
                                     {movie.title}
                                 </p>
                             </div>

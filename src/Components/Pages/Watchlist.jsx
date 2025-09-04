@@ -46,7 +46,7 @@ const Watchlist = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
               {userWatchlist.map((movie) => (
-                <div key={movie.id} className="relative group">
+                <div key={movie.id} className="relative">
                   <Link to={`/movie/${movie.id}`}>
                     <div className="relative">
                       <img
