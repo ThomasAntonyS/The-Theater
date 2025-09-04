@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Logo from '../assets/Logo.png';
 
 const Header = () => {
@@ -29,7 +30,7 @@ const Header = () => {
             <img
               src={Logo}
               alt="Logo"
-              className="h-[50%] sm:h-[60%] object-contain"
+              className="h-[60%] object-contain"
             />
           </Link>
         </div>
@@ -89,8 +90,8 @@ const Header = () => {
 
           {/* Mobile: Menu Icon */}
           <div className="md:hidden">
-            <button onClick={toggleMenu} className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200">
-              <MenuOpenIcon fontSize='medium' />
+            <button onClick={toggleMenu} className="p-2 rounded-md bg-black/80 hover:bg-black ">
+              Explore {(menuOpen)? <KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
             </button>
           </div>
         </div>
