@@ -6,6 +6,7 @@ import StarIcon from '@mui/icons-material/Star';
 import CloseIcon from '@mui/icons-material/Close'; 
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
@@ -256,7 +257,7 @@ const Search = () => {
                   disabled={pageNo === 1}
                   className="px-5 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-300 text-lg font-semibold"
                 >
-                  ← Previous
+                  <ChevronLeft sx={{fontSize:"1.5rem"}}/>
                 </button>
                 <span className="text-lg sm:text-xl font-manrope font-bold">
                   {pageNo} / {totalPages}
@@ -266,7 +267,7 @@ const Search = () => {
                   disabled={pageNo === totalPages}
                   className="px-5 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-300 text-lg font-semibold"
                 >
-                  Next →
+                  <ChevronRight sx={{fontSize:"1.5rem"}}/>
                 </button>
               </div>
             </>

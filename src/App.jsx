@@ -30,22 +30,22 @@ function App() {
             element={<Home/>}/>
 
             <Route
-            path='/popular'
+            path='/popular/page/:page_no'
             element={<Popular/>}
             />
 
             <Route
-            path='/top_rated'
+            path='/top_rated/page/:page_no'
             element={<TopRated/>}
             />
 
             <Route
-            path='/upcoming'
+            path='/upcoming/page/:page_no'
             element={<Upcoming/>}
             />
 
             <Route
-            path='/trending'
+            path='/trending/page/:page_no'
             element={<Trending/>}
             />
 

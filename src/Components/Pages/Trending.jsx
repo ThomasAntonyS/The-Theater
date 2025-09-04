@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PageLayout from '../PageLayout';
 import Header from '../Header';
 import Footer from '../Footer';
+import { useParams, useNavigate} from 'react-router-dom';
 
 const Trending = () => {
   const [pageCount, setPageCount] = useState(1);
@@ -10,17 +11,26 @@ const Trending = () => {
   const [loading,setLoading] = useState(false)
 
   document.title = "The Theater | Trending";
+  const param = useParams()
+  const navigate = useNavigate()
+
+  const {page_no} = param
 
   useEffect(() => {
     getTrendingMovies();
     window.scrollTo(0, 0);
-  }, [pageCount]);
+  }, [page_no]);
 
   const getTrendingMovies = async () => {
     const apiKey = import.meta.env.VITE_API_KEY;
     try {
       setLoading(true)
-      const data = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&language=en-US&language=en-US&page=${pageCount}&include_adult=false&page=${pageCount}`);
+      if(page_no>totalPages || page_no<1){
+        navigate("/*", {replace:true})
+        return
+      } 
+      setPageCount(page_no)
+      const data = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&language=en-US&language=en-US&page=${page_no}&include_adult=false`);
       const response = await data.json();
       setMovie(response.results);
       setTotalPages(response.total_pages);
@@ -46,7 +56,6 @@ const Trending = () => {
           }
           path={"trending"}
           pageCount={pageCount}
-          setPageCount={setPageCount}
           totalPages={totalPages}
           loading={loading}
         />

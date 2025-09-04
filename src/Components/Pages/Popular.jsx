@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PageLayout from '../PageLayout';
 import Header from '../Header';
 import Footer from '../Footer';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Popular = () => {
     const [pageCount, setPageCount] = useState(1);
@@ -10,17 +11,26 @@ const Popular = () => {
     const [loading,setLoading] = useState(false)
 
     document.title = "The Theater | Popular"
+    const param = useParams()
+    const navigate = useNavigate()
+
+    const {page_no} = param
 
     useEffect(() => {
         getMovies();
         window.scrollTo(0, 0);
-    }, [pageCount]);
+    }, [page_no]);
 
     const getMovies = async () => {
         try{
             setLoading(true)
+            if(page_no>totalPages || page_no<1){
+                navigate("/*")
+                return
+            }
+            setPageCount(page_no)
             const apiKey = import.meta.env.VITE_API_KEY;
-            const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${pageCount}&include_adult=false`);
+            const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page_no}&include_adult=false`);
             const response = await data.json();
             setMovie(response.results);
             setTotalPages(response.total_pages);
@@ -47,7 +57,6 @@ const Popular = () => {
                     }
                     path={"popular"}
                     pageCount={pageCount}
-                    setPageCount={setPageCount}
                     totalPages={totalPages}
                     loading={loading}
                 />

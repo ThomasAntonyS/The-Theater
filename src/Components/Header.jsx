@@ -29,7 +29,7 @@ const Header = () => {
         <div className="hidden md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center ml-[7%]">
           <Link
             className="hover:opacity-70 hover:underline"
-            to="/popular"
+            to="/popular/page/1"
             onClick={scrollToTop}
             title='Popular Movies'
           >
@@ -38,7 +38,7 @@ const Header = () => {
           <span className="text-gray-400">|</span>
           <Link
             className="hover:opacity-70 hover:underline"
-            to="/top_rated"
+            to="/top_rated/page/1"
             onClick={scrollToTop}
             title='Top Rated Movies'
           >
@@ -47,7 +47,7 @@ const Header = () => {
           <span className="text-gray-400">|</span>
           <Link
             className="hover:opacity-70 hover:underline"
-            to="/trending"
+            to="/trending/page/1"
             onClick={scrollToTop}
             title='Trending Movies'
           >

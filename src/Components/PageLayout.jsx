@@ -3,8 +3,9 @@ import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import StarIcon from '@mui/icons-material/Star';
 import { Tailspin } from 'ldrs/react'; 
 import 'ldrs/react/Tailspin.css';
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
-const PageLayout = ({ movies, title, description, pageCount, setPageCount, totalPages,loading }) => {
+const PageLayout = ({ movies, title, description, path, pageCount, totalPages,loading }) => {
 
     const navigate = useNavigate()
 
@@ -15,13 +16,11 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
     }
 
     const handleLeft = () => {
-        setPageCount(prev => (prev > 1 ? prev - 1 : 1));
+        navigate(`/${path}/page/${pageCount-1}`)
     };
 
     const handleRight = () => {
-        if (pageCount < totalPages) {
-            setPageCount(prev => prev + 1);
-        }
+        navigate(`/${path}/page/${Number(pageCount)+1}`)
     };
 
     const baseImage = 'https://image.tmdb.org/t/p/w185';
@@ -85,7 +84,7 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
                             onClick={handleLeft}
                             disabled={pageCount <= 1}
                         >
-                            &#8592;
+                            <ChevronLeft sx={{fontSize:"1.5rem"}}/>
                         </button>
 
                         <p className='text-white font-nunito text-[1.3rem]'>
@@ -95,9 +94,9 @@ const PageLayout = ({ movies, title, description, pageCount, setPageCount, total
                         <button
                             className='px-4 py-2 rounded-md text-white text-[20px] bg-white bg-opacity-35 disabled:opacity-40'
                             onClick={handleRight}
-                            disabled={pageCount === totalPages}
+                            disabled={pageCount == totalPages}
                         >
-                            &#8594;
+                            <ChevronRight sx={{fontSize:"1.5rem"}}/>
                         </button>
 
                     </div>
