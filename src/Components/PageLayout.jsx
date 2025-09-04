@@ -28,13 +28,10 @@ const PageLayout = ({ movies, title, description, path, pageCount, totalPages,lo
     return (
         <div className='flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
 
-            <p className='text-white text-3xl sm:text-4xl mx-auto mt-[10vh] mb-4 text-center font-manrope'>
+            <p className='text-white text-7xl w-[90%] sm:text-9xl mx-auto my-[10vh] text-center font-manrope'>
                 {title}
             </p>
 
-            <p className='font-nunito text-white text-base sm:text-lg md:text-xl w-full sm:w-[90%] md:w-[75%] mx-auto mb-8 text-center'>
-                {description}
-            </p>
 
             <div className="flex flex-col w-full items-center mt-8">
                 {!loading ? (
