@@ -1,7 +1,7 @@
 import React from 'react';
-import NotFoundImage from '../../assets/NotFound.jpg';
+import NotFoundImage from '../assets/NotFound.jpg';
 import { useNavigate } from 'react-router-dom';
-import Header from '../Header'
+import Header from '../Components/Header'
 import { FaAnglesRight } from "react-icons/fa6";
 
 const NotFound = () => {

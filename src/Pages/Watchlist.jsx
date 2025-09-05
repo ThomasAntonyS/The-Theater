@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 import { Link } from 'react-router-dom';
-import { ProfileContext } from '../../Context/ProfileContextProvider';
+import { ProfileContext } from '../Context/ProfileContextProvider';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import StarIcon from '@mui/icons-material/Star';
 

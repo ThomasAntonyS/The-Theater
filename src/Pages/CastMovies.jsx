@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import Header from '../Header';
-import Footer from '../Footer';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { Tailspin } from 'ldrs/react'; 
 import StarIcon from '@mui/icons-material/Star';

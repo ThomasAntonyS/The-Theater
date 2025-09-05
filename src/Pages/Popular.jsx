@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react'
-import PageLayout from '../PageLayout';
-import Header from '../Header'
-import Footer from '../Footer';
-import { useParams, useNavigate} from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import PageLayout from '../Components/PageLayout';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const TopRated = () => {
+const Popular = () => {
     const [pageCount, setPageCount] = useState(1);
     const [movie, setMovie] = useState([]);
     const [totalPages, setTotalPages] = useState();
     const [loading,setLoading] = useState(false)
 
-    document.title = "The Theater | Top Rated"
+    document.title = "The Theater | Popular"
     const param = useParams()
     const navigate = useNavigate()
 
@@ -25,12 +25,12 @@ const TopRated = () => {
         try{
             setLoading(true)
             if(page_no>totalPages || page_no<1){
-              navigate("/*", {replace:true})
-              return
-            } 
+                navigate("/*")
+                return
+            }
             setPageCount(page_no)
             const apiKey = import.meta.env.VITE_API_KEY;
-            const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=${page_no}&include_adult=false`);
+            const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page_no}&include_adult=false`);
             const response = await data.json();
             setMovie(response.results);
             setTotalPages(response.total_pages);
@@ -51,11 +51,11 @@ const TopRated = () => {
             <section>
                 <PageLayout
                     movies={movie}
-                    title={"Best Of All Times"}
+                    title={"Most Liked"}
                     description={
-                        "Explore our selection of top-rated movies, handpicked from popular genres, showcasing the best in storytelling, acting, and cinematic artistry. Perfect for movie enthusiasts looking for the highest-rated films."
+                        "A comprehensive collection of all movies, meticulously curated and organized, offers an extensive archive of cinematic masterpieces, spanning various genres, eras, and cultures, providing an invaluable resource for film enthusiasts."
                     }
-                    path={"top_rated"}
+                    path={"popular"}
                     pageCount={pageCount}
                     totalPages={totalPages}
                     loading={loading}
@@ -67,4 +67,4 @@ const TopRated = () => {
     );
 };
 
-export default TopRated;
+export default Popular;

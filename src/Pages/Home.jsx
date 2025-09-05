@@ -1,7 +1,7 @@
-import Header from '../Header'
-import Banner from '../Banner'
-import MovieCard from '../MovieCard'
-import Footer from '../Footer'
+import Header from '../Components/Header'
+import Banner from '../Components/Banner'
+import MovieCard from '../Components/MovieCard'
+import Footer from '../Components/Footer'
 
 const Home = () => {
 

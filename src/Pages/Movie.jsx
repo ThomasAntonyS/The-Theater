@@ -1,16 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../Header';
-import Casts from '../Casts';
-import Footer from '../Footer';
-import MovieCard from '../MovieCard';
-import { ProfileContext } from '../../Context/ProfileContextProvider';
-import MovieHeroSection from '../MovieHeroSection';
+import Header from '../Components//Header';
+import Casts from '../Components/Casts';
+import Footer from '../Components/Footer';
+import MovieCard from '../Components/MovieCard';
+import { ProfileContext } from '../Context/ProfileContextProvider';
+import MovieHeroSection from '../Components/MovieHeroSection';
 import { Tailspin } from 'ldrs/react'; 
 import 'ldrs/react/Tailspin.css';
-import FloatingPopup from '../FloatingPopup';
-import MovieDescription from '../MovieDescription';
-import MovieProviders from '../MovieProviders';
+import FloatingPopup from '../Components/FloatingPopup';
+import MovieDescription from '../Components/MovieDescription';
+import MovieProviders from '../Components/MovieProviders';
 
 const MovieMain = () => {
   const { id } = useParams();

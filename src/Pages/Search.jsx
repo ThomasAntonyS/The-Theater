@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import StarIcon from '@mui/icons-material/Star';
 import CloseIcon from '@mui/icons-material/Close'; 
@@ -136,7 +136,7 @@ const Search = () => {
   return (
     <>
       <Header />
-      <div className="text-white min-h-screen bg-black pt-[10vh] px-4 sm:px-8 lg:px-16">
+      <div className="text-white min-h-screen w-[90%] mx-auto bg-black pt-[10vh] px-4 sm:px-8 lg:px-16">
         <section className="text-center py-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 font-manrope">
             Find Your Movie

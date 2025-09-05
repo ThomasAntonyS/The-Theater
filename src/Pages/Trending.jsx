@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import PageLayout from '../PageLayout';
-import Header from '../Header';
-import Footer from '../Footer';
+import PageLayout from '../Components/PageLayout';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 import { useParams, useNavigate} from 'react-router-dom';
 
 const Trending = () => {

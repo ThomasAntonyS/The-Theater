@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import PageLayout from '../PageLayout';
-import Header from '../Header';
-import Footer from '../Footer';
-import { useParams, useNavigate } from 'react-router-dom';
+import PageLayout from '../Components/PageLayout';
+import Header from '../Components/Header'
+import Footer from '../Components/Footer';
+import { useParams, useNavigate} from 'react-router-dom';
 
-const Popular = () => {
+const Upcoming = () => {
     const [pageCount, setPageCount] = useState(1);
     const [movie, setMovie] = useState([]);
     const [totalPages, setTotalPages] = useState();
     const [loading,setLoading] = useState(false)
 
-    document.title = "The Theater | Popular"
+    document.title = "The Theater | Upcoming"
     const param = useParams()
     const navigate = useNavigate()
 
@@ -22,20 +22,19 @@ const Popular = () => {
     }, [page_no]);
 
     const getMovies = async () => {
-        try{
+        try {
             setLoading(true)
             if(page_no>totalPages || page_no<1){
-                navigate("/*")
+                navigate("/*", {replace:true})
                 return
-            }
+            } 
             setPageCount(page_no)
             const apiKey = import.meta.env.VITE_API_KEY;
-            const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page_no}&include_adult=false`);
+            const data = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${page_no}&include_adult=false`);
             const response = await data.json();
             setMovie(response.results);
             setTotalPages(response.total_pages);
-        }
-        catch(err){
+        } catch (err) {
             console.error(err)
             setLoading(false)
         }
@@ -50,15 +49,15 @@ const Popular = () => {
 
             <section>
                 <PageLayout
-                    movies={movie}
-                    title={"Most Liked"}
-                    description={
-                        "A comprehensive collection of all movies, meticulously curated and organized, offers an extensive archive of cinematic masterpieces, spanning various genres, eras, and cultures, providing an invaluable resource for film enthusiasts."
-                    }
-                    path={"popular"}
-                    pageCount={pageCount}
-                    totalPages={totalPages}
-                    loading={loading}
+                  movies={movie}
+                  title={"On The Horizon"}
+                  description={
+                    "Stay updated with the latest releases and never miss out on the most anticipated movies hitting the theaters soon. Discover trailers, release dates, and exclusive sneak peeks of upcoming blockbusters."
+                  }
+                  path={"upcoming"}
+                  pageCount={pageCount}
+                  totalPages={totalPages}
+                  loading={loading}
                 />
             </section>
 
@@ -67,4 +66,4 @@ const Popular = () => {
     );
 };
 
-export default Popular;
+export default Upcoming;
