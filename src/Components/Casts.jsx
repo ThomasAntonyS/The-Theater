@@ -70,14 +70,14 @@ function Casts({ movieId }) {
         <>
             {casts.length > 0 ? (
                 <div className='relative mb-16 w-[95%] sm:w-full mx-auto' data-aos="fade-right" data-aos-duration="1000" >
-                    <p className='text-white text-2xl font-manrope sm:text-3xl md:text-4xl mx-4 sm:mx-[3%] mb-4'>
+                    <p className='text-white text-2xl font-manrope mx-4 sm:text-3xl md:text-4xl sm:mx-[3%] mb-4'>
                         Characters
                     </p>
 
                     {!atStart && (
                         <button
                             onClick={() => scroll('left')}
-                            className="w-max text-2xl px-3 py-2 absolute left-0 sm:left-[2.5%] border top-[45%] z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition"
+                            className="w-max text-2xl px-3 py-2 absolute left-0 sm:left-[2.5%] border top-[45%] z-10 bg-black bg-opacity-80 text-white rounded-full hover:bg-opacity-80 transition"
                         >
                             <WestIcon />
                         </button>
@@ -85,7 +85,7 @@ function Casts({ movieId }) {
                     {!atEnd && (
                         <button
                             onClick={() => scroll('right')}
-                            className="w-max text-2xl px-3 py-2 absolute right-0 sm:right-[2.5%] border top-[45%] z-10 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-80 transition"
+                            className="w-max text-2xl px-3 py-2 absolute right-0 sm:right-[2.5%] border top-[45%] z-10 bg-black bg-opacity-80 text-white rounded-full hover:bg-opacity-80 transition"
                         >
                             <EastIcon />
                         </button>

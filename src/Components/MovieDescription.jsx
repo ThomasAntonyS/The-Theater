@@ -30,7 +30,7 @@ const MovieDescription = ({ item }) => {
   };
 
   return (
-    <div className="px-4 md:px-12 py-10 text-white bg-black w-full" data-aos="fade-right" data-aos-duration="1000">
+    <div className="px-4 md:px-12 py-10 text-white bg-black w-full mb-12" data-aos="fade-right" data-aos-duration="1000">
       <div className="max-w-6xl flex flex-col md:flex-row gap-10">
         {/* Poster */}
         <div className="w-full md:w-1/3 my-auto">

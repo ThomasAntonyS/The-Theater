@@ -4,6 +4,7 @@ import Header from '../Components//Header';
 import Casts from '../Components/Casts';
 import Footer from '../Components/Footer';
 import MovieCard from '../Components/MovieCard';
+import Video from '../Components/Video'
 import { ProfileContext } from '../Context/ProfileContextProvider';
 import MovieHeroSection from '../Components/MovieHeroSection';
 import { Tailspin } from 'ldrs/react'; 
@@ -98,6 +99,7 @@ const MovieMain = () => {
             handleWatchlist={handleWatchlist}
           />
           <MovieDescription item={item}/>
+          <Video id={id}/>
           <MovieProviders movieId={id}/>
           <Casts movieId={id} />
           <MovieCard

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import MovieSlider from './MovieSlider';
+import NorthEastIcon from '@mui/icons-material/NorthEast';
 
 const MovieCard = ({ title, url, navLink }) => {
   const [movies, setMovies] = useState([]);
@@ -45,7 +46,7 @@ const MovieCard = ({ title, url, navLink }) => {
             <p className='text-2xl sm:text-3xl text-white font-manrope mb-2 sm:mb-0'>{title}</p>
             {navLink && (
               <Link className='text-white border-b-2 font-nunito' onClick={e => handleClick(e, navLink)}>
-                See More <span className='text-xl'>&#8594;</span>
+                See More <NorthEastIcon fontSize='small'/>
               </Link>
             )}
           </div>

@@ -59,7 +59,7 @@ const MovieSlider = ({ movies }) => {
 
       <button
         onClick={() => scroll('left')}
-        className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 transition-opacity duration-300 focus:outline-none ${
+        className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-80 border text-white rounded-full p-2 transition-opacity duration-300 focus:outline-none ${
           atStart ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'
         }`}
       >
@@ -68,7 +68,7 @@ const MovieSlider = ({ movies }) => {
 
       <button
         onClick={() => scroll('right')}
-        className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 sm:p-3 transition-opacity duration-300 focus:outline-none ${
+        className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-80 border text-white rounded-full p-2 sm:p-3 transition-opacity duration-300 focus:outline-none ${
           atEnd ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'
         }`}
       >
@@ -77,7 +77,7 @@ const MovieSlider = ({ movies }) => {
 
       <div
         ref={scrollRef}
-        className='flex gap-6 py-3 overflow-x-scroll no-scrollbar scroll-smooth px-4 sm:px-6 md:px-8'
+        className='flex gap-4 py-3 overflow-x-scroll no-scrollbar scroll-smooth px-4 sm:px-6 md:px-8'
       >
         {movies.map((movie, index) => (
           <Link
