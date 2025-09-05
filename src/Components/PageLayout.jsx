@@ -5,7 +5,7 @@ import { Tailspin } from 'ldrs/react';
 import 'ldrs/react/Tailspin.css';
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
-const PageLayout = ({ movies, title, description, path, pageCount, totalPages,loading }) => {
+const PageLayout = ({ movies, title, path, pageCount, totalPages,loading }) => {
 
     const navigate = useNavigate()
 
@@ -44,7 +44,7 @@ const PageLayout = ({ movies, title, description, path, pageCount, totalPages,lo
                                 title={movie.title}
                                 className='relative flex flex-col w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer'
                             >
-                                <div className="absolute top-1 right-1 bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
+                                <div className="absolute top-0 right-0 rounded-b-sm bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
                                     <StarIcon style={{ fontSize: '1rem' }} />
                                     <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
                                 </div>
@@ -60,7 +60,7 @@ const PageLayout = ({ movies, title, description, path, pageCount, totalPages,lo
                                         <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
                                     </div>
                                 )}
-                                <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/60 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover '>
+                                <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/70 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover '>
                                     {movie.title}
                                 </p>
                             </div>

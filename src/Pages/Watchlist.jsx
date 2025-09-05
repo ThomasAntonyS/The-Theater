@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { ProfileContext } from '../Context/ProfileContextProvider';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import StarIcon from '@mui/icons-material/Star';
+import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
 const Watchlist = () => {
   const { userWatchlist, setUserWatchlist } = useContext(ProfileContext);
@@ -30,47 +31,52 @@ const Watchlist = () => {
     closeModal();
   };
 
+  const baseImage = 'https://image.tmdb.org/t/p/w185';
+
   return (
     <>
       <Header />
 
-      <div className="text-white min-h-screen bg-black relative mt-[5vh]">
+      <div className="text-white min-h-screen bg-black relative">
         {userWatchlist.length > 0 ? (
-          <section className="max-w-screen-xl mx-auto py-20 px-4">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl text-center sm:text-left font-semibold mb-4 font-manrope">
+          <section className="w-[90%] mx-auto max-w-screen-xl py-20">
+            <h1 className="text-7xl sm:text-9xl text-center mx-auto my-[10vh] font-manrope">
               Your Watchlist
             </h1>
-            <p className="text-sm md:text-base text-gray-300 mb-8 font-nunito max-w-3xl">
-              Add movies to your watchlist and keep track of films you want to see. Conveniently save titles to enjoy later, so you never forget a movie recommendation or new release.
-            </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
               {userWatchlist.map((movie) => (
-                <div key={movie.id} className="relative">
-                  <Link to={`/movie/${movie.id}`}>
-                    <div className="relative">
+                <div key={movie.id} className="relative flex flex-col">
+                  <Link
+                    to={`/movie/${movie.id}`}
+                    className="relative w-full overflow-hidden rounded-md hover:cursor-pointer"
+                  >
+
+                    <div className="absolute top-0 right-0 bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-b-sm flex items-center gap-1 z-10">
+                      <StarIcon style={{ fontSize: '1rem' }} />
+                      <p className="h-max my-auto">{movie.vote_average.toFixed(1)}</p>
+                    </div>
+
+                    {movie.poster_path ? (
                       <img
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        src={baseImage + movie.poster_path}
                         alt={movie.title}
-                        className="w-full h-auto rounded-lg shadow-lg object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="aspect-[2/3] w-full object-cover"
                       />
-
-                      <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
-                        <StarIcon style={{ fontSize: '1rem' }} />
-                        <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+                    ) : (
+                      <div className="aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-[10px]">
+                        <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
                       </div>
-                    </div>
+                    )}
 
-                    <div className="mt-2 text-center">
-                      <h3 className="text-sm sm:text-base font-semibold font-nunito truncate">
-                        {movie.title}
-                      </h3>
-                    </div>
+                    <p className="absolute w-full bottom-0 backdrop-blur-md bg-black/70 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover">
+                      {movie.title}
+                    </p>
                   </Link>
 
                   <button
                     onClick={() => openModal(movie)}
-                    className="bg-white text-black font-bold font-nunito w-full text-xs sm:text-sm px-2 py-2 sm:py-3 rounded hover:bg-white/50 transition mt-2"
+                    className="bg-white text-black font-bold font-nunito w-full text-xs sm:text-sm px-2 py-2 sm:py-2 rounded hover:bg-white/80 transition mt-2"
                   >
                     Remove
                   </button>

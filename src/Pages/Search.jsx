@@ -3,10 +3,10 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import StarIcon from '@mui/icons-material/Star';
-import CloseIcon from '@mui/icons-material/Close'; 
+import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
@@ -15,10 +15,11 @@ const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const debounceTimeout = useRef(null);
-  const suggestionsRef = useRef(null); 
+  const suggestionsRef = useRef(null);
 
   useEffect(() => {
     document.title = 'Search for your favourite movies';
@@ -26,15 +27,17 @@ const Search = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (suggestionsRef.current && !suggestionsRef.current.contains(event.target) &&
-          inputRef.current && !inputRef.current.contains(event.target)) {
+      if (
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target) &&
+        inputRef.current &&
+        !inputRef.current.contains(event.target)
+      ) {
         setShowSuggestions(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const fetchMovies = async () => {
@@ -128,22 +131,20 @@ const Search = () => {
     setShowSuggestions(false);
     setPageNo(1);
     setTotalPages(0);
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (inputRef.current) inputRef.current.focus();
   };
 
   return (
     <>
       <Header />
+
       <div className="text-white min-h-screen w-[90%] mx-auto bg-black pt-[10vh] px-4 sm:px-8 lg:px-16">
         <section className="text-center py-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 font-manrope">
             Find Your Movie
           </h1>
           <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto font-nunito">
-            Discover your next cinematic adventure. Explore a vast collection of films
-            and dive into captivating stories.
+            Discover your next cinematic adventure. Explore a vast collection of films and dive into captivating stories.
           </p>
         </section>
 
@@ -182,7 +183,10 @@ const Search = () => {
             </button>
 
             {showSuggestions && suggestions.length > 0 && (
-              <div ref={suggestionsRef} className="absolute top-full left-0 w-full bg-white text-black shadow-lg rounded-b-lg mt-1 max-h-60 overflow-y-auto z-50 font-nunito border border-gray-200">
+              <div
+                ref={suggestionsRef}
+                className="absolute top-full left-0 w-full bg-white text-black shadow-lg rounded-b-lg mt-1 max-h-60 overflow-y-auto z-50 font-nunito border border-gray-200"
+              >
                 {suggestions.map((movie) => (
                   <div
                     key={movie.id}
@@ -226,10 +230,10 @@ const Search = () => {
                   <Link
                     key={movie.id}
                     onClick={(e) => handleNavigation(e, movie.id)}
-                    className="relative p-2 rounded-lg transition-all duration-300 transform hover:scale-105 group"
+                    className="relative overflow-hidden rounded-md hover:cursor-pointer transition-transform duration-300 hover:scale-105 group"
                   >
-                    <div className="absolute top-3 right-3 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10 font-nunito shadow-md">
-                      <StarIcon style={{ fontSize: '1rem', color: '#FFD700' }} />
+                    <div className="absolute top-0 right-0 bg-black bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-b-sm flex items-center gap-1 z-10 font-nunito shadow-md">
+                      <StarIcon style={{ fontSize: '1rem' }} />
                       <p>{movie.vote_average != null ? Number(movie.vote_average).toFixed(1) : 'N/A'}</p>
                     </div>
 
@@ -237,14 +241,15 @@ const Search = () => {
                       <img
                         src={baseImage + movie.poster_path}
                         alt={movie.title}
-                        className="w-full h-[90%] object-cover rounded-lg mb-2 shadow-sm"
+                        className="aspect-[2/3] w-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-[240px] flex items-center justify-center rounded-lg mb-2 bg-gray-800">
-                        <MovieCreationIcon style={{ fontSize: '4rem', color: 'gray' }} />
+                      <div className="aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-md">
+                        <MovieCreationIcon style={{ fontSize: '3rem', color: 'white' }} />
                       </div>
                     )}
-                    <p className="text-sm sm:text-base text-center font-manrope font-semibold truncate mt-1 px-1">
+
+                    <p className="absolute bottom-0 w-full text-center text-white font-nunito text-[1rem] px-3 py-1 bg-black/70 backdrop-blur-md truncate">
                       {movie.title}
                     </p>
                   </Link>
@@ -257,7 +262,7 @@ const Search = () => {
                   disabled={pageNo === 1}
                   className="px-5 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-300 text-lg font-semibold"
                 >
-                  <ChevronLeft sx={{fontSize:"1.5rem"}}/>
+                  <ChevronLeft />
                 </button>
                 <span className="text-lg sm:text-xl font-manrope font-bold">
                   {pageNo} / {totalPages}
@@ -267,7 +272,7 @@ const Search = () => {
                   disabled={pageNo === totalPages}
                   className="px-5 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-300 text-lg font-semibold"
                 >
-                  <ChevronRight sx={{fontSize:"1.5rem"}}/>
+                  <ChevronRight />
                 </button>
               </div>
             </>
@@ -278,6 +283,7 @@ const Search = () => {
           )}
         </section>
       </div>
+
       <Footer />
     </>
   );

@@ -122,11 +122,11 @@ const Banner = () => {
         </button>
       </div>
 
-      <div className={`absolute bottom-12 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-20 text-white space-y-4 transition-opacity duration-500 ease-in-out ${currentImageLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-sm sm:text-base">
+      <div className={`absolute bottom-12 sm:bottom-8 left-4 sm:left-10 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[50%] z-20 text-white space-y-4 transition-opacity duration-500 ease-in-out ${currentImageLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <p className="font-nunito bg-black bg-opacity-50 px-4 py-2 rounded-full w-max text-[.9rem] sm:text-[1.1rem]">
           {currentMovie.banner_tag}
         </p>
-        <h1 className="p-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-manrope leading-tight line-clamp-1 truncate">
+        <h1 className="min-h-max text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-manrope leading-tight line-clamp-1 truncate">
           {currentMovie.title}
         </h1>
         <p className="text-sm sm:text-base md:text-lg line-clamp-2 font-nunito leading-relaxed">

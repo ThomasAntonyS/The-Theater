@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import EastIcon from '@mui/icons-material/East';
 import WestIcon from '@mui/icons-material/West';
 import StarIcon from '@mui/icons-material/Star';
+import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
 const MovieSlider = ({ movies }) => {
   const scrollRef = useRef(null);
-  const baseImage = 'https://image.tmdb.org/t/p/w300';
+  const baseImage = 'https://image.tmdb.org/t/p/w185';
 
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -43,7 +44,7 @@ const MovieSlider = ({ movies }) => {
       observer.observe(el);
       window.addEventListener('resize', checkScrollPosition);
 
-      checkScrollPosition(); // Initial check
+      checkScrollPosition();
 
       return () => {
         el.removeEventListener('scroll', checkScrollPosition);
@@ -56,7 +57,6 @@ const MovieSlider = ({ movies }) => {
   return (
     <div className='relative w-full py-4'>
 
-      {/* Left Scroll Button */}
       <button
         onClick={() => scroll('left')}
         className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 transition-opacity duration-300 focus:outline-none ${
@@ -66,7 +66,6 @@ const MovieSlider = ({ movies }) => {
         <WestIcon className="text-xl sm:text-2xl" />
       </button>
 
-      {/* Right Scroll Button */}
       <button
         onClick={() => scroll('right')}
         className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-90 text-white rounded-full p-2 sm:p-3 transition-opacity duration-300 focus:outline-none ${
@@ -76,46 +75,41 @@ const MovieSlider = ({ movies }) => {
         <EastIcon className="text-xl sm:text-2xl" />
       </button>
 
-      {/* Movie List */}
       <div
         ref={scrollRef}
-        className='flex gap-6  py-3 overflow-x-scroll no-scrollbar scroll-smooth px-4 sm:px-6 md:px-8'
+        className='flex gap-6 py-3 overflow-x-scroll no-scrollbar scroll-smooth px-4 sm:px-6 md:px-8'
       >
         {movies.map((movie, index) => (
           <Link
             to={`/movie/${movie.id}`}
             key={index}
             onClick={handleClick}
-            className='relative flex-shrink-0 w-[60vw] sm:w-[40vw] md:w-[28vw] lg:w-[20vw] xl:w-[16vw] bg-[#1e1e1e] rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 shadow-md group'
+            className='relative flex-shrink-0 w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer transition-transform duration-200 hover:scale-105'
+            title={movie.title}
           >
+            {/* Rating Badge */}
+            <div className="absolute top-0 right-0 bg-black font-manrope rounded-b-sm bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
+              <StarIcon style={{ fontSize: '1rem' }} />
+              <p className='h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+            </div>
+
             {/* Movie Poster */}
             {movie.poster_path ? (
               <img
                 src={baseImage + movie.poster_path}
                 alt={movie.title}
-                className='w-full aspect-[1/1.3] object-cover rounded-t-lg'
+                className='aspect-[2/3] w-full object-cover'
               />
             ) : (
-              <div className='w-full aspect-[1/1.3] flex items-center justify-center bg-gray-700 rounded-t-lg text-white text-5xl'>
-                🎬
+              <div className='aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-[10px]'>
+                <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
               </div>
             )}
 
-            {/* Rating Badge */}
-            <div className="absolute top-2 right-2 bg-black bg-opacity-80 backdrop-blur-sm text-white font-manrope text-xs px-2 py-1 rounded-md flex items-center gap-1 z-10">
-              <StarIcon style={{ fontSize: '0.9rem' }} />
-              <p className='h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
-            </div>
-
-            {/* Movie Info */}
-            <div className='p-2'>
-              <p className='text-white text-md sm:text-lg font-manrope truncate'>
-                {movie.title}
-              </p>
-              <span className='text-gray-400 text-sm sm:text-sm group-hover:text-white font-nunito hover:underline'>
-                More Info →
-              </span>
-            </div>
+            {/* Movie Title Overlay */}
+            <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/70 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover'>
+              {movie.title}
+            </p>
           </Link>
         ))}
       </div>

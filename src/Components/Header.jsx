@@ -35,8 +35,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Center Nav Links (Visible on md and up) */}
-        <div className="hidden md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center ml-[7%]">
+        <div className="hidden ml-[7%] md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center">
           <Link
             className="hover:opacity-70 hover:underline"
             to="/popular/page/1"
@@ -65,9 +64,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Right Actions */}
         <div className="flex items-center text-white">
-          {/* Desktop: Search & Watchlist */}
           <div className="hidden md:flex gap-x-2">
             <Link
               className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
