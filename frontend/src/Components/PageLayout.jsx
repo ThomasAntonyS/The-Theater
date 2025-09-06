@@ -28,14 +28,14 @@ const PageLayout = ({ movies, title, path, pageCount, totalPages,loading }) => {
     return (
         <div className='flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
 
-            <p className='text-white text-7xl w-[90%] sm:text-9xl mx-auto my-[10vh] text-center font-manrope'>
+            <p className=' text-white text-6xl w-[90%] sm:text-9xl mx-auto my-[10vh] text-center font-manrope'>
                 {title}
             </p>
 
 
             <div className="flex flex-col w-full items-center mt-8">
                 {!loading ? (
-                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6'>
+                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6 '>
                         {movies.map((movie, index) => (
                             <div
                                 key={index}

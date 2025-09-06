@@ -64,13 +64,18 @@ function App() {
             element={<Watchlist/>}
             />
 
-            <Route
-            path={'/search'}
-            element={<Search/>}
+            <Route 
+            path="/search/:q/page/:page_no" 
+            element={<Search />} 
+            />
+      
+            <Route 
+            path="/search" 
+            element={<Search />} 
             />
 
             <Route
-            path='/genre/:genreId'
+            path='/genre/:genreId/page/:pageCount'
             element={<GenreMoviesPage/>}
             />
 

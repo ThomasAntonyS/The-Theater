@@ -12,11 +12,6 @@ const Banner = () => {
     const [currentImageLoaded, setCurrentImageLoaded] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    // This base URL should point to your backend.
-    const backendBaseUrl = process.env.NODE_ENV === "production" 
-        ? "http://the-theater.vercel.app" // Your production backend URL
-        : "http://localhost:5000"; // Your local backend URL
-
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 1368);
@@ -31,8 +26,7 @@ const Banner = () => {
         const fetchTrendingMovies = async () => {
             setLoading(true);
             try {
-                // Change the URL to call your backend proxy
-                const response = await fetch(`${backendBaseUrl}/api/movies/trending`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE}/api/movies/trending`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -53,7 +47,7 @@ const Banner = () => {
             }
         };
         fetchTrendingMovies();
-    }, [backendBaseUrl]); // Add backendBaseUrl to the dependency array
+    }, []);
 
     const handleNavigationClick = (newCount) => {
         if (newCount !== count) {

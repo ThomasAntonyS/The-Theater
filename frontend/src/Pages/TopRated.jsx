@@ -4,10 +4,6 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const backendBaseUrl = process.env.NODE_ENV === "production" 
-    ? "http://the-theater.vercel.app"
-    : "http://localhost:5000";
-
 const TopRated = () => {
     const [pageCount, setPageCount] = useState(1);
     const [movie, setMovie] = useState([]);
@@ -28,7 +24,7 @@ const TopRated = () => {
     const getMovies = async () => {
         try {
             setLoading(true);
-            const data = await fetch(`${backendBaseUrl}/api/movies/top_rated/page/${page_no}`);
+            const data = await fetch(`${import.meta.env.VITE_API_BASE}/api/movies/top_rated/page/${page_no}`);
             const response = await data.json();
 
             if (data.status === 500) {

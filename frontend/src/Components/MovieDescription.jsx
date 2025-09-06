@@ -65,7 +65,7 @@ const MovieDescription = ({ item }) => {
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-semibold text-white mr-2">Genre:</span>
               {genres?.map((genre) => (
-                <Link to={`/genre/${genre.id}`}
+                <Link to={`/genre/${genre.id}/page/1`}
                   key={genre.id}
                   onClick={() => handleGenreClick()}
                   className="text-gray-300 hover:text-white underline"

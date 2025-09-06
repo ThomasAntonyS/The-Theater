@@ -4,10 +4,6 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const backendBaseUrl = process.env.NODE_ENV === "production" 
-    ? "http://the-theater.vercel.app" // Production URL
-    : "http://localhost:5000"; // Development URL
-
 const Popular = () => {
     const [pageCount, setPageCount] = useState(1);
     const [movie, setMovie] = useState([]);
@@ -28,10 +24,9 @@ const Popular = () => {
     const getMovies = async () => {
         try {
             setLoading(true);
-            const data = await fetch(`${backendBaseUrl}/api/movies/popular/page/${page_no}`);
+            const data = await fetch(`${import.meta.env.VITE_API_BASE}/api/movies/popular/page/${page_no}`);
             const response = await data.json();
             
-            // Handle API errors from your backend
             if (data.status === 500) {
                 console.error("Backend error:", response.error);
                 setLoading(false);

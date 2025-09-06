@@ -15,8 +15,7 @@ function Casts({ movieId }) {
 
     const fetchCast = async () => {
         try {
-            const apiKey = import.meta.env.VITE_API_KEY;
-            const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}&language=en-US`);
+            const data = await fetch(`${import.meta.env.VITE_API_BASE}/api/movie/${movieId}/casts`);
             const casts = await data.json();
             setCasts(casts.cast);
         } catch (error) {
@@ -25,7 +24,9 @@ function Casts({ movieId }) {
     };
 
     useEffect(() => {
-        fetchCast();
+        if (movieId) {
+            fetchCast();
+        }
     }, [movieId]);
 
     const handleCastNavigation = (e, id) => {
@@ -64,7 +65,7 @@ function Casts({ movieId }) {
                 el.removeEventListener('scroll', checkScrollPosition);
             };
         }
-    }, []);
+    }, [casts]); // Re-run effect when casts data changes
 
     return (
         <>
@@ -128,7 +129,7 @@ function Casts({ movieId }) {
                     </div>
                 </div>
             ) : (
-                <p className="text-white text-center font-nunito">Loading...</p>
+                null
             )}
         </>
     );

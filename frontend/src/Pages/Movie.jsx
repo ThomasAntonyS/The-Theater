@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 import Casts from '../Components/Casts';
 import Footer from '../Components/Footer';
 import MovieCard from '../Components/MovieCard';
-import Video from '../Components/Video'
+import Video from '../Components/Video';
 import { ProfileContext } from '../Context/ProfileContextProvider';
 import MovieHeroSection from '../Components/MovieHeroSection';
 import { Tailspin } from 'ldrs/react'; 
@@ -23,17 +23,13 @@ const MovieMain = () => {
     message: '',
     isError: false,
   });
-  const navigate = useNavigate()
-  
-
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (item) {
-      document.title = item.original_title + ` - ${item.tagline}` || item.title+ ` - ${item.tagline}` || 'Movie App';
+      document.title = item.original_title + ` - ${item.tagline}` || item.title + ` - ${item.tagline}` || 'Movie App';
     }
   }, [item]);
-
 
   useEffect(() => {
     if (id) fetchItem();
@@ -42,12 +38,14 @@ const MovieMain = () => {
   const fetchItem = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US&include_adult=false`);
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/api/movie/${id}`);
       const data = await res.json();
-      if(data.success === false){
-        navigate('/*')
-        return
+      
+      if (res.status === 404 || res.status === 500) {
+        navigate('/*');
+        return;
       }
+      
       setItem(data);
     } catch (error) {
       console.error('Failed to fetch movie:', error);
@@ -77,7 +75,7 @@ const MovieMain = () => {
     setTimeout(() => {
       setPopup({ isOpen: false, message: '', isError: false });
     }, 5000);
-  };  
+  };  
 
   return (
     <>
@@ -103,20 +101,19 @@ const MovieMain = () => {
           <MovieProviders movieId={id}/>
           <Casts movieId={id} />
           <MovieCard
-            url={`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`}
+            url={`${import.meta.env.VITE_API_BASE}/api/movie/${id}/similar`}
             title="Recommendation"
           />
           <Footer />
         </div>
       )}
       {popup.isOpen && (
-      <FloatingPopup
-        message={popup.message}
-        isError={popup.isError}
-        onClose={() => setPopup({ ...popup, isOpen: false })}
-      />
-)}
-
+        <FloatingPopup
+          message={popup.message}
+          isError={popup.isError}
+          onClose={() => setPopup({ ...popup, isOpen: false })}
+        />
+      )}
     </>
   );
 };
