@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 const allowedOrigins =[
     "http://localhost:5173",
-    "http://the-theater.vercel.app"
+    "https://the-theater.vercel.app"
 ]
 
 app.use(cors({
