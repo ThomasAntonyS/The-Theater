@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../Components//Header';
+import Header from '../Components/Header';
 import Casts from '../Components/Casts';
 import Footer from '../Components/Footer';
 import MovieCard from '../Components/MovieCard';
