@@ -118,9 +118,9 @@ app.get('/api/movies/trending/page/:page_no', async (req, res) => {
     }
 });
 
-app.get('/',()=>{
-    console.log("This is The Theater's Backend...")
-})
+app.get("/", async (req, res) => {
+  res.send("Welcome to the theater backend.")
+});
 
 if (process.env.NODE_ENV !== "production") {
   const PORT = 5000;
