@@ -86,7 +86,7 @@ const PageLayout = ({ movies, title, path, pageCount, totalPages,loading }) => {
                         </button>
 
                         <p className='text-white font-nunito text-[1.3rem]'>
-                            {pageCount} / {totalPages}
+                            {pageCount} / {totalPages>500?500:totalPages}
                         </p>
 
                         <button
