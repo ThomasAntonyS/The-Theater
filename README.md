@@ -7,7 +7,11 @@
     A Movie Database Developed using React<br>
     <br/>
     <br/>
-    <a href="https://the-theater.vercel.app/" />Live Demo</a>
+     <p align="center">
+       <a href="href="https://the-theater.vercel.app/" target="_blank">
+         <img src="https://img.shields.io/badge/Live%20Site-blueviolet?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Site Badge"/>
+       </a>
+     </p>
   </h2>
 </p>
 
@@ -53,3 +57,4 @@ Distributed under the MIT License.
 ## Authors
 
 * **Thomas Antony S**  - *Design and Developement*
+
