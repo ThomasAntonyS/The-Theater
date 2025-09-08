@@ -117,10 +117,10 @@ function Casts({ movieId }) {
                                 </div>
 
                                 <div className='mt-2 px-1'>
-                                    <p className='text-sm sm:text-base font-semibold font-manrope line-clamp-1'>
+                                    <p className='text-md sm:text-[1.2rem] font-semibold font-manrope line-clamp-1'>
                                         {cast.original_name}
                                     </p>
-                                    <p className='text-sm text-gray-300 font-nunito line-clamp-1'>
+                                    <p className='text-md text-gray-300 font-nunito line-clamp-1'>
                                         as {cast.character || "N/A"}
                                     </p>
                                 </div>

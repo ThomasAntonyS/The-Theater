@@ -35,14 +35,14 @@ const PageLayout = ({ movies, title, path, pageCount, totalPages,loading }) => {
 
             <div className="flex flex-col w-full items-center mt-8">
                 {!loading ? (
-                    <div className='flex flex-wrap justify-center gap-x-6 gap-y-10 w-full px-2 md:px-6 '>
+                    <div className='flex flex-wrap justify-center gap-5 sm:gap-x-6 sm:gap-y-10 w-full px-2 md:px-6 '>
                         {movies.map((movie, index) => (
                             <div
                                 key={index}
                                 onClick={(e) => handleNavigation(e,movie.id)}
                                 target="_blank"
                                 title={movie.title}
-                                className='relative flex flex-col w-[40%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer'
+                                className='relative flex flex-col w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer'
                             >
                                 <div className="absolute top-0 right-0 rounded-b-sm bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
                                     <StarIcon style={{ fontSize: '1rem' }} />
