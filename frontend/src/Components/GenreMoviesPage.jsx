@@ -33,7 +33,8 @@ const GenreMoviesPage = () => {
                 const data = await res.json();
                 
                 setMovies(data.movies);
-                setTotalPages(data.totalPages);
+                const totalPageCount = (data.totalPages>500) ? 500 : data.totalPages;
+                setTotalPages(totalPageCount);
                 setGenreName(data.genreName);
                 
             } catch (error) {
