@@ -93,13 +93,13 @@ const GenreMoviesPage = () => {
                 ) : (
                     <div className="flex flex-col w-full items-center mt-8">
                         {movies.length > 0 ? (
-                            <div className='flex flex-wrap justify-center gap-5 sm:gap-x-6 sm:gap-y-10 w-full px-2 md:px-6'>
+                            <div className='max-w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center gap-5 sm:gap-x-6 sm:gap-y-10 w-[90%]'>
                                 {movies.map((movie, index) => (
                                     <div
                                         key={index}
                                         onClick={(e) => handleMovieNavigation(e, movie.id)}
                                         title={movie.title}
-                                        className='relative flex flex-col w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer'
+                                        className='relative flex flex-col h-auto overflow-hidden rounded-md hover:cursor-pointer'
                                     >
                                         <div className="absolute top-0 right-0 rounded-b-sm bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
                                             <StarIcon style={{ fontSize: '1rem' }} />
@@ -124,7 +124,7 @@ const GenreMoviesPage = () => {
                                 ))}
                             </div>
                         ) : (
-                            <p className="text-white text-xl">No movies found for this genre.</p>
+                            <p className="text-white text-xl font-manrope">No movies found for this genre.</p>
                         )}
                     </div>
                 )}

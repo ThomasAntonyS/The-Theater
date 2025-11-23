@@ -65,13 +65,13 @@ function Casts({ movieId }) {
                 el.removeEventListener('scroll', checkScrollPosition);
             };
         }
-    }, [casts]); // Re-run effect when casts data changes
+    }, [casts]);
 
     return (
         <>
             {casts.length > 0 ? (
-                <div className='relative mb-16 w-[95%] sm:w-full mx-auto' data-aos="fade-right" data-aos-duration="1000" >
-                    <p className='text-white text-2xl font-manrope mx-4 sm:text-3xl md:text-4xl sm:mx-[3%] mb-4'>
+                <div className='relative mb-16 w-[95%] mx-auto px-2' data-aos="fade-right" data-aos-duration="1000" >
+                    <p className='text-white text-2xl font-manrope sm:text-3xl md:text-4xl mb-4'>
                         Characters
                     </p>
 
@@ -94,7 +94,7 @@ function Casts({ movieId }) {
 
                     <div
                         ref={scrollRef}
-                        className='flex overflow-x-auto no-scrollbar gap-4 px-5 py-4 sm:w-[95%] mx-auto scroll-smooth'
+                        className='flex overflow-x-scroll no-scrollbar gap-4 py-4 scroll-smooth'
                     >
                         {casts.map((cast) => (
                             <Link

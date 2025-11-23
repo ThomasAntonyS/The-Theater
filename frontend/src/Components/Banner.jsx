@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
-import EastIcon from '@mui/icons-material/East';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Link } from 'react-router-dom';
 import { Ping } from 'ldrs/react';
 import 'ldrs/react/Ping.css';
@@ -101,7 +101,7 @@ const Banner = () => {
                 }}
                 className={`absolute top-0 left-0 w-full h-full object-cover object-top -z-10 transition-opacity duration-500 ease-in-out ${currentImageLoaded ? 'opacity-100' : 'opacity-0'}`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 mb-[-10px] to-transparent z-10"></div>
             <div className="absolute inset-0 flex justify-between items-center px-4 z-20">
                 <button
                     onClick={handleLeftClick}
@@ -129,14 +129,14 @@ const Banner = () => {
                 <div className="flex flex-wrap text-base items-center gap-3 font-nunito">
                     <Link to={`/${currentMovie.link}`}
                         className="flex items-center bg-white text-black px-5 py-2 rounded-full text-sm sm:text-base font-semibold hover:bg-gray-200 transition-colors duration-300 shadow-lg">
-                        <PlayCircleOutlineRoundedIcon className="mr-2 text-xl" />
+                        <PlayCircleOutlineRoundedIcon fontSize='small' className="mr-2 text-xl mt-[-2px]" />
                         Watch Movie
                     </Link>
                     <Link
                         to={`/${currentMovie.link}`}
                         className="text-white bg-white bg-opacity-30 hover:bg-opacity-50 px-5 py-2 rounded-full text-sm sm:text-base font-semibold transition-colors duration-300 shadow-lg"
                     >
-                        More Info <EastIcon className="inline text-base ml-1" />
+                        More Info <KeyboardArrowRightIcon fontSize='small' className="inline text-base ml-1 mt-[-2px]" />
                     </Link>
                 </div>
             </div>
@@ -144,7 +144,7 @@ const Banner = () => {
                 {bannerMovies.map((_, index) => (
                     <div
                         key={index}
-                        className="w-4 md:w-12 h-[3.5px] mx-1 rounded-full bg-white transition-all duration-300 cursor-pointer"
+                        className="w-4 lg:w-12 h-[3.5px] mx-1 rounded-full bg-white transition-all duration-300 cursor-pointer"
                         style={{ opacity: index === count ? 1 : 0.3 }}
                         onClick={() => {
                             handleNavigationClick(index);

@@ -13,18 +13,18 @@ const Home = () => {
       <section>
         <MovieCard 
           title={"Popular Movies"} 
-          url={`${import.meta.env.VITE_API_BASE}/api/movies/popular`} // Use the new backend endpoint
+          url={`${import.meta.env.VITE_API_BASE}/api/movies/popular`}
           navLink={'popular/page/1'}
         />
       </section>
       <MovieCard 
         title={"Upcoming"} 
-        url={`${import.meta.env.VITE_API_BASE}/api/movies/upcoming`} // Use the new backend endpoint
+        url={`${import.meta.env.VITE_API_BASE}/api/movies/upcoming`}
         navLink={'upcoming/page/1'}
       />
       <MovieCard 
         title={"Top Rated"} 
-        url={`${import.meta.env.VITE_API_BASE}/api/movies/top-rated`} // Use the new backend endpoint
+        url={`${import.meta.env.VITE_API_BASE}/api/movies/top-rated`}
         navLink={'top_rated/page/1'}
       />
       <Footer/>

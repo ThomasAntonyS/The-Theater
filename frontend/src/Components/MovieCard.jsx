@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import MovieSlider from './MovieSlider';
-import NorthEastIcon from '@mui/icons-material/NorthEast';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const MovieCard = ({ title, url, navLink }) => {
   const [movies, setMovies] = useState([]);
@@ -39,14 +39,15 @@ const MovieCard = ({ title, url, navLink }) => {
   }
 
   return (
-    <div data-aos="fade-right" data-aos-duration="1000" className='w-[95vw] mx-auto mb-10'>
+    <div data-aos="fade-right" data-aos-duration="1000" className='w-[95vw] mx-auto mb-10 px-2'>
       {movies.length > 0 && (
         <>
-          <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center w-full px-4'>
+          <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center w-full'>
             <p className='text-2xl sm:text-3xl text-white font-manrope mb-2 sm:mb-0'>{title}</p>
             {navLink && (
-              <Link className='text-white border-b-2 font-nunito' onClick={e => handleClick(e, navLink)}>
-                See More <NorthEastIcon fontSize='small'/>
+              <Link className='hidden sm:flex text-white font-nunito hover:border-b border-white' onClick={e => handleClick(e, navLink)}>
+                Browse Full Collection
+                <span className='flex my-auto h-max'><KeyboardArrowRightIcon style={{ margin:"auto", }} fontSize='small'/></span>
               </Link>
             )}
           </div>

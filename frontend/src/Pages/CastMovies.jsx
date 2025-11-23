@@ -71,7 +71,7 @@ const CastMovies = () => {
                         value={searchQuery}
                     />
                 </div>
-                <section className="max-w-7xl mx-auto px-4">
+                <section className="max-w-[90%] mx-auto">
                     <p className="text-lg sm:text-xl font-manrope mb-6">
                         <b>Obtained results:</b>{' '}
                         <span className="text-2xl font-bold">{filteredMovies.length}</span> / {castMovies.length}
@@ -82,7 +82,7 @@ const CastMovies = () => {
                         </div>
                     ) : (
                         castMovies.length > 0 && filteredMovies.length > 0 ? (
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-6 gap-y-10">
                                 {filteredMovies.map((movie) => (
                                     <Link
                                         key={movie.id}

@@ -32,46 +32,42 @@ const PageLayout = ({ movies, title, path, pageCount, totalPages,loading }) => {
                 {title}
             </p>
 
-
-            <div className="flex flex-col w-full items-center mt-8">
-                {!loading ? (
-                    <div className='flex flex-wrap justify-center gap-5 sm:gap-x-6 sm:gap-y-10 w-full px-2 md:px-6 '>
-                        {movies.map((movie, index) => (
-                            <div
-                                key={index}
-                                onClick={(e) => handleNavigation(e,movie.id)}
-                                target="_blank"
-                                title={movie.title}
-                                className='relative flex flex-col w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer'
-                            >
-                                <div className="absolute top-0 right-0 rounded-b-sm bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
-                                    <StarIcon style={{ fontSize: '1rem' }} />
-                                    <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
-                                </div>
-
-                                {movie.poster_path ? (
-                                    <img
-                                        src={baseImage + movie.poster_path}
-                                        alt={movie.title}
-                                        className='aspect-[2/3] w-full object-cover'
-                                    />
-                                ) : (
-                                    <div className='aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-[10px]'>
-                                        <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
-                                    </div>
-                                )}
-                                <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/70 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover '>
-                                    {movie.title}
-                                </p>
+            {!loading ? (
+                <div className='max-w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center gap-5 sm:gap-x-6 sm:gap-y-10 w-full'>
+                    {movies.map((movie, index) => (
+                        <div
+                            key={index}
+                            onClick={(e) => handleNavigation(e,movie.id)}
+                            target="_blank"
+                            title={movie.title}
+                            className='relative flex flex-col h-auto overflow-hidden rounded-md hover:cursor-pointer'
+                        >
+                            <div className="absolute top-0 right-0 rounded-b-sm bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
+                                <StarIcon style={{ fontSize: '1rem' }} />
+                                <p className=' h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
                             </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="w-full h-screen mt-[10vh] flex items-start justify-center bg-black">
-                        <Tailspin size={50} stroke={5} speed={0.9} color="white" />
-                    </div>
-                )}
-            </div>
+                            {movie.poster_path ? (
+                                <img
+                                    src={baseImage + movie.poster_path}
+                                    alt={movie.title}
+                                    className='aspect-[2/3] w-full object-cover'
+                                />
+                            ) : (
+                                <div className='aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-[10px]'>
+                                    <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
+                                </div>
+                            )}
+                            <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/70 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover '>
+                                {movie.title}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div className="w-full h-screen mt-[10vh] flex items-start justify-center bg-black">
+                    <Tailspin size={50} stroke={5} speed={0.9} color="white" />
+                </div>
+            )}
 
             {totalPages > 1 && (
                 <div className='flex justify-center mt-[3vh] mb-[5vh]'>

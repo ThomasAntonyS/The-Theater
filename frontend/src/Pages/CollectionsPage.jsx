@@ -19,7 +19,6 @@ const CollectionPage = () => {
     const fetchCollection = async () => {
         try {
             setLoading(true);
-            // Fetch from your new backend endpoint
             const res = await fetch(`${backendBaseUrl}/api/collection/${collectionId}`);
             if (!res.ok) {
                 throw new Error('Failed to fetch collection data');

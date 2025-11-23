@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className="fixed font-manrope top-0 flex items-center justify-between h-[10vh] w-full bg-black bg-opacity-50 backdrop-blur-md z-[100] px-4 sm:px-6 md:px-8">
+      <div className="fixed font-manrope top-0 flex items-center justify-between h-[10vh] w-full bg-black bg-opacity-50 backdrop-blur-md z-[100] px-4 md:px-8">
         {/* Logo */}
         <div className="flex items-center h-full text-white font-bold">
           <Link to="/" onClick={scrollToTop} className="h-full flex items-center">
@@ -35,7 +35,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="hidden ml-[7%] md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center">
+        <div className="hidden ml-[15%] md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center">
           <Link
             className="hover:opacity-70 hover:underline"
             to="/popular/page/1"
@@ -88,7 +88,7 @@ const Header = () => {
           {/* Mobile: Menu Icon */}
           <div className="md:hidden">
             <button onClick={toggleMenu} className="p-2 rounded-md bg-black/80 hover:bg-black ">
-              Explore {(menuOpen)? <KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
+              Menu {(menuOpen)? <KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
             </button>
           </div>
         </div>
