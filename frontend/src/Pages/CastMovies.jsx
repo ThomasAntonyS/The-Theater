@@ -78,7 +78,7 @@ const CastMovies = () => {
                     </p>
                     {loading ? (
                         <div className="w-full h-[40vh] flex items-center justify-center mt-10">
-                            <Tailspin size={50} stroke={5} speed={0.9} color="white" />
+                            <Tailspin size={50} stroke={5} speed={0.7} color="white" />
                         </div>
                     ) : (
                         castMovies.length > 0 && filteredMovies.length > 0 ? (

@@ -65,12 +65,12 @@ const PageLayout = ({ movies, title, path, pageCount, totalPages,loading }) => {
                 </div>
             ) : (
                 <div className="w-full h-screen mt-[10vh] flex items-start justify-center bg-black">
-                    <Tailspin size={50} stroke={5} speed={0.9} color="white" />
+                    <Tailspin size={50} stroke={5} speed={0.7} color="white" />
                 </div>
             )}
 
             {totalPages > 1 && (
-                <div className='flex justify-center mt-[3vh] mb-[5vh]'>
+                <div className='flex justify-center my-[5vh]'>
                     <div className='flex items-center gap-6 px-4 py-2 rounded-md backdrop-blur-sm'>
 
                         <button

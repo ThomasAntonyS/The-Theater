@@ -71,7 +71,6 @@ const GenreMoviesPage = () => {
         }
     };
 
-    // Handler for movie card navigation
     const handleMovieNavigation = (e, movieId) => {
         e.preventDefault();
         navigate(`/movie/${movieId}`);
@@ -88,7 +87,7 @@ const GenreMoviesPage = () => {
                 
                 {loading ? (
                     <div className="w-full h-screen mt-[10vh] flex items-start justify-center bg-black">
-                        <Tailspin size={50} stroke={5} speed={0.9} color="white" />
+                        <Tailspin size={50} stroke={5} speed={0.7} color="white" />
                     </div>
                 ) : (
                     <div className="flex flex-col w-full items-center mt-8">
@@ -130,7 +129,7 @@ const GenreMoviesPage = () => {
                 )}
                 
                 {totalPages > 1 && (
-                    <div className='flex justify-center mt-[3vh] mb-[5vh]'>
+                    <div className='flex justify-center my-[5vh]'>
                         <div className='flex items-center gap-6 px-4 py-2 rounded-md backdrop-blur-sm'>
                             <button
                                 className='px-4 py-2 rounded-md text-white text-[20px] bg-white bg-opacity-35 disabled:opacity-40'

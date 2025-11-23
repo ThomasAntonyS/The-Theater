@@ -86,7 +86,7 @@ const MovieMain = () => {
           <Tailspin
             size={50}
             stroke={5}
-            speed={0.9}
+            speed={0.7}
             color="white"
           />
         </div>

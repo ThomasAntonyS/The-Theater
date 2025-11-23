@@ -221,7 +221,7 @@ const Search = () => {
         <section className="py-16">
           {loading ? (
             <div className="flex justify-center items-center h-48">
-              <Tailspin size={50} stroke={5} speed={0.9} color="white" />
+              <Tailspin size={50} stroke={5} speed={0.7} color="white" />
             </div>
           ) : movies.length > 0 ? (
             <>

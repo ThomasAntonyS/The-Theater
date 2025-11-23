@@ -60,7 +60,7 @@ const Video = ({ id }) => {
                             >
                                 {!loadedIframes[index] && (
                                     <div className="absolute inset-0 z-10 flex items-center justify-center bg-black bg-opacity-80">
-                                        <Tailspin size={35} stroke={4} speed={0.9} color="white" />
+                                        <Tailspin size={35} stroke={4} speed={0.7} color="white" />
                                     </div>
                                 )}
 
