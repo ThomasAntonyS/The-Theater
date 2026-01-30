@@ -1,5 +1,8 @@
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
-
+import StarIcon from '@mui/icons-material/Star';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PublicIcon from '@mui/icons-material/Public';
 
 const MovieDescription = ({ item }) => {
 
@@ -20,99 +23,115 @@ const MovieDescription = ({ item }) => {
     belongs_to_collection
   } = item;
 
-  const imageUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
+  const imageUrl = `https://image.tmdb.org/t/p/w780${poster_path}`;
   const country = production_countries?.map((c) => c.name).join(', ') || 'N/A';
   const year = release_date ? new Date(release_date).getFullYear() : 'N/A';
   const language = spoken_languages?.map((l) => l.english_name).join(', ') || 'N/A';
 
   const handleGenreClick = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="px-4 md:px-12 sm:py-5 lg:py-10 text-white bg-black w-full mb-12" data-aos="fade-right" data-aos-duration="1000">
-      <div className="max-w-6xl flex flex-col md:flex-row gap-10">
-        {/* Poster */}
-        <div className="w-full md:w-1/3 my-auto hidden xl:flex borde">
-          {(imageUrl!="")?
-            <img
-              src={imageUrl}
-              alt={title}
-              className="w-full rounded-lg "
-            />
-            :
-            <div className='h-[35vh] w-full flex items-center justify-center bg-black text-white text-5xl'>
-              🎬
+    <section className="relative w-full py-16 px-6 md:px-12 bg-transparent text-white overflow-hidden">
+      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-12 xl:gap-20">
+        
+        <div className="hidden lg:block w-[400px] flex-shrink-0" data-aos="zoom-out" data-aos-duration="1200">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-transparent rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <div className="relative bg-black rounded-2xl overflow-hidden border border-white/10">
+              {poster_path ? (
+                <img src={imageUrl} alt={title} className="w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              ) : (
+                <div className="aspect-[2/3] flex items-center justify-center bg-zinc-900 text-6xl">🎬</div>
+              )}
             </div>
-          } 
+          </div>
         </div>
 
-        {/* Details */}
-        <div className="overflow-x-hidden flex-1 text-left my-auto" data-aos="fade-in" data-aos-duration="1000">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-manrope">{title}</h2>
+        <div className="flex-1 space-y-8">
+          <header className="space-y-4 border-l-4 border-red-600 pl-6 md:pl-10">
+            <div className="flex flex-wrap items-center gap-4 text-xs font-manrope font-black tracking-[0.1em] text-white/70 uppercase">
+              <span>{year}</span>
+              <span className="w-1 h-1 bg-red-600 rounded-full"></span>
+              <span className="flex items-center gap-1"><AccessTimeIcon sx={{ fontSize: 14 }} /> {runtime} MIN</span>
+              <span className="w-1 h-1 bg-red-600 rounded-full"></span>
+              <span className="flex items-center gap-1 text-yellow-500"><StarIcon sx={{ fontSize: 14 }} /> {vote_average?.toFixed(1)}</span>
+            </div>
+            
+            <h1
+              style={{ textWrap: 'balance' }}
+              className="font-manrope font-black italic uppercase tracking-tighter transition-all duration-500 leading-[0.9] text-4xl md:text-5xl lg:text-6xl"
+            >
+              {title}
+            </h1>
+            
+            {tagline && (
+              <p className="text-xl md:text-2xl font-nunito font-light text-white/70 italic tracking-wide">
+                "{tagline}"
+              </p>
+            )}
+          </header>
 
-          {tagline && (
-            <p className="text-lg text-gray-400 italic mb-4 font-nunito">"{tagline}"</p>
-          )}
-
-          <p className="text-base md:text-lg text-gray-300 mb-6 font-nunito line-clamp-5 text-justify">{overview}</p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm md:text-base text-gray-300 font-manrope">
-            <p>
-              <span className="font-semibold text-white">Country:</span> {country}
+          <div className="space-y-6">
+            <p className="text-lg md:text-xl text-white/70 font-nunito leading-relaxed max-w-4xl text-justify">
+              {overview}
             </p>
 
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-semibold text-white mr-2">Genre:</span>
+            <div className="flex flex-wrap gap-3 pt-4">
               {genres?.map((genre) => (
-                <Link to={`/genre/${genre.id}/page/1`}
-                  key={genre.id}
-                  onClick={() => handleGenreClick()}
-                  className="text-gray-300 hover:text-white underline"
+                <Link 
+                  key={genre.id} 
+                  to={`/genre/${genre.id}/page/1`}
+                  onClick={handleGenreClick}
+                  className="px-4 py-2 rounded-full border border-white/10 bg-white/5 font-manrope font-bold text-[10px] uppercase tracking-widest hover:bg-red-600 hover:border-red-600 transition-all duration-300"
                 >
                   {genre.name}
                 </Link>
               ))}
             </div>
-
-            <p>
-              <span className="font-semibold text-white">Year:</span> {year}
-            </p>
-            <p>
-              <span className="font-semibold text-white">Language:</span> {language}
-            </p>
-            <p>
-              <span className="font-semibold text-white">Duration:</span> {runtime} min
-            </p>
-            <p>
-              <span className="font-semibold text-white">Rating:</span> ⭐ {(vote_average)?vote_average.toFixed(1):"N/A"}
-            </p>
-            {belongs_to_collection ? (
-              <div className="mb-2">
-                <span className="font-semibold text-white mr-2">Collection:</span>
-                <Link
-                  to={`/collection/${belongs_to_collection.id}`}
-                  onClick={handleGenreClick}
-                  className="text-gray-300 hover:text-white underline"
-                >
-                  {belongs_to_collection.name}
-                </Link>
-              </div>
-            ) : null}
           </div>
 
-          {production_companies?.length > 0 && (
-            <div className="mt-8">
-              <h3 className="text-white font-semibold mb-2 font-manrope">Production Companies:</h3>
-              <div className="flex flex-wrap gap-4 items-center">
+          <hr className="border-white/5" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <PublicIcon className="text-red-600" />
+                <div>
+                  <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em]">Production Origin</p>
+                  <p className="text-sm font-nunito font-bold">{country}</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em]">Available Languages</p>
+                <p className="text-sm font-nunito font-bold">{language}</p>
+              </div>
+            </div>
+
+            {belongs_to_collection && (
+              <Link 
+                to={`/collection/${belongs_to_collection.id}`}
+                onClick={handleGenreClick}
+                className="group p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all"
+              >
+                <p className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-[0.2em] mb-1">Part of a Series</p>
+                <p className="text-lg font-manrope font-black italic uppercase group-hover:translate-x-2 transition-transform">{belongs_to_collection.name} &rarr;</p>
+              </Link>
+            )}
+          </div>
+
+          {production_companies?.some(c => c.logo_path) && (
+            <div className="pt-8">
+              <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em] mb-6">Studio Partners</p>
+              <div className="flex flex-wrap gap-8 items-center opacity-40 hover:opacity-100 transition-opacity duration-500">
                 {production_companies.map((company) =>
                   company.logo_path ? (
                     <img
                       key={company.id}
                       src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
                       alt={company.name}
-                      title={company.name}
-                      className="h-10 object-contain bg-white/70 rounded-md p-1"
+                      className="h-8 md:h-10 object-contain invert"
                     />
                   ) : null
                 )}
@@ -121,7 +140,7 @@ const MovieDescription = ({ item }) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

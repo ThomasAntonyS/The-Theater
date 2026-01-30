@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../Components/Header';
 import Casts from '../Components/Casts';
 import Footer from '../Components/Footer';
-import MovieCard from '../Components/MovieCard';
 import Video from '../Components/Video';
 import { ProfileContext } from '../Context/ProfileContextProvider';
 import MovieHeroSection from '../Components/MovieHeroSection';
@@ -100,10 +99,6 @@ const MovieMain = () => {
           <Video id={id}/>
           <MovieProviders movieId={id}/>
           <Casts movieId={id} />
-          <MovieCard
-            url={`${import.meta.env.VITE_API_BASE}/api/movie/${id}/similar`}
-            title="Recommendation"
-          />
           <Footer />
         </div>
       )}

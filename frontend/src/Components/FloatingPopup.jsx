@@ -7,37 +7,44 @@ const FloatingPopup = ({ message, isError, onClose }) => {
   return (
     <div
       role="alert"
-      className="fixed top-5 right-1 sm:right-4 z-[100] bg-white font-manrope shadow-lg px-5 py-4 rounded-lg border border-gray-300 w-[95%] sm:w-[26rem] md:w-[30rem] lg:w-[34rem] xl:w-[38rem] max-w-full transition-all duration-300 ease-in-out"
+      className={`fixed top-6 right-4 z-[200] font-manrope shadow-2xl rounded-xl overflow-hidden border border-white/10 backdrop-blur-2xl bg-[#0a0a0a]/90 w-[90%] sm:w-[24rem] transition-all duration-500 ease-out animate-in slide-in-from-right-8`}
     >
-      <div className="flex items-start gap-4">
-        <div>
+      <div className={`absolute left-0 top-0 h-full w-1.5 ${isError ? 'bg-red-600' : 'bg-emerald-500'}`} />
+
+      <div className="flex items-start gap-4 p-5">
+        <div className="mt-0.5">
           {isError ? (
-            <FiAlertTriangle className="text-red-600 w-7 h-7" />
+            <FiAlertTriangle className="text-red-600 w-6 h-6" />
           ) : (
-            <PiSealCheckFill className="text-green-600 w-7 h-7" />
+            <PiSealCheckFill className="text-emerald-500 w-6 h-6" />
           )}
         </div>
 
         <div className="flex flex-col flex-grow">
-          <div className="flex justify-between items-start w-full mt-[2px]">
-            <p className="text-gray-800 text-[1.1rem] leading-snug font-medium break-words max-w-[90%]">
-              {message}
+          <div className="flex justify-between items-start w-full">
+            <p className="text-white text-sm md:text-base leading-snug font-bold uppercase italic tracking-tight break-words max-w-[90%]">
+              {isError ? "System Alert" : "Success"}
             </p>
             <button
               onClick={onClose}
-              className="my-auto text-gray-500 hover:text-gray-700 focus:outline-none ml-2"
+              className="text-white/20 hover:text-white transition-colors focus:outline-none"
               aria-label="Close popup"
             >
               <IoClose className="w-5 h-5" />
             </button>
           </div>
+          
+          <p className="text-white/70 text-sm font-nunito mt-1 leading-relaxed">
+            {message}
+          </p>
 
           {!isError && (
             <Link
               to="/watchlist"
-              className="text-blue-600 hover:underline text-[1rem] mt-2 font-semibold"
+              onClick={onClose}
+              className="inline-block text-red-600 font-manrope font-black text-[10px] uppercase tracking-[0.2em] mt-4 hover:text-white transition-colors"
             >
-              Go to Watchlist →
+              View Watchlist &rarr;
             </Link>
           )}
         </div>

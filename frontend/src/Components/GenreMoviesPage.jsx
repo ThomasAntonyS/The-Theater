@@ -18,142 +18,145 @@ const GenreMoviesPage = () => {
 
     const backendBaseUrl = import.meta.env.VITE_API_BASE;
     const navigate = useNavigate();
-    const baseImage = 'https://image.tmdb.org/t/p/w185';
+    const baseImage = 'https://image.tmdb.org/t/p/w342'; // Higher res for the new grid
 
     useEffect(() => {
         const fetchGenreMovies = async () => {
             setLoading(true);
             try {
                 const res = await fetch(`${backendBaseUrl}/api/genre/movies/${genreId}/${pageCount}`);
-                
-                if (!res.ok) {
-                    throw new Error('Failed to fetch genre movies');
-                }
-                
+                if (!res.ok) throw new Error('Failed to fetch');
                 const data = await res.json();
                 
                 setMovies(data.movies);
-                const totalPageCount = (data.totalPages>500) ? 500 : data.totalPages;
-                setTotalPages(totalPageCount);
+                setTotalPages(data.totalPages > 500 ? 500 : data.totalPages);
                 setGenreName(data.genreName);
-                
             } catch (error) {
-                console.error('Error fetching genre movies:', error);
+                console.error(error);
             } finally {
                 setLoading(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         };
-
         fetchGenreMovies();
-        window.scrollTo(0, 0);
     }, [genreId, pageCount, backendBaseUrl]);
 
-
     useEffect(() => {
-        if (genreName) {
-            document.title = genreName + " Movies";
-        }
+        if (genreName) document.title = `${genreName} — The Theater`;
     }, [genreName]);
 
-    const handlePreviousPage = () => {
-        if (pageCount > 1) {
-            const newPage = pageCount - 1;
-            setPageCount(newPage);
-            navigate(`/genre/${genreId}/page/${newPage}`);
-        }
-    };
-
-    const handleNextPage = () => {
-        if (pageCount < totalPages) {
-            const newPage = pageCount + 1;
-            setPageCount(newPage);
-            navigate(`/genre/${genreId}/page/${newPage}`);
-        }
-    };
-
-    const handleMovieNavigation = (e, movieId) => {
-        e.preventDefault();
-        navigate(`/movie/${movieId}`);
-        window.scrollTo(0, 0);
+    const handlePageChange = (newPage) => {
+        setPageCount(newPage);
+        navigate(`/genre/${genreId}/page/${newPage}`);
     };
 
     return (
-        <>
+        <div className="bg-[#050505] min-h-screen text-white">
             <Header />
-            <div className='flex flex-col overflow-hidden w-full mx-auto px-4 mt-10'>
-                <p className=' text-white text-6xl w-[90%] sm:text-9xl mx-auto my-[10vh] text-center font-manrope'>
-                    {genreName ? genreName + " Movies" : ""}
-                </p>
-                
-                {loading ? (
-                    <div className="w-full h-screen mt-[10vh] flex items-start justify-center bg-black">
-                        <Tailspin size={50} stroke={5} speed={0.7} color="white" />
-                    </div>
-                ) : (
-                    <div className="flex flex-col w-full items-center mt-8">
-                        {movies.length > 0 ? (
-                            <div className='max-w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center gap-5 sm:gap-x-6 sm:gap-y-10 w-[90%]'>
-                                {movies.map((movie, index) => (
-                                    <div
-                                        key={index}
-                                        onClick={(e) => handleMovieNavigation(e, movie.id)}
-                                        title={movie.title}
-                                        className='relative flex flex-col h-auto overflow-hidden rounded-md hover:cursor-pointer'
-                                    >
-                                        <div className="absolute top-0 right-0 rounded-b-sm bg-black font-manrope bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
-                                            <StarIcon style={{ fontSize: '1rem' }} />
-                                            <p className='h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+            
+            <main className="relative pt-[15vh] pb-20">
+                <div className="absolute top-[10vh] left-0 w-full overflow-hidden pointer-events-none select-none">
+                    <h1 className="text-white/[0.03] text-[10rem] md:text-[18rem] font-manrope font-black italic uppercase tracking-tighter leading-none text-center truncate">
+                        {genreName}
+                    </h1>
+                </div>
+
+                <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
+                    <header className="mb-16 border-l-4 border-red-600 pl-6 md:pl-10">
+                        <p className="font-manrope font-bold text-white/70 text-[10px] tracking-widest uppercase mb-2">
+                            Browsing Category
+                        </p>
+                        <h2 className="text-6xl md:text-8xl font-manrope font-black italic uppercase tracking-tighter text-white leading-none">
+                            {genreName} <span className="text-red-600">Films</span>
+                        </h2>
+                    </header>
+
+                    {loading ? (
+                        <div className="w-full h-[60vh] flex items-center justify-center">
+                            <Tailspin size={50} color="white" />
+                        </div>
+                    ) : (
+                        <>
+                            {movies.length > 0 ? (
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
+                                    {movies.map((movie) => (
+                                        <Link
+                                            key={movie.id}
+                                            to={`/movie/${movie.id}`}
+                                            className="group relative bg-[#0a0a0a] rounded-xl overflow-hidden border border-white/5 hover:border-red-600 transition-all duration-500 shadow-2xl"
+                                        >
+                                            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 text-white text-[10px] font-manrope font-black px-2 py-1 rounded z-20 flex items-center gap-1">
+                                                <StarIcon className="text-yellow-500" style={{ fontSize: '0.9rem' }} />
+                                                <span>{movie.vote_average?.toFixed(1)}</span>
+                                            </div>
+
+                                            <div className="aspect-[2/3] overflow-hidden">
+                                                {movie.poster_path ? (
+                                                    <img
+                                                        src={baseImage + movie.poster_path}
+                                                        alt={movie.title}
+                                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center bg-zinc-900">
+                                                        <MovieCreationIcon className="text-zinc-700" fontSize="large" />
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent pt-10">
+                                                <p className="text-white font-manrope font-black text-sm italic uppercase tracking-tighter truncate">
+                                                    {movie.title}
+                                                </p>
+                                                <p className="text-white/40 font-nunito text-[10px] mt-1 font-bold tracking-widest uppercase">
+                                                    {movie.release_date?.split('-')[0] || 'TBA'}
+                                                </p>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="py-32 text-center">
+                                    <p className="font-manrope font-bold text-white/10 text-6xl uppercase italic tracking-tighter">
+                                        No Films Found
+                                    </p>
+                                </div>
+                            )}
+
+                            {totalPages > 1 && (
+                                <div className="mt-20 flex justify-center">
+                                    <div className="flex items-center gap-8 bg-white/5 backdrop-blur-md border border-white/10 p-2 rounded-full">
+                                        <button
+                                            onClick={() => handlePageChange(pageCount - 1)}
+                                            disabled={pageCount <= 1}
+                                            className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-red-600 text-white transition-all disabled:opacity-20 disabled:hover:bg-white/5"
+                                        >
+                                            <ChevronLeft />
+                                        </button>
+                                        
+                                        <div className="flex flex-col items-center min-w-[80px]">
+                                            <span className="text-[10px] font-manrope font-black uppercase tracking-widest text-white/30">Page</span>
+                                            <span className="text-xl font-manrope font-black italic text-white">
+                                                {pageCount} <span className="text-white/20 text-sm">/ {totalPages}</span>
+                                            </span>
                                         </div>
 
-                                        {movie.poster_path ? (
-                                            <img
-                                                src={baseImage + movie.poster_path}
-                                                alt={movie.title}
-                                                className='aspect-[2/3] w-full object-cover'
-                                            />
-                                        ) : (
-                                            <div className='aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-[10px]'>
-                                                <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
-                                            </div>
-                                        )}
-                                        <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/70 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover '>
-                                            {movie.title}
-                                        </p>
+                                        <button
+                                            onClick={() => handlePageChange(pageCount + 1)}
+                                            disabled={pageCount >= totalPages}
+                                            className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-red-600 text-white transition-all disabled:opacity-20 disabled:hover:bg-white/5"
+                                        >
+                                            <ChevronRight />
+                                        </button>
                                     </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="text-white text-xl font-manrope">No movies found for this genre.</p>
-                        )}
-                    </div>
-                )}
-                
-                {totalPages > 1 && (
-                    <div className='flex justify-center my-[5vh]'>
-                        <div className='flex items-center gap-6 px-4 py-2 rounded-md backdrop-blur-sm'>
-                            <button
-                                className='px-4 py-2 rounded-md text-white text-[20px] bg-white bg-opacity-35 disabled:opacity-40'
-                                onClick={handlePreviousPage}
-                                disabled={pageCount <= 1}
-                            >
-                                <ChevronLeft sx={{fontSize:"1.5rem"}}/>
-                            </button>
-                            <p className='text-white font-nunito text-[1.3rem]'>
-                                {pageCount} / {totalPages}
-                            </p>
-                            <button
-                                className='px-4 py-2 rounded-md text-white text-[20px] bg-white bg-opacity-35 disabled:opacity-40'
-                                onClick={handleNextPage}
-                                disabled={pageCount >= totalPages}
-                            >
-                                <ChevronRight sx={{fontSize:"1.5rem"}}/>
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </div>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
+            </main>
             <Footer />
-        </>
+        </div>
     );
 };
 

@@ -6,20 +6,22 @@ const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-full border border-gray-600 rounded-md overflow-hidden">
+    <div className="w-full border-b border-white/5 overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center px-4 py-2 bg-[#262626] text-sm text-white font-medium hover:bg-[#333] transition"
+        className="w-full flex justify-between items-center py-4 text-left text-white/70 hover:text-white transition-all group"
       >
-        {title}
-        <span className="text-lg transition-transform duration-300">{isOpen ? '−' : '+'}</span>
+        <span className="font-manrope font-bold text-xs uppercase tracking-wider">{title}</span>
+        <span className={`text-xl transition-transform duration-500 ${isOpen ? 'rotate-45 text-red-600' : 'rotate-0'}`}>+</span>
       </button>
       <div
-        className={`transition-all duration-500 ease-in-out px-4 bg-[#1e1e1e] text-sm ${
-          isOpen ? 'max-h-[300px] py-3 opacity-100' : 'max-h-0 opacity-0 overflow-hidden py-0'
+        className={`transition-all duration-500 ease-in-out px-2 font-nunito text-sm leading-relaxed ${
+          isOpen ? 'max-h-[300px] pb-6 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}
       >
-        {children}
+        <div className="text-white/70 border-l-2 border-red-600 pl-4">
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -27,27 +29,18 @@ const Accordion = ({ title, children }) => {
 
 const Footer = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
 
   const handleNavigation = (e, link) => {
     e.preventDefault();
     navigate(link);
-    window.scrollTo(0, 0);
-  };
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email.trim()) {
-      alert(`Subscribed with ${email}`);
-      setEmail('');
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const quickLinks = [
     { label: 'Home', to: '/' },
-    { label: 'Search', to: '/search' },    
+    { label: 'Search', to: '/search' },
     { label: 'Popular', to: '/popular/page/1' },
-    { label: 'Trending', to: '/trending/page/1' },  
+    { label: 'Trending', to: '/trending/page/1' },
     { label: 'Top Rated', to: '/top_rated/page/1' },
     { label: 'Upcoming', to: '/upcoming/page/1' },
     { label: 'WatchList', to: '/watchlist' },
@@ -56,92 +49,66 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-[96%] mx-auto mb-8 bg-[#151515] text-white font-nunito mt-[10vh]" data-aos="fade-up" data-aos-duration="1000">
-      <div className="w-[90%] mx-auto py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-
-        <div className="flex flex-col gap-4">
-          <img src={Logo} alt="Logo" className="h-[7vh] w-[7vh]" />
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Dive into the world of movies with <span className="font-semibold">The Theater</span>. Stay updated on the latest hits, cult classics, and hidden gems.
-          </p>
+    <footer className="w-full bg-[#050505] text-white pt-20 pb-10 border-t border-white/5">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           
-          <Accordion title="Want to see the source code?">
-            <p className="text-sm text-left text-gray-400">
-              <a
-                href="https://github.com/ThomasAntonyS"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-red-500 hover:underline"
-              >
-                GitHub
-              </a>
+          <div className="lg:col-span-4 space-y-8">
+            <img src={Logo} alt="Logo" className="h-10 md:h-12 object-contain" />
+            <p className="font-nunito text-white/70 text-sm leading-relaxed max-w-sm">
+              Experience cinema like never before. <span className="text-white font-bold">THE THEATER</span> is your curated gateway to global storytelling, trending hits, and timeless classics.
             </p>
-          </Accordion>
-        </div>
+            <div className="pt-4">
+               <Accordion title="Technical Source">
+                  <p>Explore the project architecture on 
+                    <a href="https://github.com/ThomasAntonyS" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-600 ml-1 transition-colors underline">GitHub</a>.
+                  </p>
+               </Accordion>
+            </div>
+          </div>
 
-        <div className="flex flex-col gap-4">
-          <h4 className="text-lg font-semibold mb-1">Quick Links</h4>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-            {quickLinks.map(({ label, to }, i) => (
-              <Link
-                key={i}
-                onClick={(e) => handleNavigation(e, to)}
-                className="hover:text-red-500 transition text-sm text-gray-300 w-fit"
-              >
-                {label}
-              </Link>
-            ))}
+          <div className="lg:col-span-4 space-y-8">
+            <h4 className="font-manrope font-black italic text-2xl uppercase tracking-tighter">Quick Access</h4>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-4 font-manrope">
+              {quickLinks.map(({ label, to }, i) => (
+                <Link
+                  key={i}
+                  onClick={(e) => handleNavigation(e, to)}
+                  className="text-white/70 hover:text-red-600 transition-all text-[10px] font-bold uppercase tracking-wide w-fit"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <h4 className="text-lg font-semibold">Newsletter</h4>
-          <p className="text-sm text-gray-400">Subscribe to get the latest movie updates.</p>
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="w-full sm:w-auto flex-1 px-4 py-2 rounded-md bg-[#262626] border border-gray-600 text-white focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md transition text-white w-full sm:w-auto"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
+        <div className="mt-24 space-y-12">
+          <div className="space-y-4">
+            <h4 className="font-manrope font-black italic text-3xl uppercase tracking-tighter text-white/90">Questions?</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+              <Accordion title="Content Coverage">
+                Our database is powered by TMDB, providing real-time access to trailers, cast details, and ratings for millions of titles.
+              </Accordion>
+              <Accordion title="Personal Watchlist">
+                Add any movie to your local session list. No registration required—just click and save.
+              </Accordion>
+              <Accordion title="Platform Access">
+                The Theater is a free-to-use open-source cinematic explorer built for enthusiasts.
+              </Accordion>
+            </div>
+          </div>
 
-      <div className="w-[90%] mx-auto mt-10">
-        <h4 className="text-lg font-semibold mb-4">FAQs</h4>
-        <div className="flex flex-col gap-3">
-          <Accordion title="What kind of movie information can I explore here?">
-            <p className="text-sm text-left text-gray-400">
-              You can browse movies with detailed info like title, release date, ratings, genres, cast, trailers, and related movies — all fetched from TMDB.
-            </p>
-          </Accordion>
-
-          <Accordion title="Can I create a watchlist or favorite movies?">
-            <p className="text-sm text-left text-gray-400">
-              Absolutely! Add your favorite movies to a watchlist and revisit them any time. Just click the watchlist icon!
-            </p>
-          </Accordion>
-
-          <Accordion title="Do I need an account to use this platform?">
-            <p className="text-sm text-left text-gray-400">
-              No account is required. You can explore movies, check ratings, and manage a watchlist without logging in.
-            </p>
-          </Accordion>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-700 mt-10">
-        <div className="w-[90%] mx-auto py-4 text-center text-sm text-gray-400">
-          &copy; {new Date().getFullYear()} THE THEATER — All Rights Reserved.
+          <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
+            <div className="font-manrope font-bold text-[10px] tracking-wide text-white/70 uppercase">
+              &copy; {new Date().getFullYear()} THE THEATER — Engineered for Film
+            </div>
+            <div className="flex gap-8 font-manrope font-bold text-[10px] tracking-wide text-white/70 uppercase">
+              <span className="hover:text-white cursor-pointer transition-colors">Privacy</span>
+              <span className="hover:text-white cursor-pointer transition-colors">Terms</span>
+              <span className="hover:text-white cursor-pointer transition-colors">API</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

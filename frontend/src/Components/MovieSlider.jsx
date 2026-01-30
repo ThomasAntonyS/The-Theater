@@ -7,21 +7,20 @@ import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 
 const MovieSlider = ({ movies }) => {
   const scrollRef = useRef(null);
-  const baseImage = 'https://image.tmdb.org/t/p/w185';
+  const baseImage = 'https://image.tmdb.org/t/p/w342';
 
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
   const handleClick = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollAmount = Math.max(clientWidth * 0.7, 200);
-      const newScrollLeft =
-        direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
+      const scrollAmount = clientWidth * 0.8;
+      const newScrollLeft = direction === 'left' ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
       scrollRef.current.scrollTo({
         left: newScrollLeft,
         behavior: 'smooth',
@@ -32,8 +31,8 @@ const MovieSlider = ({ movies }) => {
   const checkScrollPosition = () => {
     const el = scrollRef.current;
     if (!el) return;
-    setAtStart(el.scrollLeft <= 1);
-    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1);
+    setAtStart(el.scrollLeft <= 10);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 10);
   };
 
   useEffect(() => {
@@ -42,74 +41,76 @@ const MovieSlider = ({ movies }) => {
       el.addEventListener('scroll', checkScrollPosition);
       const observer = new ResizeObserver(checkScrollPosition);
       observer.observe(el);
-      window.addEventListener('resize', checkScrollPosition);
-
       checkScrollPosition();
-
       return () => {
         el.removeEventListener('scroll', checkScrollPosition);
         observer.disconnect();
-        window.removeEventListener('resize', checkScrollPosition);
       };
     }
   }, [movies]);
 
   return (
-    <div className='relative w-full py-4'>
-
+    <div className='relative w-full group/slider'>
       <button
         onClick={() => scroll('left')}
-        className={`absolute left-1 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-80 border text-white rounded-full p-2 transition-opacity duration-300 focus:outline-none ${
-          atStart ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'
+        className={`absolute left-0 top-1/2 -translate-y-1/2 z-30 bg-black/40 backdrop-blur-xl border border-white/10 text-white rounded-r-xl p-3 transition-all duration-300 ${
+          atStart ? 'opacity-0 pointer-events-none -translate-x-full' : 'opacity-100 hover:bg-white hover:text-black'
         }`}
       >
-        <WestIcon className="text-xl sm:text-2xl" />
+        <WestIcon fontSize="medium" />
       </button>
 
       <button
         onClick={() => scroll('right')}
-        className={`absolute right-1 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-80 border text-white rounded-full p-2 sm:p-3 transition-opacity duration-300 focus:outline-none ${
-          atEnd ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-opacity-90'
+        className={`absolute right-0 top-1/2 -translate-y-1/2 z-30 bg-black/40 backdrop-blur-xl border border-white/10 text-white rounded-l-xl p-3 transition-all duration-300 ${
+          atEnd ? 'opacity-0 pointer-events-none translate-x-full' : 'opacity-100 hover:bg-white hover:text-black'
         }`}
       >
-        <EastIcon className="text-xl sm:text-2xl" />
+        <EastIcon fontSize="medium" />
       </button>
 
       <div
         ref={scrollRef}
-        className='flex gap-4 py-3 overflow-x-scroll no-scrollbar scroll-smooth'
+        className='flex gap-4 md:gap-6 py-6 overflow-x-auto no-scrollbar scroll-smooth px-2 md:px-4'
       >
         {movies.map((movie, index) => (
           <Link
             to={`/movie/${movie.id}`}
             key={index}
             onClick={handleClick}
-            className='relative flex-shrink-0 w-[45%] sm:w-[30%] md:w-[20%] lg:w-[13%] h-auto overflow-hidden rounded-md hover:cursor-pointer transition-transform duration-200 hover:scale-105'
+            className='relative flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] group transition-all duration-500 rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 shadow-2xl'
             title={movie.title}
           >
-            {/* Rating Badge */}
-            <div className="absolute top-0 right-0 bg-black font-manrope rounded-b-sm bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 flex items-center gap-1 z-10">
-              <StarIcon style={{ fontSize: '1rem' }} />
-              <p className='h-max my-auto'>{movie.vote_average.toFixed(1)}</p>
+            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 text-white text-[10px] font-manrope font-black px-2 py-1 rounded flex items-center gap-1 z-20 shadow-lg">
+              <StarIcon className="text-yellow-500" style={{ fontSize: '0.9rem' }} />
+              <span>{movie.vote_average.toFixed(1)}</span>
             </div>
 
-            {/* Movie Poster */}
-            {movie.poster_path ? (
-              <img
-                src={baseImage + movie.poster_path}
-                alt={movie.title}
-                className='aspect-[2/3] w-full object-cover'
-              />
-            ) : (
-              <div className='aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-[10px]'>
-                <MovieCreationIcon style={{ fontSize: "3rem", color: "white" }} />
-              </div>
-            )}
+            <div className="relative aspect-[2/3] overflow-hidden">
+              {movie.poster_path ? (
+                <img
+                  src={baseImage + movie.poster_path}
+                  alt={movie.title}
+                  className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1'
+                />
+              ) : (
+                <div className='w-full h-full flex flex-col items-center justify-center bg-zinc-900 gap-2'>
+                  <MovieCreationIcon className="text-zinc-700" style={{ fontSize: "3rem" }} />
+                  <span className="text-[10px] text-zinc-500 font-manrope font-bold tracking-widest uppercase">No Image</span>
+                </div>
+              )}
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80" />
+            </div>
 
-            {/* Movie Title Overlay */}
-            <p className='absolute w-full bottom-0 backdrop-blur-md bg-black/70 px-3 py-1 text-white text-[1.1rem] text-center truncate font-nunito object-cover'>
-              {movie.title}
-            </p>
+            <div className="absolute bottom-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+              <p className="text-white font-manrope font-black text-sm md:text-base leading-tight italic tracking-tighter uppercase line-clamp-2 drop-shadow-lg">
+                {movie.title}
+              </p>
+              <p className="text-white/70 font-nunito text-[10px] md:text-xs mt-1 font-bold tracking-widest uppercase">
+                {movie.release_date?.split('-')[0] || 'TBA'}
+              </p>
+            </div>
           </Link>
         ))}
       </div>

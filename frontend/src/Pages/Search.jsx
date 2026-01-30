@@ -26,31 +26,22 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   
   const backendBaseUrl = import.meta.env.VITE_API_BASE;
-  const baseImage = 'https://image.tmdb.org/t/p/w185';
+  const baseImage = 'https://image.tmdb.org/t/p/w342';
 
   useEffect(() => {
-    document.title = 'Search for your favourite movies';
+    document.title = 'Search — The Theater';
   }, []);
 
   useEffect(() => {
-    // Sync state with URL parameters
     setSearchQuery(q || '');
     setPageNo(Number(page_no) || 1);
-    
-    // Only fetch if a query exists in the URL
-    if (q) {
-      fetchMovies(q, Number(page_no) || 1);
-    }
+    if (q) fetchMovies(q, Number(page_no) || 1);
   }, [q, page_no]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        suggestionsRef.current &&
-        !suggestionsRef.current.contains(event.target) &&
-        inputRef.current &&
-        !inputRef.current.contains(event.target)
-      ) {
+      if (suggestionsRef.current && !suggestionsRef.current.contains(event.target) && 
+          inputRef.current && !inputRef.current.contains(event.target)) {
         setShowSuggestions(false);
       }
     };
@@ -59,32 +50,26 @@ const Search = () => {
   }, []);
 
   const fetchMovies = async (query, page) => {
-    if (!query.trim()) {
-      setMovies([]);
-      setTotalPages(0);
-      return;
-    }
+    if (!query.trim()) return;
     setLoading(true);
     try {
-      const response = await fetch(
-        `${backendBaseUrl}/api/search?query=${encodeURIComponent(query)}&page=${page}`
-      );
+      const response = await fetch(`${backendBaseUrl}/api/search?query=${encodeURIComponent(query)}&page=${page}`);
       const data = await response.json();
       setMovies(data.results);
       setTotalPages(data.total_pages);
-      if(page<1 || page>data.total_pages){
-        navigate('/*', {replace:true})
-        return
-      }
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching movies:', error);
-      navigate('/*', {replace:true})
+      console.error(error);
       setLoading(false);
     }
   };
 
+  useEffect(()=>{
+    window.scroll({top:0, behavior:"smooth"})
+  },[pageNo])
+
   const handleSearch = () => {
+    if (!searchQuery.trim()) return;
     if (inputRef.current) inputRef.current.blur();
     setShowSuggestions(false);
     navigate(`/search/${encodeURIComponent(searchQuery)}/page/1`);
@@ -93,199 +78,124 @@ const Search = () => {
   const handleInputChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-    setPageNo(1);
-    
     if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
-    
     if (query.trim()) {
       debounceTimeout.current = setTimeout(async () => {
         try {
-          const response = await fetch(
-            `${backendBaseUrl}/api/search?query=${encodeURIComponent(query)}&page=1`
-          );
+          const response = await fetch(`${backendBaseUrl}/api/search?query=${encodeURIComponent(query)}&page=1`);
           const data = await response.json();
           setSuggestions(data.results.slice(0, 6));
           setShowSuggestions(true);
-        } catch (error) {
-          console.error('Error fetching suggestions:', error);
-        }
+        } catch (error) { console.error(error); }
       }, 400);
     } else {
-      setSuggestions([]);
       setShowSuggestions(false);
     }
   };
 
-  const clearSearch = () => {
-    setSearchQuery('');
-    setMovies([]);
-    setSuggestions([]);
-    setShowSuggestions(false);
-    setPageNo(1);
-    setTotalPages(0);
-    navigate('/search');
-  };
-
-  const handlePageChange = (newPage) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      navigate(`/search/${encodeURIComponent(searchQuery)}/page/${newPage}`);
-    }
-    window.scrollTo(0,0)
-  };
-
-  const handleSuggestionClick = (movie) => {
-    navigate(`/movie/${movie.id}`);
-    setShowSuggestions(false);
-    window.scrollTo(0, 0);
-  };
-
   return (
-    <>
+    <div className="bg-[#050505] min-h-screen">
       <Header />
-      <div className="text-white min-h-screen w-[90%] mx-auto bg-black pt-[10vh] px-4 sm:px-8 lg:px-16">
-        <section className="text-center py-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 font-manrope">
-            Find Your Movie
+      <div className="pt-[15vh] px-6 md:px-12 max-w-[1400px] mx-auto">
+        
+        <header className="mb-16">
+          <h1 className="text-5xl md:text-8xl font-manrope font-black italic uppercase tracking-tighter text-white leading-none mb-4">
+            Search <span className="text-red-600 block md:inline">Library</span>
           </h1>
-          <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto font-nunito">
-            Discover your next cinematic adventure. Explore a vast collection of films and dive into captivating stories.
+          <p className="font-nunito text-white/70 text-lg max-w-xl">
+            Access thousands of titles instantly. Filter through trending hits and hidden cinematic gems.
           </p>
-        </section>
+        </header>
 
-        <div className="relative max-w-3xl mx-auto w-full">
-          <div className="flex flex-col sm:flex-row items-center gap-4 relative z-20">
-            <div className="relative flex-1 w-full">
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder="Search your movie..."
-                className="w-full bg-transparent text-white border-b-2 border-white focus:outline-none focus:border-blue-400 px-2 py-2 pr-10 placeholder-gray-400 font-nunito transition-colors duration-300"
-                value={searchQuery}
-                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                onChange={handleInputChange}
-                onFocus={() => searchQuery.trim() && suggestions.length > 0 && setShowSuggestions(true)}
-              />
-              {searchQuery && (
-                <button
-                  onClick={clearSearch}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors duration-200"
-                >
-                  <CloseIcon fontSize="small" />
-                </button>
-              )}
-            </div>
-            <button
-              onClick={handleSearch}
-              className="bg-blue-600 text-white font-manrope px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center gap-2"
-            >
-              <SearchIcon />
-              Search
-            </button>
-
-            {showSuggestions && suggestions.length > 0 && (
-              <div
-                ref={suggestionsRef}
-                className="absolute top-full left-0 w-full bg-white text-black shadow-lg rounded-b-lg mt-1 max-h-60 overflow-y-auto z-50 font-nunito border border-gray-200"
-              >
-                {suggestions.map((movie) => (
-                  <div
-                    key={movie.id}
-                    className="px-4 py-3 hover:bg-gray-100 cursor-pointer flex items-center transition-colors duration-200"
-                    onClick={() => handleSuggestionClick(movie)}
-                  >
-                    {movie.poster_path ? (
-                      <img
-                        src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`}
-                        alt={movie.title}
-                        className="w-12 h-16 object-cover rounded mr-3 flex-shrink-0 shadow-sm"
-                      />
-                    ) : (
-                      <div className="w-12 h-16 bg-gray-300 rounded mr-3 flex items-center justify-center flex-shrink-0">
-                        <MovieCreationIcon style={{ fontSize: '1.5rem', color: 'gray' }} />
-                      </div>
-                    )}
-                    <div className="flex-grow">
-                      <p className="font-semibold font-manrope line-clamp-1 text-gray-800">{movie.title}</p>
-                      <p className="text-sm text-gray-600 font-nunito">
-                        {movie.release_date ? movie.release_date.slice(0, 4) : 'N/A'}
-                        {movie.vote_average != null && ` | Rating: ${Number(movie.vote_average).toFixed(1)}`}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="relative z-50 mb-20">
+          <div className="flex items-end gap-6 border-b-2 border-white/10 focus-within:border-red-600 transition-all duration-500 pb-4">
+            <SearchIcon className="text-white/70 mb-1" fontSize="large" />
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder="TYPE MOVIE TITLE..."
+              className="w-full bg-transparent text-2xl md:text-4xl font-manrope font-bold text-white focus:outline-none placeholder:text-white/70 uppercase tracking-tighter"
+              value={searchQuery}
+              onChange={handleInputChange}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              onFocus={() => searchQuery.trim() && suggestions.length > 0 && setShowSuggestions(true)}
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} className="text-white/70 hover:text-red-600 transition-colors">
+                <CloseIcon />
+              </button>
             )}
           </div>
+
+          {showSuggestions && suggestions.length > 0 && (
+            <div ref={suggestionsRef} className="absolute top-full left-0 w-full bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-xl mt-4 overflow-hidden shadow-2xl">
+              {suggestions.map((movie) => (
+                <div
+                  key={movie.id}
+                  className="px-6 py-4 hover:bg-white/5 cursor-pointer flex items-center border-b border-white/5 transition-colors"
+                  onClick={() => { navigate(`/movie/${movie.id}`); setShowSuggestions(false); }}
+                >
+                  <img src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`} className="w-12 h-16 object-cover rounded bg-zinc-900" alt="" />
+                  <div className="ml-6">
+                    <p className="text-white font-manrope font-bold uppercase text-sm tracking-widest">{movie.title}</p>
+                    <p className="text-white/70 font-nunito text-xs mt-1">{movie.release_date?.slice(0, 4)} — Rating: {movie.vote_average?.toFixed(1)}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        <section className="py-16">
+        <main className="pb-20">
           {loading ? (
-            <div className="flex justify-center items-center h-48">
-              <Tailspin size={50} stroke={5} speed={0.7} color="white" />
-            </div>
+            <div className="flex justify-center py-20"><Tailspin size={50} color="white" /></div>
           ) : movies.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8">
                 {movies.map((movie) => (
                   <Link
                     key={movie.id}
                     to={`/movie/${movie.id}`}
-                    onClick={() => window.scrollTo(0, 0)}
-                    className="relative overflow-hidden rounded-md hover:cursor-pointer transition-transform duration-300 hover:scale-105 group"
+                    className="group relative bg-[#0a0a0a] rounded-xl overflow-hidden border border-white/5 hover:border-red-600 transition-all duration-500"
                   >
-                    <div className="absolute top-0 right-0 bg-black bg-opacity-70 backdrop-blur-md text-white text-xs px-2 py-1 rounded-b-sm flex items-center gap-1 z-10 font-nunito shadow-md">
-                      <StarIcon style={{ fontSize: '1rem' }} />
-                      <p>{movie.vote_average != null ? Number(movie.vote_average).toFixed(1) : 'N/A'}</p>
+                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 text-white text-[10px] font-manrope font-black px-2 py-1 rounded z-20">
+                      <StarIcon className="text-yellow-500" style={{ fontSize: '0.9rem' }} />
+                      <span>{movie.vote_average?.toFixed(1)}</span>
                     </div>
-                    {movie.poster_path ? (
-                      <img
-                        src={baseImage + movie.poster_path}
-                        alt={movie.title}
-                        className="aspect-[2/3] w-full object-cover"
-                      />
-                    ) : (
-                      <div className="aspect-[2/3] w-full flex items-center justify-center bg-gray-800 rounded-md">
-                        <MovieCreationIcon style={{ fontSize: '3rem', color: 'white' }} />
-                      </div>
-                    )}
-                    <p className="absolute bottom-0 w-full text-center text-white font-nunito text-[1rem] px-3 py-1 bg-black/70 backdrop-blur-md truncate">
-                      {movie.title}
-                    </p>
+                    <div className="aspect-[2/3] overflow-hidden">
+                      {movie.poster_path ? (
+                        <img src={baseImage + movie.poster_path} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={movie.title} />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-zinc-900"><MovieCreationIcon className="text-zinc-700" fontSize="large" /></div>
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                      <p className="text-white font-manrope font-black text-sm italic uppercase tracking-tighter truncate">{movie.title}</p>
+                      <p className="text-white/70 font-nunito text-[10px] mt-1 font-bold tracking-widest uppercase">{movie.release_date?.slice(0, 4)}</p>
+                    </div>
                   </Link>
                 ))}
               </div>
 
               {totalPages > 1 && (
-                <div className="flex justify-center items-center gap-6 my-12 font-nunito text-white">
-                  <button
-                    onClick={() => handlePageChange(pageNo - 1)}
-                    disabled={pageNo === 1}
-                    className="px-5 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-300 text-lg font-semibold"
-                  >
-                    <ChevronLeft fontSize='medium' />
-                  </button>
-                  <span className="text-lg sm:text-xl font-nunito font-bold">
-                    {pageNo} / {totalPages}
-                  </span>
-                  <button
-                    onClick={() => handlePageChange(pageNo + 1)}
-                    disabled={pageNo === totalPages}
-                    className="px-5 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed transition-colors duration-300 text-lg font-semibold"
-                  >
-                    <ChevronRight fontSize='medium' />
-                  </button>
+                <div className="flex justify-center mt-20">
+                  <div className="flex items-center gap-8 bg-white/5 backdrop-blur-xl border border-white/10 p-2 rounded-2xl">
+                    <button onClick={() => navigate(`/search/${q}/page/${pageNo-1}`)} disabled={pageNo === 1} className="w-12 h-12 flex items-center justify-center rounded-xl text-white bg-white/5 hover:bg-red-600 disabled:opacity-20 transition-all"><ChevronLeft /></button>
+                    <span className="text-white font-manrope font-black text-lg italic">{pageNo} <span className="text-white/20 mx-1">/</span> {totalPages}</span>
+                    <button onClick={() => navigate(`/search/${q}/page/${pageNo+1}`)} disabled={pageNo === totalPages} className="w-12 h-12 flex items-center justify-center rounded-xl text-white bg-white/5 hover:bg-red-600 disabled:opacity-20 transition-all"><ChevronRight /></button>
+                  </div>
                 </div>
               )}
             </>
           ) : (
-            <p className="text-center text-gray-400 animate-pulse my-20 font-nunito text-xl sm:text-2xl">
-              Start by typing a movie name above...
-            </p>
+            <div className="py-20 text-center border-t border-white/5">
+              <p className="font-manrope font-bold text-white/70 text-4xl md:text-7xl uppercase italic tracking-tighter">Enter keywords to begin</p>
+            </div>
           )}
-        </section>
+        </main>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

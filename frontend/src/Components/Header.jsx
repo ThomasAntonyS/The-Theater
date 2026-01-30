@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
@@ -8,109 +8,80 @@ import Logo from '../assets/Logo.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-    setMenuOpen(false); 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMenuOpen(false);
   };
 
-  const toggleMenu = () => {
-    setMenuOpen(prev => !prev);
-  };
+  const navLinks = [
+    { name: 'Popular', path: '/popular/page/1' },
+    { name: 'Top-Rated', path: '/top_rated/page/1' },
+    { name: 'Trending', path: '/trending/page/1' },
+    { name: 'Upcoming', path: '/upcoming/page/1' },
+  ];
 
   return (
-    <div>
-      <div className="fixed font-manrope top-0 flex items-center justify-between h-[10vh] w-full bg-black bg-opacity-50 backdrop-blur-md z-[100] px-4 md:px-8">
-        {/* Logo */}
-        <div className="flex items-center h-full text-white font-bold">
-          <Link to="/" onClick={scrollToTop} className="h-full flex items-center">
-            <img
-              src={Logo}
-              alt="Logo"
-              className="h-[60%] object-contain"
-            />
-          </Link>
-        </div>
-
-        <div className="hidden ml-[15%] md:flex gap-4 lg:gap-8 text-white text-base lg:text-[1.2rem] items-center">
-          <Link
-            className="hover:opacity-70 hover:underline"
-            to="/popular/page/1"
-            onClick={scrollToTop}
-            title='Popular Movies'
-          >
-            Popular
-          </Link>
-          <span className="text-gray-400">|</span>
-          <Link
-            className="hover:opacity-70 hover:underline"
-            to="/top_rated/page/1"
-            onClick={scrollToTop}
-            title='Top Rated Movies'
-          >
-            Top-Rated
-          </Link>
-          <span className="text-gray-400">|</span>
-          <Link
-            className="hover:opacity-70 hover:underline"
-            to="/trending/page/1"
-            onClick={scrollToTop}
-            title='Trending Movies'
-          >
-            Trending
-          </Link>
-        </div>
-
-        <div className="flex items-center text-white">
-          <div className="hidden md:flex gap-x-2">
+    <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 font-manrope px-4 py-3 md:px-12 md:py-4 flex items-center justify-between ${
+      scrolled ? 'bg-black/40 backdrop-blur-2xl shadow-2xl' : 'bg-transparent'
+    }`}>
+      <div className="flex items-center gap-6 lg:gap-12">
+        <Link to="/" onClick={scrollToTop} className="transition-transform active:scale-95 shrink-0">
+          <img src={Logo} alt="Logo" className="h-7 md:h-10 object-contain" />
+        </Link>
+        
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          {navLinks.map((link) => (
             <Link
-              className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
-              to="/search"
+              key={link.name}
+              to={link.path}
               onClick={scrollToTop}
-              title='Search'
+              className="text-[10px] lg:text-xs font-bold text-white/70 hover:text-white uppercase tracking-wide transition-all whitespace-nowrap"
             >
-              <p className=' h-max my-auto flex flex-row-reverse gap-x-1'>Search <span><SearchIcon style={{ marginTop: "-3px" }} /></span></p>
+              {link.name}
             </Link>
-
-            <Link
-              className="p-2 rounded-full hover:bg-white hover:bg-opacity-25 transition-colors duration-200 text-base sm:text-lg"
-              to="/watchlist"
-              onClick={scrollToTop}
-              title='Watchlist'
-            >
-              <p className=' h-max my-auto flex flex-row-reverse gap-x-2'>WatchList <span><LiveTvIcon style={{ marginTop: "-5px" }} /></span></p>
-            </Link>
-          </div>
-
-          {/* Mobile: Menu Icon */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu} className="p-2 rounded-md bg-black/80 hover:bg-black ">
-              Menu {(menuOpen)? <KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
-            </button>
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <div className="fixed font-manrope top-[10vh] left-0 w-full bg-black bg-opacity-90 backdrop-blur-sm z-[90] flex flex-col items-center text-white py-4 gap-4 md:hidden">
-          <Link to="/" onClick={scrollToTop} className="hover:underline text-lg">Home</Link>
-          <Link to="/popular/page/1" onClick={scrollToTop} className="hover:underline text-lg">Popular</Link>
-          <Link to="/top_rated/page/1" onClick={scrollToTop} className="hover:underline text-lg">Top-Rated</Link>
-          <Link to="/upcoming/page/1" onClick={scrollToTop} className="hover:underline text-lg">Upcoming</Link>
-          <Link to="/trending/page/1" onClick={scrollToTop} className="hover:underline text-lg">Trending</Link>
-          <Link to="/search" onClick={scrollToTop} className="hover:underline text-lg flex items-center gap-x-1">
-            <SearchIcon fontSize="small" /> Search
-          </Link>
-          <Link to="/watchlist" onClick={scrollToTop} className="hover:underline text-lg flex items-center gap-x-1">
-            <LiveTvIcon fontSize="small" /> Watchlist
-          </Link>
-        </div>
-      )}
-    </div>
+      <div className="flex items-center gap-2 md:gap-4">
+        <Link to="/search" onClick={scrollToTop} className="p-2 md:p-2.5 text-white/90 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all">
+          <SearchIcon fontSize="small" />
+        </Link>
+        
+        <Link to="/watchlist" onClick={scrollToTop} className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 md:px-6 md:py-2.5 rounded-xl text-[10px] md:text-xs font-bold tracking-tighter hover:bg-red-600 hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+          <LiveTvIcon fontSize="small" className="scale-75 md:scale-100" />
+          WATCHLIST
+        </Link>
+
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white bg-white/10 rounded-xl font-manrope text-sm flex items-center gap-1 px-3">
+          MENU {menuOpen ? <KeyboardArrowUpIcon fontSize="small" /> : <KeyboardArrowDownIcon fontSize="small" />}
+        </button>
+      </div>
+
+      <div className={`absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-3xl border-t border-white/5 flex flex-col p-8 gap-6 md:hidden transition-all duration-500 origin-top font-manrope ${
+        menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
+      }`}>
+        <Link to="/" onClick={scrollToTop} className="text-3xl font-bold text-white/70 hover:text-white transition-colors lowercase italic tracking-tighter">Home</Link>
+        {navLinks.map(link => (
+          <Link key={link.name} to={link.path} onClick={scrollToTop} className="text-3xl font-bold text-white/30 hover:text-white transition-colors lowercase italic tracking-tighter">{link.name}</Link>
+        ))}
+        <div className="h-[1px] w-full bg-white/10 my-2" />
+        <Link to="/search" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 text-white/70 font-bold rounded-2xl text-lg italic border border-white/10">
+           <SearchIcon /> SEARCH
+        </Link>
+        <Link to="/watchlist" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 bg-white text-black font-bold rounded-2xl text-lg italic">
+           <LiveTvIcon /> WATCHLIST
+        </Link>
+      </div>
+    </nav>
   );
 };
 

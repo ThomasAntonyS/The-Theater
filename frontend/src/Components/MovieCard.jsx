@@ -9,8 +9,8 @@ const MovieCard = ({ title, url, navLink }) => {
 
   useEffect(() => {
     const storageKey = title;
-
     const cachedData = sessionStorage.getItem(storageKey);
+    
     if (cachedData) {
       setMovies(JSON.parse(cachedData));
     } else {
@@ -24,38 +24,61 @@ const MovieCard = ({ title, url, navLink }) => {
           console.log(error);
         }
       };
-
       fetchMovie();
     }
   }, [title, url]);
 
-  function handleClick(e, navLink) {
+  const handleClick = (e, navLink) => {
     e.preventDefault();
     navigate(navLink);
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
-  }
+  };
 
   return (
-    <div data-aos="fade-right" data-aos-duration="1000" className='w-[95vw] mx-auto mb-10 px-2'>
+    <section className='w-full max-w-[1400px] mx-auto mb-16 px-4 md:px-8'>
       {movies.length > 0 && (
         <>
-          <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center w-full'>
-            <p className='text-2xl sm:text-3xl text-white font-manrope mb-2 sm:mb-0'>{title}</p>
+          <div className='flex items-end justify-between mb-2 border-b border-white/5 pb-4'>
+            <div className='flex items-center gap-4'>
+              <div className='w-1 h-8 md:h-10 bg-red-600 rounded-full' />
+              <h2 className='text-3xl md:text-5xl text-white font-manrope font-black italic tracking-tighter uppercase'>
+                {title}
+              </h2>
+            </div>
+
             {navLink && (
-              <Link className='hidden sm:flex text-white font-nunito hover:border-b border-white' onClick={e => handleClick(e, navLink)}>
-                Browse Full Collection
-                <span className='flex my-auto h-max'><KeyboardArrowRightIcon style={{ margin:"auto", }} fontSize='small'/></span>
+              <Link 
+                className='hidden md:flex items-center gap-2 text-white/70 font-manrope font-bold text-[10px] tracking-[0.2em] uppercase hover:text-white transition-all group'
+                onClick={e => handleClick(e, navLink)}
+              >
+                Explore All
+                <span className='bg-white/5 p-1 rounded-md group-hover:bg-red-600 group-hover:text-white transition-colors'>
+                    <KeyboardArrowRightIcon fontSize='small'/>
+                </span>
               </Link>
             )}
           </div>
 
-          <MovieSlider movies={movies} />
+          <div className='relative'>
+             <MovieSlider movies={movies} />
+          </div>
+
+          {navLink && (
+            <div className='md:hidden mt-4'>
+              <Link 
+                className='flex items-center justify-center w-full py-3 bg-white/5 border border-white/10 rounded-xl text-white font-manrope font-bold text-xs tracking-widest uppercase active:scale-95 transition-transform'
+                onClick={e => handleClick(e, navLink)}
+              >
+                Browse Full Collection
+              </Link>
+            </div>
+          )}
         </>
       )}
-    </div>
+    </section>
   );
 };
 

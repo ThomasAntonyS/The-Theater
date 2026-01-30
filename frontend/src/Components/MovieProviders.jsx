@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { FiArrowUpRight } from "react-icons/fi";
 
 const MovieProviders = ({ movieId }) => {
     const [providers, setProviders] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     const baseImage = 'https://image.tmdb.org/t/p/original';
 
@@ -12,32 +12,22 @@ const MovieProviders = ({ movieId }) => {
             try {
                 setLoading(true);
                 const response = await fetch(`${import.meta.env.VITE_API_BASE}/api/movie/${movieId}/providers`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
                 const data = await response.json();
                 const userRegion = "IN"; 
                 if (data.results && data.results[userRegion]) {
                     setProviders(data.results[userRegion]);
-                } else {
-                    setProviders(null);
                 }
             } catch (e) {
-                setError(e);
-                console.error("Failed to fetch movie providers:", e);
+                console.error("Provider Error:", e);
             } finally {
                 setLoading(false);
             }
         };
 
-        if (movieId) {
-            fetchProviders();
-        }
+        if (movieId) fetchProviders();
     }, [movieId]);
 
-    if (!providers || (!providers.flatrate && !providers.rent && !providers.buy)) {
-        return null;
-    }
+    if (!providers || (!providers.flatrate && !providers.rent && !providers.buy)) return null;
 
     const allProviders = [
         ...(providers.flatrate || []),
@@ -45,50 +35,60 @@ const MovieProviders = ({ movieId }) => {
         ...(providers.buy || [])
     ].reduce((acc, current) => {
         const x = acc.find(item => item.provider_id === current.provider_id);
-        if (!x) {
-            return acc.concat([current]);
-        } else {
-            return acc;
-        }
+        return !x ? acc.concat([current]) : acc;
     }, []);
 
-    if (allProviders.length === 0) {
-        return null;
-    }
+    if (allProviders.length === 0) return null;
 
     return (
-        <div className='relative mb-16 w-full px-4 sm:px-8 lg:px-12 mx-auto' data-aos="fade-right" data-aos-duration="1000">
-            <p className='text-white text-2xl font-manrope sm:text-3xl md:text-4xl mb-6'>
-                Where to Watch
-            </p>
+        <section className="relative w-full py-12 px-6 md:px-12 max-w-[1400px] mx-auto">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 border-l-4 border-red-600 pl-6">
+                <div>
+                    <p className="font-manrope font-bold text-white/70 text-[10px] tracking-[0.1em] uppercase mb-1">
+                        Availability
+                    </p>
+                    <h2 className="text-3xl md:text-5xl font-manrope font-black italic uppercase tracking-tighter text-white">
+                        Where to <span className="text-red-600">Stream</span>
+                    </h2>
+                </div>
 
-            <div className='flex overflow-x-auto py-2 gap-4'>
-                {allProviders.map((provider) => (
-                    <div key={provider.provider_id} className="flex-shrink-0 text-white text-center flex flex-col items-center w-24 sm:w-28">
-                        <img
-                            src={baseImage + provider.logo_path}
-                            alt={provider.provider_name}
-                            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover shadow-lg transform transition duration-300 hover:scale-110 border-2 border-transparent hover:border-blue-500"
-                        />
-                        <p className="text-xs sm:text-sm mt-2 font-nunito line-clamp-2">{provider.provider_name}</p>
-                    </div>
-                ))}
-            </div>
-            
-            {providers.link && (
-                <div className="mt-12 text-center sm:text-left">
+                {providers.link && (
                     <a
                         href={providers.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 transition-colors duration-300 font-manrope text-lg sm:text-xl inline-flex items-center group"
+                        className="flex items-center gap-2 text-white/70 hover:text-red-600 font-manrope font-black text-[10px] uppercase tracking-widest transition-all duration-300 group"
                     >
-                        View all providers on JustWatch
-                        <svg className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        Detailed Info via JustWatch 
+                        <FiArrowUpRight className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                     </a>
-                </div>
-            )}
-        </div>
+                )}
+            </div>
+
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6">
+                {allProviders.map((provider) => (
+                    <div 
+                        key={provider.provider_id} 
+                        className="group relative aspect-square bg-white/[0.03] border border-white/5 rounded-2xl p-3 flex items-center justify-center transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-2 shadow-2xl"
+                        title={provider.provider_name}
+                    >
+                        <img
+                            src={baseImage + provider.logo_path}
+                            alt={provider.provider_name}
+                            className="w-full h-full object-contain rounded-xl grayscale group-hover:grayscale-0 transition-all duration-500"
+                        />
+                        
+                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 translate-y-full opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none z-20">
+                            <p className="bg-white text-black text-[9px] font-manrope font-black uppercase tracking-tighter px-2 py-1 rounded-sm whitespace-nowrap shadow-xl">
+                                {provider.provider_name}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            
+            <div className="mt-10 h-[1px] w-full bg-gradient-to-r from-white/10 via-transparent to-transparent" />
+        </section>
     );
 };
 

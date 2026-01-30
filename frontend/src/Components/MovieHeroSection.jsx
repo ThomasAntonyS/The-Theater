@@ -1,64 +1,77 @@
-import React from 'react';
 import PlaceHolderImage from '../assets/placeholder_movie.png'
 import { RiMovieLine } from "react-icons/ri";
+import { FiCalendar, FiStar } from "react-icons/fi";
 
 const MovieHeroSection = ({ item, handleWatchlist }) => {
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
+    if (!dateString) return "Release Unknown";
+    return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'short',
+      month: 'long',
       day: 'numeric',
     });
   };
 
   return (
-    <section className="relative h-[70vh] sm:h-[90vh] w-screen text-white mb-16 overflow-hidden">
-      {/* Image */}
-      <img
-          src={
-          item.backdrop_path
-            ? `https://image.tmdb.org/t/p/original/${item.backdrop_path}`
-            : PlaceHolderImage
-        }
-        alt={item.title}
-        className={`absolute inset-0 h-max sm:h-full w-full sm:object-cover ${item.backdrop_path?"sm:object-top":"sm:object-center"} sm:aspect-auto mt-[10vh] sm:mt-0`}
-      />
+    <section className="relative h-screen w-full overflow-hidden bg-black font-manrope">
+      <div className="absolute inset-0 z-0">
+        <img
+          src={item.backdrop_path ? `https://image.tmdb.org/t/p/original/${item.backdrop_path}` : PlaceHolderImage}
+          alt={item.title}
+          className="h-full w-full object-cover opacity-70 md:opacity-60 transition-transform duration-[10s] scale-105 hover:scale-110"
+        />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#050505] md:bg-gradient-to-r md:from-[#050505] md:via-[#050505]/40 md:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
+      </div>
 
-      <div className="absolute bottom-5 w-full z-10 flex flex-col px-4 sm:px-6 md:px-12 lg:px-14 ">
-        <div className="flex flex-col flex-grow">
-          <div className="flex flex-col sm:justify-between gap-4">
-            <h2 className="font-manrope text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow text-left">
-              {item.original_title || item.title}
-            </h2>
-            <h3 className=" text-md sm:text-lg md:text-xl font-nunito  line-clamp-2">{item.overview}</h3>
-          </div>
-        </div>
+      <div className="relative z-10 h-full max-w-[1400px] mx-auto flex flex-col justify-end md:justify-center px-6 md:px-12 lg:px-16 pb-12 md:pb-0">
+        <div 
+          className="max-w-4xl space-y-4 md:space-y-8" 
+          data-aos="fade-up" 
+          data-aos-duration="1000"
+        >
 
-        <div className="mt-3 py-2 text-gray-300 text-sm rounded-md">
-          <div className="flex flex-col md:flex-row md:justify-between gap-4">
-            <div className="flex flex-wrap text-md sm:text-lg md:text-xl align-middle gap-4 font-nunito">
-              <p className="h-max my-auto">
-                <span className="text-red-500 font-semibold">Release Date:</span>{' '}
-                {formatDate(item.release_date)}
-              </p>
-              <p className="h-max my-auto text-md sm:text-lg md:text-xl">
-                <span className="text-red-500 font-semibold">Rating:</span>{' '}
-                <span className="text-yellow-400">{item.vote_average?.toFixed(1)}</span>
-              </p>
+          <div className="flex items-center gap-4 md:gap-6 text-[10px] md:text-xs font-black tracking-[0.1em] uppercase">
+            <div className="flex items-center gap-2 text-red-300 backdrop-blur-md px-2 py-1 rounded md:bg-transparent md:p-0">
+              <FiCalendar />
+              <span>{formatDate(item.release_date)}</span>
             </div>
+            <div className="flex items-center gap-2 text-yellow-300 backdrop-blur-md px-2 py-1 rounded md:bg-transparent md:p-0">
+              <FiStar />
+              <span>{item.vote_average?.toFixed(1)} / 10</span>
+            </div>
+          </div>
 
+          <h1
+            style={{ textWrap: 'balance' }}
+            className="text-4xl sm:text-6xl font-black italic uppercase tracking-tighter text-white leading-[0.9] md:leading-[0.85]"
+          >
+            {item.original_title || item.title}
+          </h1>
+
+          <p className="font-nunito text-sm md:text-xl text-white/70 md:text-white/60 max-w-xl leading-relaxed italic font-light border-l-2 border-red-600/50 pl-4 md:pl-6 line-clamp-3 md:line-clamp-none">
+            {item.overview}
+          </p>
+
+          <div className="pt-2 md:pt-6">
             <button
               onClick={handleWatchlist}
-              title='Add to your watchlist'
-              className="flex h-max w-max my-auto text-md sm:text-lg md:text-xl bg-red-600 hover:bg-red-700 font-nunito text-white px-4 py-2 rounded-md sm:w-max"
+              className="group relative w-max sm:w-auto inline-flex items-center justify-center gap-4 bg-white text-black px-5 py-3 rounded-md font-black uppercase tracking-wide text-[10px] md:text-xs transition-all duration-300 hover:bg-red-600 hover:text-white md:hover:pr-12"
             >
-              <span className='h-max my-auto mx-2'><RiMovieLine size={23} /></span>Add to Watchlist 
+              <RiMovieLine size={20} />
+              <span>Add to Watchlist</span>
+              <div className="hidden md:block absolute right-4 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
+                &rarr;
+              </div>
             </button>
           </div>
         </div>
+      </div>
+      
+      <div className="hidden md:flex absolute bottom-10 left-10 flex-col items-start gap-2 opacity-70">
+        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white">Scroll</span>
+        <div className="w-12 h-[1px] bg-gradient-to-r from-white to-transparent" />
       </div>
     </section>
   );
