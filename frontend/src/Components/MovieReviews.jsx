@@ -52,7 +52,7 @@ const Reviews = ({ movieId }) => {
                 {reviews.map((review) => (
                     <div 
                         key={review.id} 
-                        className="min-w-[320px] md:min-w-[400px] snap-start p-8 rounded-2xl border border-white/5 bg-white/[0.02] space-y-4"
+                        className="min-w-[320px] md:min-w-[400px] snap-start p-8 rounded-2xl border border-white/50 bg-white/[0.02] space-y-4"
                     >
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold">
