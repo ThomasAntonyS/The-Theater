@@ -120,31 +120,24 @@ app.get('/api/movies/trending/page/:page_no', async (req, res) => {
 
 app.get('/api/movie/:id', async (req, res) => {
     const { id } = req.params;
-
     try {
-        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_API_KEY}&language=en-US&include_adult=false`;
+        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_API_KEY}&append_to_response=credits`;
         const response = await axios.get(url);
-        res.json(response.data);
-    } catch (error) {
-        console.error(`Error fetching movie details for ID ${id}:`, error.message);
-        if (error.response && error.response.status === 404) {
-            res.status(404).json({ success: false, error: "Movie not found" });
-        } else {
-            res.status(500).json({ error: "Failed to fetch movie details." });
-        }
-    }
-});
+        
+        const movieData = response.data;
 
-app.get('/api/movie/:id/similar', async (req, res) => {
-    const { id } = req.params;
-
-    try {
-        const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${TMDB_API_KEY}&language=en-US&page=1`;
-        const response = await axios.get(url);
-        res.json(response.data);
+        res.json({
+            ...movieData,
+            credits: {
+                cast: movieData.credits.cast.slice(0, 15),
+                crew: movieData.credits.crew.filter(member => 
+                    ['Director', 'Producer', 'Screenplay', 'Writer'].includes(member.job)
+                )
+            }
+        });
     } catch (error) {
-        console.error(`Error fetching similar movies for ID ${id}:`, error.message);
-        res.status(500).json({ error: "Failed to fetch similar movies." });
+        console.error(`Error fetching movie details for ${id}:`, error.message);
+        res.status(500).json({ error: 'Failed to fetch movie details with credits.' });
     }
 });
 
@@ -224,7 +217,7 @@ app.get('/api/collection/:collectionId', async (req, res) => {
     }
 });
 
-app.get('/api/cast-movies/:personId', async (req, res) => {
+app.get('/api/person-filmography/:personId', async (req, res) => {
     const { personId } = req.params;
     try {
         const personDetailsUrl = `https://api.themoviedb.org/3/person/${personId}?api_key=${TMDB_API_KEY}`;
@@ -235,17 +228,69 @@ app.get('/api/cast-movies/:personId', async (req, res) => {
             axios.get(movieCreditsUrl)
         ]);
         
-        const personData = personRes.data;
-        const movieCreditsData = movieCreditsRes.data;
-
         res.json({
-            name: personData.name,
-            cast: movieCreditsData.cast
+            name: personRes.data.name,
+            cast: movieCreditsRes.data.cast,
+            crew: movieCreditsRes.data.crew
         });
-
     } catch (error) {
-        console.error(`Error fetching data for cast member ${personId}:`, error.message);
-        res.status(500).json({ error: 'Failed to fetch cast data.' });
+        res.status(500).json({ error: 'Failed to fetch person data.' });
+    }
+});
+
+app.get('/api/movie/:id/reviews', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const url = `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${TMDB_API_KEY}`;
+        const response = await axios.get(url);
+        
+        res.json({
+            results: response.data.results.map(review => ({
+                id: review.id,
+                author: review.author,
+                content: review.content,
+                rating: review.author_details?.rating
+            }))
+        });
+    } catch (error) {
+        console.error(`Error fetching reviews for movie ${id}:`, error.message);
+        res.status(500).json({ error: 'Failed to fetch reviews.' });
+    }
+});
+
+app.get('/api/movie/:id/images', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const url = `https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`;
+        const response = await axios.get(url);
+        
+        res.json({
+            backdrops: response.data.backdrops
+        });
+    } catch (error) {
+        console.error(`Error fetching images for movie ${id}:`, error.message);
+        res.status(500).json({ error: 'Failed to fetch images.' });
+    }
+});
+
+app.get('/api/movie/:id/recommendations', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDB_API_KEY}`;
+        const response = await axios.get(url);
+        
+        res.json({
+            results: response.data.results.map(movie => ({
+                id: movie.id,
+                title: movie.title,
+                poster_path: movie.poster_path,
+                release_date:movie.release_date,
+                vote_average: movie.vote_average
+            }))
+        });
+    } catch (error) {
+        console.error(`Error fetching recommendations for movie ${id}:`, error.message);
+        res.status(500).json({ error: 'Failed to fetch recommendations.' });
     }
 });
 

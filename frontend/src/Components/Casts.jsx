@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 function Casts({ movieId }) {
     const [casts, setCasts] = useState([]);
-    const navigate = useNavigate();
     const scrollRef = useRef(null);
     const [atStart, setAtStart] = useState(true);
     const [atEnd, setAtEnd] = useState(false);
 
-    const baseImage = 'https://image.tmdb.org/t/p/w342'; // Higher quality for the dossier look
+    const baseImage = 'https://image.tmdb.org/t/p/w342';
 
     const fetchCast = async () => {
         try {
@@ -57,7 +56,7 @@ function Casts({ movieId }) {
     if (casts.length === 0) return null;
 
     return (
-        <section className="relative w-full py-12 bg-transparent overflow-hidden">
+        <section className="relative w-full bg-transparent overflow-hidden py-16">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
                 <div className="flex items-end justify-between mb-8 border-l-4 border-red-600 pl-6">
                     <div>
@@ -103,7 +102,7 @@ function Casts({ movieId }) {
                                     <img
                                         src={baseImage + cast.profile_path}
                                         alt={cast.original_name}
-                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                                     />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center">
@@ -111,8 +110,8 @@ function Casts({ movieId }) {
                                     </div>
                                 ) }
                                 
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4">
-                                    <p className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-widest mb-1">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4">
+                                    <p className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-wide mb-1">
                                         Role
                                     </p>
                                     <p className="text-white font-nunito text-xs font-bold leading-tight line-clamp-2">

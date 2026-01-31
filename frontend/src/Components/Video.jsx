@@ -32,7 +32,7 @@ const Video = ({ id }) => {
     if (!loading && videoData.length === 0) return null;
 
     return (
-        <section className="relative w-full py-12 px-6 md:px-12 max-w-[1400px] mx-auto overflow-hidden">
+        <section className="relative w-full px-6 md:px-12 max-w-[1400px] mx-auto overflow-hidden py-16">
             <div className="flex items-end justify-between mb-10 border-l-4 border-red-600 pl-6">
                 <div>
                     <p className="font-manrope font-bold text-white/70 text-[10px] tracking-[0.1em] uppercase mb-1">
@@ -42,7 +42,7 @@ const Video = ({ id }) => {
                         Trailer & <span className="text-red-600">Video's</span>
                     </h2>
                 </div>
-                <div className="hidden md:flex items-center gap-2 text-white/20 font-manrope text-[10px] uppercase tracking-widest">
+                <div className="hidden md:flex items-center gap-2 text-white/70 font-manrope text-[10px] uppercase tracking-widest">
                     <FiYoutube /> <span>YouTube Originals</span>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
@@ -55,13 +55,13 @@ const CollectionPage = () => {
                 <div className="relative z-10 pt-[15vh] px-6 md:px-12 max-w-[1400px] mx-auto">
                     {collection && (
                         <header className="mb-16">
-                            <p className="font-manrope font-bold text-red-400 text-[10px] tracking-[0.3em] uppercase mb-4">
+                            <p className="font-manrope font-bold text-red-400 text-[10px] tracking-[0.2em] uppercase mb-4">
                                 Complete Collection
                             </p>
                             <h1 className="text-5xl md:text-8xl font-manrope font-black italic uppercase tracking-tighter text-white leading-none">
                                 {collection.name.split(' - ')[0]}
                             </h1>
-                            <p className="font-nunito text-white/70 text-lg md:text-xl mt-4 max-w-2xl">
+                            <p className="font-nunito text-white/70 text-lg md:text-xl mt-4 max-w-5xl">
                                 {collection.overview || `Explore the complete cinematic journey of the ${collection.name}.`}
                             </p>
                         </header>

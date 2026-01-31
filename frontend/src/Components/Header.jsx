@@ -34,7 +34,7 @@ const Header = () => {
     }`}>
       <div className="flex items-center gap-6 lg:gap-12">
         <Link to="/" onClick={scrollToTop} className="transition-transform active:scale-95 shrink-0">
-          <img src={Logo} alt="Logo" className="h-7 md:h-10 object-contain" />
+          <img src={Logo} alt="Logo" className="h-10 object-contain" />
         </Link>
         
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -43,7 +43,7 @@ const Header = () => {
               key={link.name}
               to={link.path}
               onClick={scrollToTop}
-              className="text-[10px] lg:text-xs font-bold text-white/70 hover:text-white uppercase tracking-wide transition-all whitespace-nowrap"
+              className="text-[10px] lg:text-xs font-bold italic text-white/70 hover:text-white uppercase tracking-wider transition-all whitespace-nowrap"
             >
               {link.name}
             </Link>
@@ -52,16 +52,16 @@ const Header = () => {
       </div>
 
       <div className="flex items-center gap-2 md:gap-4">
-        <Link to="/search" onClick={scrollToTop} className="p-2 md:p-2.5 text-white/90 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all">
+        <Link to="/search" onClick={scrollToTop} className="p-2 md:p-2.5 text-white hover:text-white bg-white/20 hover:bg-white/10 rounded-xl transition-all">
           <SearchIcon fontSize="small" />
         </Link>
         
-        <Link to="/watchlist" onClick={scrollToTop} className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 md:px-6 md:py-2.5 rounded-xl text-[10px] md:text-xs font-bold tracking-tighter hover:bg-red-600 hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+        <Link to="/watchlist" onClick={scrollToTop} className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 md:px-6 md:py-2.5 rounded-xl text-[10px] md:text-xs font-bold tracking-tighter hover:bg-red-600 hover:text-white transition-all">
           <LiveTvIcon fontSize="small" className="scale-75 md:scale-100" />
           WATCHLIST
         </Link>
 
-        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white bg-white/10 rounded-xl font-manrope text-sm flex items-center gap-1 px-3">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white bg-white/20 rounded-xl font-manrope text-sm flex items-center gap-1 px-3">
           MENU {menuOpen ? <KeyboardArrowUpIcon fontSize="small" /> : <KeyboardArrowDownIcon fontSize="small" />}
         </button>
       </div>

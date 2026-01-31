@@ -11,6 +11,9 @@ import 'ldrs/react/Tailspin.css';
 import FloatingPopup from '../Components/FloatingPopup';
 import MovieDescription from '../Components/MovieDescription';
 import MovieProviders from '../Components/MovieProviders';
+import Reviews from '../Components/MovieReviews';
+import Photos from '../Components/MoviePhotos';
+import Recommendations from '../Components/MovieRecommendations';
 
 const MovieMain = () => {
   const { id } = useParams();
@@ -26,7 +29,7 @@ const MovieMain = () => {
 
   useEffect(() => {
     if (item) {
-      document.title = item.original_title + ` - ${item.tagline}` || item.title + ` - ${item.tagline}` || 'Movie App';
+      document.title = (item.original_title || item.title) + (item.tagline ? ` - ${item.tagline}` : '');
     }
   }, [item]);
 
@@ -40,7 +43,7 @@ const MovieMain = () => {
       const res = await fetch(`${import.meta.env.VITE_API_BASE}/api/movie/${id}`);
       const data = await res.json();
       
-      if (res.status === 404 || res.status === 500) {
+      if ((res.status === 404 || res.status === 500) && !data) {
         navigate('/*');
         return;
       }
@@ -95,13 +98,25 @@ const MovieMain = () => {
             item={item}
             handleWatchlist={handleWatchlist}
           />
+          
           <MovieDescription item={item}/>
+
+          <Photos movieId={id} />
+          
           <Video id={id}/>
+          
           <MovieProviders movieId={id}/>
+          
           <Casts movieId={id} />
+          
+          <Reviews movieId={id} />
+
+          <Recommendations movieId={id} />
+
           <Footer />
         </div>
       )}
+
       {popup.isOpen && (
         <FloatingPopup
           message={popup.message}

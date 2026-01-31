@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import StarIcon from '@mui/icons-material/Star';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PublicIcon from '@mui/icons-material/Public';
 
 const MovieDescription = ({ item }) => {
+  const [showAllStudios, setShowAllStudios] = useState(false);
 
   if (!item) return null;
 
@@ -20,20 +21,27 @@ const MovieDescription = ({ item }) => {
     runtime,
     vote_average,
     production_companies,
-    belongs_to_collection
+    belongs_to_collection,
+    credits
   } = item;
 
   const imageUrl = `https://image.tmdb.org/t/p/w780${poster_path}`;
   const country = production_countries?.map((c) => c.name).join(', ') || 'N/A';
   const year = release_date ? new Date(release_date).getFullYear() : 'N/A';
   const language = spoken_languages?.map((l) => l.english_name).join(', ') || 'N/A';
+  const director = credits?.crew?.find(person => person.job === "Director");
 
-  const handleGenreClick = () => {
+  const studioLimit = 3;
+  const companiesWithLogos = production_companies?.filter(c => c.logo_path) || [];
+  const visibleStudios = companiesWithLogos.slice(0, studioLimit);
+  const extraStudios = companiesWithLogos.slice(studioLimit);
+
+  const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <section className="relative w-full py-16 px-6 md:px-12 bg-transparent text-white overflow-hidden">
+    <section className="relative w-full px-6 md:px-12 bg-transparent text-white overflow-hidden py-16">
       <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-12 xl:gap-20">
         
         <div className="hidden lg:block w-[400px] flex-shrink-0" data-aos="zoom-out" data-aos-duration="1200">
@@ -61,15 +69,35 @@ const MovieDescription = ({ item }) => {
             
             <h1
               style={{ textWrap: 'balance' }}
-              className="font-manrope font-black italic uppercase tracking-tighter transition-all duration-500 leading-[0.9] text-4xl md:text-5xl lg:text-6xl"
+              className="font-manrope font-black italic uppercase tracking-tighter transition-all duration-500 leading-[0.9] text-4xl md:text-5xl lg:text-7xl"
             >
               {title}
             </h1>
             
             {tagline && (
-              <p className="text-xl md:text-2xl font-nunito font-light text-white/70 italic tracking-wide">
+              <p className="text-xl md:text-2xl font-nunito font-light text-white/70 italic tracking-wide pt-2">
                 "{tagline}"
               </p>
+            )}
+
+            {director && (
+              <div className="pt-2">
+                <p className="text-[10px] font-manrope font-black text-white uppercase tracking-[0.1em] mb-1">Directed By -</p>
+                <Link 
+                  to={`/cast/${director.id}`} 
+                  state={{ job: 'Director' }}
+                  onClick={handleScrollTop}
+                  className="group inline-flex flex-col text-xl md:text-2xl font-manrope font-black italic uppercase transition-colors"
+                >
+                  <span className="flex gap-2">
+                    <span>{director.name.split(" ")[0]}</span>
+                    {director.name.split(" ").length > 1 && (
+                      <span className="text-red-600">{director.name.split(" ").slice(1).join(" ")}</span>
+                    )}
+                  </span>
+                  <span className="h-0.5 w-0 bg-red-600 mt-1 transition-all duration-500 group-hover:w-[70%]" />
+                </Link>
+              </div>
             )}
           </header>
 
@@ -83,8 +111,8 @@ const MovieDescription = ({ item }) => {
                 <Link 
                   key={genre.id} 
                   to={`/genre/${genre.id}/page/1`}
-                  onClick={handleGenreClick}
-                  className="px-4 py-2 rounded-full border border-white/10 bg-white/5 font-manrope font-bold text-[10px] uppercase tracking-widest hover:bg-red-600 hover:border-red-600 transition-all duration-300"
+                  onClick={handleScrollTop}
+                  className="px-4 py-2 rounded-full border border-white/10 bg-white/5 font-manrope font-bold text-[10px] uppercase tracking-wide hover:bg-red-600 hover:border-red-600 transition-all duration-300"
                 >
                   {genre.name}
                 </Link>
@@ -112,30 +140,53 @@ const MovieDescription = ({ item }) => {
             {belongs_to_collection && (
               <Link 
                 to={`/collection/${belongs_to_collection.id}`}
-                onClick={handleGenreClick}
+                onClick={handleScrollTop}
                 className="group p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all"
               >
-                <p className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-[0.2em] mb-1">Part of a Series</p>
+                <p className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-[0.1em] mb-1">Part of a Series</p>
                 <p className="text-lg font-manrope font-black italic uppercase group-hover:translate-x-2 transition-transform">{belongs_to_collection.name} &rarr;</p>
               </Link>
             )}
           </div>
 
-          {production_companies?.some(c => c.logo_path) && (
+          {companiesWithLogos.length > 0 && (
             <div className="pt-8">
               <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em] mb-6">Studio Partners</p>
-              <div className="flex flex-wrap gap-8 items-center opacity-40 hover:opacity-100 transition-opacity duration-500">
-                {production_companies.map((company) =>
-                  company.logo_path ? (
-                    <img
-                      key={company.id}
-                      src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
-                      alt={company.name}
-                      className="h-8 md:h-10 object-contain invert"
-                    />
-                  ) : null
+              <div className="flex flex-wrap gap-8 items-center transition-all">
+                {visibleStudios.map((company) => (
+                  <img
+                    key={company.id}
+                    src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
+                    alt={company.name}
+                    className="h-7 md:h-9 object-contain invert opacity-70 hover:opacity-100 transition-opacity"
+                  />
+                ))}
+                
+                {!showAllStudios && extraStudios.length > 0 && (
+                  <button 
+                    onClick={() => setShowAllStudios(true)}
+                    className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-widest hover:text-white transition-colors"
+                  >
+                    + {extraStudios.length} More
+                  </button>
                 )}
               </div>
+
+              {showAllStudios && (
+                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 animate-in fade-in slide-in-from-top-2 duration-500">
+                  {extraStudios.map((company) => (
+                    <span key={company.id} className="text-[11px] font-manrope font-bold text-white/60 uppercase tracking-tight">
+                      {company.name}
+                    </span>
+                  ))}
+                  <button 
+                    onClick={() => setShowAllStudios(false)}
+                    className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-wide underline"
+                  >
+                    Show Less
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
