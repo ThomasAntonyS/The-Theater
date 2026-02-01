@@ -108,7 +108,7 @@ const Search = () => {
         </header>
 
         <div className="relative z-50 mb-20">
-          <div className="flex items-end gap-6 border-b-2 border-white/10 focus-within:border-red-600 transition-all duration-500 pb-4">
+          <div className="flex items-end gap-6 border-b-2 border-white/70 focus-within:border-red-600 transition-all duration-500 pb-4">
             <SearchIcon className="text-white/70 mb-1" fontSize="large" />
             <input
               ref={inputRef}

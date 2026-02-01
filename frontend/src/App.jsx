@@ -55,7 +55,7 @@ function App() {
             />
 
             <Route
-            path={'/cast/:id'}
+            path={'/cast/:id/:job'}
             element={<CastMovies/>}
             />
 

@@ -93,7 +93,7 @@ function Casts({ movieId }) {
                     {casts.map((cast) => (
                         <Link
                             key={cast.id}
-                            to={`/cast/${cast.id}`}
+                            to={`/cast/${cast.id}/cast`}
                             onClick={() => window.scrollTo(0, 0)}
                             className="group flex-shrink-0 w-40 md:w-56"
                         >

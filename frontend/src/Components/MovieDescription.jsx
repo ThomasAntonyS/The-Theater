@@ -84,8 +84,7 @@ const MovieDescription = ({ item }) => {
               <div className="pt-2">
                 <p className="text-[10px] font-manrope font-black text-white uppercase tracking-[0.1em] mb-1">Directed By -</p>
                 <Link 
-                  to={`/cast/${director.id}`} 
-                  state={{ job: 'Director' }}
+                  to={`/cast/${director.id}/director`}
                   onClick={handleScrollTop}
                   className="group inline-flex flex-col text-xl md:text-2xl font-manrope font-black italic uppercase transition-colors"
                 >

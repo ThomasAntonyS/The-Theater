@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
@@ -8,14 +8,13 @@ import StarIcon from '@mui/icons-material/Star';
 import SearchIcon from '@mui/icons-material/Search';
 
 const CastMovies = () => {
-    const { id } = useParams();
-    const location = useLocation();
+    const { id, job } = useParams();
     const [movies, setMovies] = useState([]);
     const [name, setName] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
     
-    const isDirectorMode = location.state?.job === 'Director';
+    const isDirectorMode = job === 'director';
     const baseImage = 'https://image.tmdb.org/t/p/w342';
 
     useEffect(() => {
@@ -59,12 +58,18 @@ const CastMovies = () => {
                         {isDirectorMode ? 'Visionary Director' : 'Spotlight Filmography'}
                     </p>
                     <h1 className="text-5xl md:text-8xl font-manrope font-black italic uppercase tracking-tighter text-white leading-none">
-                        {name || "Artist"}
+                        {name.split(" ")[0]}
+                        {
+                            name.split(" ").length>1?
+                                <span className='text-red-600'> {name.split(" ").slice(1).join(" ")}</span>
+                            :
+                                null
+                        }
                     </h1>
                 </header>
 
                 <div className="relative z-20 mb-16 max-w-2xl">
-                    <div className="flex items-end gap-4 border-b-2 border-white/10 focus-within:border-red-600 transition-all duration-500 pb-2">
+                    <div className="flex items-end gap-4 border-b-2 border-white/70 focus-within:border-red-600 transition-all duration-500 pb-2">
                         <SearchIcon className="text-white/70 mb-1" fontSize="medium" />
                         <input
                             type="text"
