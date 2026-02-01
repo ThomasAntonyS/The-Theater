@@ -1,8 +1,18 @@
 import PlaceHolderImage from '../assets/placeholder_movie.png'
 import { RiMovieLine } from "react-icons/ri";
 import { FiCalendar, FiStar } from "react-icons/fi";
+import { useState, useEffect } from 'react';
 
 const MovieHeroSection = ({ item, handleWatchlist }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const formatDate = (dateString) => {
     if (!dateString) return "Release Unknown";
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -16,7 +26,11 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
     <section className="relative h-screen w-full overflow-hidden bg-black font-manrope">
       <div className="absolute inset-0 z-0">
         <img
-          src={item.backdrop_path ? `https://image.tmdb.org/t/p/original/${item.backdrop_path}` : PlaceHolderImage}
+          src={isMobile ? 
+            item.poster_path?`https://image.tmdb.org/t/p/w500${item.poster_path}` : PlaceHolderImage 
+            : 
+            item.backdrop_path?`https://image.tmdb.org/t/p/original${item.backdrop_path}` : PlaceHolderImage
+          }
           alt={item.title}
           className="h-full w-full object-cover opacity-70 md:opacity-60 transition-transform duration-[10s] scale-105 hover:scale-110"
         />
