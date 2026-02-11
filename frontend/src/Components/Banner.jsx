@@ -69,7 +69,7 @@ const Banner = () => {
     const currentMovie = bannerMovies[count];
 
     return (
-        <div {...swipeHandlers} className="relative h-screen w-full bg-[#050505] overflow-hidden group">
+        <div {...swipeHandlers} className="relative h-[100dvh] sm:h-screen w-full bg-[#050505] overflow-hidden group">
             <div className={`absolute inset-0 transition-all duration-1000 transform ${currentImageLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'}`}>
                 <img 
                     src={isMobile ? currentMovie.poster_image : currentMovie.backdrop_image} 
