@@ -43,7 +43,7 @@ const Header = () => {
               key={link.name}
               to={link.path}
               onClick={scrollToTop}
-              className="text-[10px] lg:text-xs font-bold italic text-white/70 hover:text-white uppercase tracking-wider transition-all whitespace-nowrap"
+              className="text-[10px] lg:text-xs font-bold italic text-white/85 hover:text-white uppercase tracking-wider transition-all whitespace-nowrap"
             >
               {link.name}
             </Link>
@@ -69,12 +69,12 @@ const Header = () => {
       <div className={`absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-3xl border-t border-white/5 flex flex-col p-8 gap-6 md:hidden transition-all duration-500 origin-top font-manrope ${
         menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
       }`}>
-        <Link to="/" onClick={scrollToTop} className="text-3xl font-bold text-white/70 hover:text-white transition-colors lowercase italic tracking-tighter">Home</Link>
+        <Link to="/" onClick={scrollToTop} className="text-3xl font-bold text-white transition-colors lowercase italic tracking-tighter">Home</Link>
         {navLinks.map(link => (
-          <Link key={link.name} to={link.path} onClick={scrollToTop} className="text-3xl font-bold text-white/30 hover:text-white transition-colors lowercase italic tracking-tighter">{link.name}</Link>
+          <Link key={link.name} to={link.path} onClick={scrollToTop} className="text-3xl font-bold text-white transition-colors lowercase italic tracking-tighter">{link.name}</Link>
         ))}
-        <div className="h-[1px] w-full bg-white/10 my-2" />
-        <Link to="/search" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 text-white/70 font-bold rounded-2xl text-lg italic border border-white/10">
+        <div className="h-[1px] w-full bg-white/70 my-2" />
+        <Link to="/search" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 text-white font-bold rounded-2xl text-lg italic border border-white/10">
            <SearchIcon /> SEARCH
         </Link>
         <Link to="/watchlist" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 bg-white text-black font-bold rounded-2xl text-lg italic">

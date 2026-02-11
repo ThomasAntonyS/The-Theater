@@ -115,12 +115,12 @@ const Banner = () => {
                     </p>
 
                     <div className="flex items-center gap-4 pt-4">
-                        <Link to={`/${currentMovie.link}`} className="bg-white text-black p-2 sm:p-4 rounded-full flex items-center gap-3 group/btn hover:bg-red-600 hover:text-white transition-all duration-500 shadow-2xl">
+                        <Link to={`/${currentMovie.link}`} className="bg-white text-black p-2 sm:px-4 sm:py-3 rounded-full flex items-center gap-3 group/btn hover:bg-red-600 hover:text-white transition-all duration-500 shadow-2xl">
                             <PlayCircleOutlineRoundedIcon className="text-[40px] md:text-[54px]" />
-                            <span className="font-manrope font-bold text-xs md:text-sm uppercase tracking-tighter whitespace-nowrap">Start Watching</span>
+                            <span className="font-manrope font-bold text-xs md:text-sm uppercase tracking-tighter whitespace-nowrap">More Deatails</span>
                         </Link>
                         
-                        <Link to={`/${currentMovie.link}`} className="w-11 h-11 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all shrink-0">
+                        <Link to={`/${currentMovie.link}`} className="w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all shrink-0">
                             <InfoOutlinedIcon />
                         </Link>
                     </div>

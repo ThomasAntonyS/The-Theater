@@ -54,10 +54,10 @@ const CastMovies = () => {
             <Header />
             <main className="pt-[15vh] pb-20 px-6 md:px-12 max-w-[1400px] mx-auto">
                 <header className="mb-16 border-l-4 border-red-600 pl-6 md:pl-10">
-                    <p className="font-manrope font-bold text-white/70 text-[10px] tracking-widest uppercase mb-2">
+                    <p className="font-manrope font-bold text-white/70 text-[12px] sm:text-sm tracking-widest uppercase mb-2">
                         {isDirectorMode ? 'Visionary Director' : 'Spotlight Filmography'}
                     </p>
-                    <h1 className="text-5xl md:text-8xl font-manrope font-black italic uppercase tracking-tighter text-white leading-none">
+                    <h1 className="text-3xl md:text-8xl font-manrope font-black italic uppercase tracking-tighter text-white leading-none">
                         {name.split(" ")[0]}
                         {
                             name.split(" ").length>1?

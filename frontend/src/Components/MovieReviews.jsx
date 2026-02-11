@@ -61,7 +61,14 @@ const Reviews = ({ movieId }) => {
                             <div>
                                 <p className="text-sm font-manrope font-black uppercase tracking-wider">{review.author}</p>
                                 <div className="flex text-yellow-500">
-                                    {[...Array(5)].map((_, i) => <StarIcon key={i} sx={{ fontSize: 12 }} />)}
+                                    {
+                                        Math.round(review.rating)==0 ?
+                                        <p>-</p>
+                                        :
+                                        <div>
+                                            {[...Array(Math.round(review.rating/2))].map((_, i) => <StarIcon key={i} sx={{ fontSize: 12 }} />)}
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
