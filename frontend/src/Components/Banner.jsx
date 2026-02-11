@@ -34,7 +34,7 @@ const Banner = () => {
                     backdrop_image: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
                     poster_image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
                     link: `movie/${movie.id}`,
-                    tag: movie.media_type === 'tv' ? 'Series' : 'Feature',
+                    tag: movie.media_type === 'tv' ? 'Series' : 'Featured',
                 }));
                 setBannerMovies(topMovies);
                 setLoading(false);
@@ -110,7 +110,7 @@ const Banner = () => {
                         {currentMovie.title}
                     </h1>
 
-                    <p className="text-white/70 font-nunito text-sm md:text-lg max-w-xl leading-relaxed line-clamp-2 md:line-clamp-3">
+                    <p className="text-white/70 font-nunito text-sm md:text-lg max-w-xl leading-relaxed line-clamp-3">
                         {currentMovie.desc}
                     </p>
 
