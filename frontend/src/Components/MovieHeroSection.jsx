@@ -64,7 +64,7 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
             {item.original_title || item.title}
           </h1>
 
-          <p className="font-nunito text-sm md:text-xl text-white/70 md:text-white/60 max-w-xl leading-relaxed italic font-light border-l-2 border-red-600/50 pl-4 md:pl-6 line-clamp-3 md:line-clamp-none">
+          <p className="font-nunito text-sm md:text-xl text-white/70 md:text-white/60 max-w-xl leading-relaxed italic font-light border-l-2 border-red-600/50 pl-4 md:pl-6 line-clamp-3">
             {item.overview}
           </p>
 
