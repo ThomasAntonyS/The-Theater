@@ -295,27 +295,16 @@ app.get('/api/movie/:id/recommendations', async (req, res) => {
 });
 
 app.get('/api/search', async (req, res) => {
-    const { query, page } = req.query;
-    if (!query) {
-        return res.status(400).json({ error: 'Query parameter is required.' });
-    }
-    
+    const { query, page, type } = req.query;
+    if (!query) return res.status(400).json({ error: 'Query required' });
+    const searchType = type === 'person' ? 'person' : 'movie';
     try {
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/search/movie`, {
-                params: {
-                    api_key: TMDB_API_KEY,
-                    language: 'en-US',
-                    query: query,
-                    page: page || 1,
-                    include_adult: false
-                }
-            }
-        );
+        const response = await axios.get(`https://api.themoviedb.org/3/search/${searchType}`, {
+            params: { api_key: TMDB_API_KEY, query, page: page || 1, include_adult: false }
+        });
         res.json(response.data);
     } catch (error) {
-        console.error('Error fetching search results:', error.message);
-        res.status(500).json({ error: 'Failed to fetch search results.' });
+        res.status(500).json({ error: error.message });
     }
 });
 
