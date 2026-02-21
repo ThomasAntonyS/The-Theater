@@ -2,7 +2,6 @@
 <p align="center">
  
   <h1 align="center">The Theater</h1>
-
   <h2 align="center">
     A Movie Database Developed using React<br>
     <br/>
@@ -18,7 +17,8 @@
 
 
 ## About The Project
-![Screenshot 2025-04-12 115904](https://github.com/user-attachments/assets/2e1daf85-2257-4afa-b25e-5a2b1eaa9275)
+<img width="1902" height="908" alt="image" src="https://github.com/user-attachments/assets/acfc4d6d-3a32-4334-a3dd-72a66f63ee36" />
+
 
 
 
@@ -57,5 +57,6 @@ Distributed under the MIT License.
 ## Authors
 
 * **Thomas Antony S**  - *Design and Developement*
+
 
 
