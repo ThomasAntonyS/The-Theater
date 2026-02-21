@@ -66,11 +66,11 @@ const CastMovies = () => {
 
                 <div className="relative z-20 mb-16 max-w-2xl">
                     <div className="flex items-end gap-4 border-b-2 border-white/20 focus-within:border-red-600 transition-all duration-500 pb-2">
-                        <SearchIcon className="text-white/40 mb-1" fontSize="medium" />
+                        <SearchIcon className="text-white/70 mb-1" fontSize="medium" />
                         <input
                             type="text"
                             placeholder="FILTER TITLES..."
-                            className="w-full bg-transparent text-xl md:text-2xl font-manrope font-bold text-white focus:outline-none placeholder:text-white/20 uppercase tracking-widest"
+                            className="w-full bg-transparent text-xl md:text-2xl font-manrope font-bold text-white focus:outline-none placeholder:text-white/70 uppercase tracking-widest"
                             onChange={(e) => setSearchQuery(e.target.value)}
                             value={searchQuery}
                         />

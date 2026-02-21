@@ -116,7 +116,7 @@ const Search = () => {
             <input
               ref={inputRef}
               type="text"
-              placeholder={searchType === 'movie' ? "TYPE MOVIE TITLE..." : "SEARCH ACTORS, DIRECTORS..."}
+              placeholder={searchType === 'movie' ? "SEARCH MOVIE..." : "SEARCH CAST..."}
               className="w-full bg-transparent text-2xl md:text-4xl font-manrope font-bold text-white focus:outline-none placeholder:text-white/70 uppercase tracking-tighter"
               value={searchQuery}
               onChange={handleInputChange}
