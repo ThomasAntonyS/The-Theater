@@ -12,6 +12,7 @@ const ProfileContextProvider = ({ children }) => {
     }
   };
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userWatchlist, setUserWatchlist] = useState(() => getSessionItem('userWatchlist', []));
 
 
@@ -25,6 +26,8 @@ const ProfileContextProvider = ({ children }) => {
       value={{
         userWatchlist,
         setUserWatchlist,
+        isLoggedIn,
+        setIsLoggedIn
       }}
     >
       {children}

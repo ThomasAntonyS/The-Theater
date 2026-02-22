@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Logo from '../assets/Logo.png';
+import { ProfileContext } from '../Context/ProfileContextProvider';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const {isLoggedIn} = useContext(ProfileContext)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -52,14 +55,40 @@ const Header = () => {
       </div>
 
       <div className="flex items-center gap-2 md:gap-4">
-        <Link to="/search" onClick={scrollToTop} className="p-2 md:p-2.5 text-white hover:text-white bg-white/20 hover:bg-white/10 rounded-xl transition-all">
-          <SearchIcon fontSize="small" />
+
+        {
+          !isLoggedIn && (
+            <div className='hidden sm:flex gap-2 uppercase text-white'>
+              <Link 
+                to={'/login'} 
+                className=' font-bold hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>
+                  Log in 
+              </Link>
+
+              <span className=' font-bold'>/</span>
+
+              <Link 
+                to={'/signup'} 
+                className=' font-bold hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>
+                  Sign UP
+              </Link>
+            </div>
+          )
+        }
+
+        <Link to="/search" onClick={scrollToTop} className="p-2 md:p-2.5 text-sm text-white hover:text-white bg-white/30 hover:bg-white/10 rounded-xl transition-all">
+          <span className=' hidden sm:inline'>SEARCH</span>
+          <SearchIcon fontSize="small" className='-mt-[1px] sm:ml-1'/>
         </Link>
         
-        <Link to="/watchlist" onClick={scrollToTop} className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 md:px-6 md:py-2.5 rounded-xl text-[10px] md:text-xs font-bold tracking-tighter hover:bg-red-600 hover:text-white transition-all">
-          <LiveTvIcon fontSize="small" className="scale-75 md:scale-100" />
-          WATCHLIST
-        </Link>
+        {
+          isLoggedIn && (
+            <Link to="/watchlist" onClick={scrollToTop} className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 md:p-2.5 rounded-xl text-sm font-bold tracking-tighter hover:bg-red-600 hover:text-white transition-all">
+              <LiveTvIcon fontSize="small" className=" scale-75 md:scale-100" />
+              WATCHLIST
+            </Link>
+          )
+        }
 
         <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white bg-white/20 rounded-xl font-manrope text-sm flex items-center gap-1 px-3">
           MENU {menuOpen ? <KeyboardArrowUpIcon fontSize="small" /> : <KeyboardArrowDownIcon fontSize="small" />}
@@ -69,17 +98,45 @@ const Header = () => {
       <div className={`absolute top-full left-0 w-full bg-[#050505]/95 backdrop-blur-3xl border-t border-white/5 flex flex-col p-8 gap-6 md:hidden transition-all duration-500 origin-top font-manrope ${
         menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
       }`}>
+
         <Link to="/" onClick={scrollToTop} className="text-3xl font-bold text-white transition-colors lowercase italic tracking-tighter">Home</Link>
+
         {navLinks.map(link => (
           <Link key={link.name} to={link.path} onClick={scrollToTop} className="text-3xl font-bold text-white transition-colors lowercase italic tracking-tighter">{link.name}</Link>
         ))}
+
         <div className="h-[1px] w-full bg-white/70 my-2" />
+
+        {
+          !isLoggedIn && (
+            <div className=' flex gap-x-6 gap-y-2 uppercase text-white text-lg'>
+              <Link 
+                to={'/login'} 
+                className=' flex items-center font-bold'>
+                  <KeyboardDoubleArrowRightIcon/> Log in 
+              </Link>
+
+              <Link 
+                to={'/signup'} 
+                className=' flex items-center font-bold'>
+                  <KeyboardDoubleArrowRightIcon/> Sign UP
+              </Link>
+            </div>
+          )
+        }
+
         <Link to="/search" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 text-white font-bold rounded-2xl text-lg italic border border-white/10">
-           <SearchIcon /> SEARCH
+          <SearchIcon /> SEARCH
         </Link>
-        <Link to="/watchlist" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 bg-white text-black font-bold rounded-2xl text-lg italic">
-           <LiveTvIcon /> WATCHLIST
-        </Link>
+
+        {
+          isLoggedIn && (
+          <Link to="/watchlist" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 bg-white text-black font-bold rounded-2xl text-lg italic">
+            <LiveTvIcon /> WATCHLIST
+          </Link>
+          )
+        }
+
       </div>
     </nav>
   );

@@ -13,6 +13,8 @@ import NotFound from './Pages/NotFound'
 import GenreMoviesPage from './Components/GenreMoviesPage'
 import CollectionPage from './Pages/CollectionsPage'
 import Trending from './Pages/Trending'
+import Login from './Pages/Login'
+import SignUp from './Pages/SignUp'
 
 
 function App() {
@@ -28,6 +30,14 @@ function App() {
             <Route 
             path='/' 
             element={<Home/>}/>
+
+            <Route 
+            path='/login' 
+            element={<Login/>}/>
+
+            <Route 
+            path='/signup' 
+            element={<SignUp/>}/>
 
             <Route
             path='/popular/page/:page_no'

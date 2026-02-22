@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/Logo.png';
+import { ProfileContext } from '../Context/ProfileContextProvider';
 
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +29,7 @@ const Accordion = ({ title, children }) => {
 };
 
 const Footer = () => {
+  const {isLoggedIn} = useContext(ProfileContext)
   const navigate = useNavigate();
 
   const handleNavigation = (e, link) => {
@@ -37,15 +39,15 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'Search', to: '/search' },
-    { label: 'Popular', to: '/popular/page/1' },
-    { label: 'Trending', to: '/trending/page/1' },
-    { label: 'Top Rated', to: '/top_rated/page/1' },
-    { label: 'Upcoming', to: '/upcoming/page/1' },
-    { label: 'WatchList', to: '/watchlist' },
-    { label: 'Sign Up', to: '/sign_up' },
-    { label: 'Sign In', to: '/sign_in' },
+    { label: 'Home', to: '/', isVisible : true },
+    { label: 'Search', to: '/search', isVisible : true },
+    { label: 'Popular', to: '/popular/page/1', isVisible : true },
+    { label: 'Trending', to: '/trending/page/1', isVisible : true },
+    { label: 'Top Rated', to: '/top_rated/page/1', isVisible : true },
+    { label: 'Upcoming', to: '/upcoming/page/1', isVisible : true },
+    { label: 'WatchList', to: '/watchlist', isVisible : true },
+    { label: 'Log in', to: '/login', isVisible: isLoggedIn ? false : true },
+    { label: 'Sign Up', to: '/signup', isVisible: isLoggedIn ? false : true },
   ];
 
   return (
@@ -70,14 +72,16 @@ const Footer = () => {
           <div className="lg:col-span-4 space-y-8">
             <h4 className="font-manrope font-black italic text-2xl uppercase tracking-tighter">Quick Access</h4>
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 font-manrope">
-              {quickLinks.map(({ label, to }, i) => (
-                <Link
-                  key={i}
-                  onClick={(e) => handleNavigation(e, to)}
-                  className="text-white/70 hover:text-red-600 transition-all text-[10px] font-bold uppercase tracking-wide w-fit"
-                >
-                  {label}
-                </Link>
+              {quickLinks.map(({ label, to, isVisible }, i) => (
+                isVisible && (
+                  <Link
+                    key={i}
+                    onClick={(e) => handleNavigation(e, to)}
+                    className="text-white/70 hover:text-red-600 transition-all text-[10px] font-bold uppercase tracking-wide w-fit"
+                  >
+                    {label}
+                  </Link>
+                )
               ))}
             </div>
           </div>
