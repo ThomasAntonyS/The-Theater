@@ -13,18 +13,18 @@ const Home = () => {
       <section>
         <MovieCard 
           title={"Popular Movies"} 
-          url={`${import.meta.env.VITE_API_BASE}/api/movies/popular`}
+          url={`${import.meta.env.VITE_API_BASE}/api/movies/popular/page/1`}
           navLink={'popular/page/1'}
         />
       </section>
       <MovieCard 
         title={"Upcoming"} 
-        url={`${import.meta.env.VITE_API_BASE}/api/movies/upcoming`}
+        url={`${import.meta.env.VITE_API_BASE}/api/movies/upcoming/page/1`}
         navLink={'upcoming/page/1'}
       />
       <MovieCard 
         title={"Top Rated"} 
-        url={`${import.meta.env.VITE_API_BASE}/api/movies/top-rated`}
+        url={`${import.meta.env.VITE_API_BASE}/api/movies/top-rated/page/1`}
         navLink={'top_rated/page/1'}
       />
       <Footer/>

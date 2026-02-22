@@ -26,7 +26,7 @@ const Banner = () => {
         const fetchTrendingMovies = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_BASE}/api/movies/trending`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE}/api/movies/trending/page/1`);
                 const data = await response.json();
                 const topMovies = data.results.slice(0, 10).map(movie => ({
                     title: movie.title || movie.name,
