@@ -24,7 +24,7 @@ const Home = () => {
       />
       <MovieCard 
         title={"Top Rated"} 
-        url={`${import.meta.env.VITE_API_BASE}/api/movies/top-rated/page/1`}
+        url={`${import.meta.env.VITE_API_BASE}/api/movies/top_rated/page/1`}
         navLink={'top_rated/page/1'}
       />
       <Footer/>
