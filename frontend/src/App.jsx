@@ -15,6 +15,7 @@ import CollectionPage from './Pages/CollectionsPage'
 import Trending from './Pages/Trending'
 import Login from './Pages/Login'
 import SignUp from './Pages/SignUp'
+import UnderDevelopment from './Pages/UnderDevelopment'
 
 
 function App() {
@@ -33,11 +34,11 @@ function App() {
 
             <Route 
             path='/login' 
-            element={<Login/>}/>
+            element={<UnderDevelopment/>}/>
 
             <Route 
             path='/signup' 
-            element={<SignUp/>}/>
+            element={<UnderDevelopment/>}/>
 
             <Route
             path='/popular/page/:page_no'
