@@ -1,11 +1,13 @@
 import PlaceHolderImage from '../assets/placeholder_movie.png'
 import { RiMovieLine } from "react-icons/ri";
 import { FiCalendar, FiStar } from "react-icons/fi";
-import { useState, useEffect } from 'react';
+import { HiOutlineArrowSmRight } from "react-icons/hi";
+import { IoClose } from 'react-icons/io5';
+import { useState, useEffect} from 'react';
 
-const MovieHeroSection = ({ item, handleWatchlist }) => {
+const MovieHeroSection = ({ item, handleWatchlist, inWatchList }) => {
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener('resize', handleResize);
@@ -23,7 +25,7 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black font-manrope">
+    <section className="relative h-dvh sm:h-screen w-full overflow-hidden bg-black font-manrope">
       <div className="absolute inset-0 z-0">
         <img
           src={isMobile ? 
@@ -73,10 +75,10 @@ const MovieHeroSection = ({ item, handleWatchlist }) => {
               onClick={handleWatchlist}
               className="group relative w-max sm:w-auto inline-flex items-center justify-center gap-4 bg-white text-black px-5 py-3 rounded-md font-black uppercase tracking-wide text-[10px] md:text-xs transition-all duration-300 hover:bg-red-600 hover:text-white md:hover:pr-12"
             >
-              <RiMovieLine size={20} />
-              <span>Add to Watchlist</span>
+              {inWatchList?<IoClose size={20} />:<RiMovieLine size={20} />}
+              <span>{inWatchList? "Remove from Watchlist" : "Add to Watchlist"}</span>
               <div className="hidden md:block absolute right-4 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
-                &rarr;
+                <HiOutlineArrowSmRight className=' h-max' size={20}/>
               </div>
             </button>
           </div>

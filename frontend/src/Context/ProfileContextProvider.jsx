@@ -4,7 +4,7 @@ export const ProfileContext = createContext();
 
 const ProfileContextProvider = ({ children }) => {
   const getSessionItem = (key, defaultValue) => {
-    const storedValue = sessionStorage.getItem(key);
+    const storedValue = localStorage.getItem(key);
     try {
       return storedValue ? JSON.parse(storedValue) : defaultValue;
     } catch {
@@ -12,12 +12,11 @@ const ProfileContextProvider = ({ children }) => {
     }
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userWatchlist, setUserWatchlist] = useState(() => getSessionItem('userWatchlist', []));
 
 
   useEffect(() => {
-    sessionStorage.setItem('userWatchlist', JSON.stringify(userWatchlist));
+    localStorage.setItem('userWatchlist', JSON.stringify(userWatchlist));
   }, [userWatchlist]);
 
 
@@ -26,8 +25,6 @@ const ProfileContextProvider = ({ children }) => {
       value={{
         userWatchlist,
         setUserWatchlist,
-        isLoggedIn,
-        setIsLoggedIn
       }}
     >
       {children}

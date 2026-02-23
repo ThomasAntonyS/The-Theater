@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { PiSealCheckFill } from 'react-icons/pi';
 import { IoClose } from 'react-icons/io5';
+import { HiOutlineArrowSmRight } from "react-icons/hi";
 import { useEffect } from 'react';
 
 const FloatingPopup = ({ message, isError, onClose }) => {
@@ -48,9 +49,9 @@ const FloatingPopup = ({ message, isError, onClose }) => {
             <Link
               to="/watchlist"
               onClick={onClose}
-              className="inline-block text-red-600 font-manrope font-black text-[10px] uppercase tracking-[0.2em] mt-4 hover:text-white transition-colors"
+              className="flex align-middle text-red-600 font-manrope font-black text-sm tracking-[0.15em] mt-4 hover:text-white transition-colors"
             >
-              View Watchlist &rarr;
+              View Watchlist <HiOutlineArrowSmRight size={17} className='my-auto ml-2'/>
             </Link>
           )}
         </div>

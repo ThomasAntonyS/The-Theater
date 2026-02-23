@@ -1,17 +1,14 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Logo from '../assets/Logo.png';
-import { ProfileContext } from '../Context/ProfileContextProvider';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const {isLoggedIn} = useContext(ProfileContext)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -56,41 +53,15 @@ const Header = () => {
 
       <div className="flex items-center gap-2 md:gap-4">
 
-        {
-          !isLoggedIn && (
-            <div className='hidden sm:flex gap-2 uppercase text-white'>
-              <Link 
-                to={'/login'}
-                onClick={scrollToTop} 
-                className=' font-bold hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>
-                  Log in 
-              </Link>
-
-              <span className=' font-bold'>/</span>
-
-              <Link 
-                to={'/signup'} 
-                onClick={scrollToTop}
-                className=' font-bold hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>
-                  Sign UP
-              </Link>
-            </div>
-          )
-        }
-
         <Link to="/search" onClick={scrollToTop} className="p-2 md:p-2.5 text-sm text-white hover:text-white bg-white/30 hover:bg-white/10 rounded-xl transition-all">
           <span className=' hidden sm:inline'>SEARCH</span>
           <SearchIcon fontSize="small" className='-mt-[1px] sm:ml-1'/>
         </Link>
         
-        {
-          isLoggedIn && (
-            <Link to="/watchlist" onClick={scrollToTop} className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 md:p-2.5 rounded-xl text-sm font-bold tracking-tighter hover:bg-red-600 hover:text-white transition-all">
-              <LiveTvIcon fontSize="small" className=" scale-75 md:scale-100" />
-              WATCHLIST
-            </Link>
-          )
-        }
+        <Link to="/watchlist" onClick={scrollToTop} className="hidden sm:flex items-center gap-2 bg-white text-black px-4 py-2 md:p-2.5 rounded-xl text-sm font-bold tracking-tighter hover:bg-red-600 hover:text-white transition-all">
+          <LiveTvIcon fontSize="small" className=" scale-75 md:scale-100" />
+          WATCHLIST
+        </Link>
 
         <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white bg-white/30 rounded-xl font-manrope text-sm flex items-center gap-1 px-3">
           MENU {menuOpen ? <KeyboardArrowUpIcon fontSize="small" /> : <KeyboardArrowDownIcon fontSize="small" />}
@@ -109,37 +80,13 @@ const Header = () => {
 
         <div className="h-[1px] w-full bg-white/70 my-2" />
 
-        {
-          !isLoggedIn && (
-            <div className=' flex gap-x-6 gap-y-2 uppercase text-white text-lg'>
-              <Link 
-                to={'/login'} 
-                onClick={scrollToTop}
-                className=' flex items-center font-bold'>
-                  <KeyboardDoubleArrowRightIcon/> Log in 
-              </Link>
-
-              <Link 
-                to={'/signup'} 
-                onClick={scrollToTop}
-                className=' flex items-center font-bold'>
-                  <KeyboardDoubleArrowRightIcon/> Sign UP
-              </Link>
-            </div>
-          )
-        }
-
         <Link to="/search" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 text-white font-bold rounded-2xl text-lg italic border border-white/10">
           <SearchIcon /> SEARCH
         </Link>
 
-        {
-          isLoggedIn && (
-          <Link to="/watchlist" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 bg-white text-black font-bold rounded-2xl text-lg italic">
-            <LiveTvIcon /> WATCHLIST
-          </Link>
-          )
-        }
+        <Link to="/watchlist" onClick={scrollToTop} className="flex items-center justify-center gap-2 w-full py-4 bg-white text-black font-bold rounded-2xl text-lg italic">
+          <LiveTvIcon /> WATCHLIST
+        </Link>
 
       </div>
     </nav>

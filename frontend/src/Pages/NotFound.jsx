@@ -5,7 +5,7 @@ import { FaAnglesRight } from "react-icons/fa6";
 
 const NotFound = () => {
   const navigate = useNavigate();
-  document.title = "LOST IN SPACE — 404";
+  document.title = "404: Not_Found";
 
   return (
     <div className="relative h-screen w-full bg-[#050505] overflow-hidden flex items-center justify-center">

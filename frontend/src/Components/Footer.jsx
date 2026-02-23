@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/Logo.png';
-import { ProfileContext } from '../Context/ProfileContextProvider';
 
 const Accordion = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +28,6 @@ const Accordion = ({ title, children }) => {
 };
 
 const Footer = () => {
-  const {isLoggedIn} = useContext(ProfileContext)
   const navigate = useNavigate();
 
   const handleNavigation = (e, link) => {
@@ -46,8 +44,6 @@ const Footer = () => {
     { label: 'Top Rated', to: '/top_rated/page/1', isVisible : true },
     { label: 'Upcoming', to: '/upcoming/page/1', isVisible : true },
     { label: 'WatchList', to: '/watchlist', isVisible : true },
-    { label: 'Log in', to: '/login', isVisible: isLoggedIn ? false : true },
-    { label: 'Sign Up', to: '/signup', isVisible: isLoggedIn ? false : true },
   ];
 
   return (

@@ -19,13 +19,15 @@ const MovieMain = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { userWatchlist, setUserWatchlist, isLoggedIn } = useContext(ProfileContext);
+  const { userWatchlist, setUserWatchlist } = useContext(ProfileContext);
   const [popup, setPopup] = useState({
     isOpen: false,
     message: '',
     isError: false,
   });
   const navigate = useNavigate();
+
+  const inWatchList = userWatchlist.find(movie=>movie.id==id)
 
   useEffect(() => {
     if (item) {
@@ -55,37 +57,28 @@ const MovieMain = () => {
     setLoading(false);
   };
 
-  const handleWatchlist = (e) => {
+  const handleSaveWatchlist = (e) => {
     e.preventDefault();
-    if(!isLoggedIn){
-      setPopup({
-        isOpen: true,
-        message: "Log In to add movie to wishlist",
-        isError: true,
-      });
-      return;
-    }
-    const exists = userWatchlist.some(movie => movie.id === item.id);
-  
-    if (!exists) {
-      setUserWatchlist(prev => [...prev, item]);
-      setPopup({
-        isOpen: true,
-        message: `${item.title} added to watchlist!`,
-        isError: false,
-      });
-    } else {
-      setPopup({
-        isOpen: true,
-        message: 'Movie already exists in watchlist.',
-        isError: true,
-      });
-    }
-  
-    setTimeout(() => {
-      setPopup({ isOpen: false, message: '', isError: false });
-    }, 5000);
-  };  
+    setUserWatchlist(prev => [...prev, item]);
+    setPopup({
+      isOpen: true,
+      message: `${item.title} added to watchlist!`,
+      isError: false,
+    });
+    return
+  }
+
+  const  handleUnsaveWatchlist = (e) => {
+    e.preventDefault();
+    const filteredData = userWatchlist.filter(movie=>movie.id != id)
+    setUserWatchlist(filteredData)
+    setPopup({
+      isOpen: true,
+      message: `${item.title} removed to watchlist!`,
+      isError: false,
+    });
+    return
+  }
 
   return (
     <>
@@ -104,7 +97,8 @@ const MovieMain = () => {
         <div className="w-full bg-black text-white">
           <MovieHeroSection
             item={item}
-            handleWatchlist={handleWatchlist}
+            handleWatchlist={inWatchList?handleUnsaveWatchlist:handleSaveWatchlist}
+            inWatchList={inWatchList}
           />
           
           <MovieDescription item={item}/>
