@@ -2,8 +2,14 @@ import { Link } from 'react-router-dom';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { PiSealCheckFill } from 'react-icons/pi';
 import { IoClose } from 'react-icons/io5';
+import { useEffect } from 'react';
 
 const FloatingPopup = ({ message, isError, onClose }) => {
+
+  useEffect(()=>{
+    setTimeout(()=> onClose(), 3000)
+  },[])
+
   return (
     <div
       role="alert"
@@ -27,7 +33,7 @@ const FloatingPopup = ({ message, isError, onClose }) => {
             </p>
             <button
               onClick={onClose}
-              className="text-white/20 hover:text-white transition-colors focus:outline-none"
+              className="text-white/70 hover:text-white transition-colors focus:outline-none"
               aria-label="Close popup"
             >
               <IoClose className="w-5 h-5" />

@@ -60,7 +60,8 @@ const Header = () => {
           !isLoggedIn && (
             <div className='hidden sm:flex gap-2 uppercase text-white'>
               <Link 
-                to={'/login'} 
+                to={'/login'}
+                onClick={scrollToTop} 
                 className=' font-bold hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>
                   Log in 
               </Link>
@@ -69,6 +70,7 @@ const Header = () => {
 
               <Link 
                 to={'/signup'} 
+                onClick={scrollToTop}
                 className=' font-bold hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>
                   Sign UP
               </Link>
@@ -90,7 +92,7 @@ const Header = () => {
           )
         }
 
-        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white bg-white/20 rounded-xl font-manrope text-sm flex items-center gap-1 px-3">
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white bg-white/30 rounded-xl font-manrope text-sm flex items-center gap-1 px-3">
           MENU {menuOpen ? <KeyboardArrowUpIcon fontSize="small" /> : <KeyboardArrowDownIcon fontSize="small" />}
         </button>
       </div>
@@ -112,12 +114,14 @@ const Header = () => {
             <div className=' flex gap-x-6 gap-y-2 uppercase text-white text-lg'>
               <Link 
                 to={'/login'} 
+                onClick={scrollToTop}
                 className=' flex items-center font-bold'>
                   <KeyboardDoubleArrowRightIcon/> Log in 
               </Link>
 
               <Link 
                 to={'/signup'} 
+                onClick={scrollToTop}
                 className=' flex items-center font-bold'>
                   <KeyboardDoubleArrowRightIcon/> Sign UP
               </Link>

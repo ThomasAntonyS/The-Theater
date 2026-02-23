@@ -19,7 +19,7 @@ const MovieMain = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { userWatchlist, setUserWatchlist } = useContext(ProfileContext);
+  const { userWatchlist, setUserWatchlist, isLoggedIn } = useContext(ProfileContext);
   const [popup, setPopup] = useState({
     isOpen: false,
     message: '',
@@ -57,6 +57,14 @@ const MovieMain = () => {
 
   const handleWatchlist = (e) => {
     e.preventDefault();
+    if(!isLoggedIn){
+      setPopup({
+        isOpen: true,
+        message: "Log In to add movie to wishlist",
+        isError: true,
+      });
+      return;
+    }
     const exists = userWatchlist.some(movie => movie.id === item.id);
   
     if (!exists) {
