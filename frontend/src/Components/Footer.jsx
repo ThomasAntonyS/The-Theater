@@ -38,6 +38,7 @@ const Footer = () => {
 
   const quickLinks = [
     { label: 'Home', to: '/', isVisible : true },
+    { label: 'Discover', to: '/discover/page/1', isVisible : true },
     { label: 'Search', to: '/search', isVisible : true },
     { label: 'Popular', to: '/popular/page/1', isVisible : true },
     { label: 'Trending', to: '/trending/page/1', isVisible : true },

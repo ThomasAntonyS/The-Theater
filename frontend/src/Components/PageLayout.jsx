@@ -28,14 +28,18 @@ const PageLayout = ({ movies, title, path, pageCount, totalPages, loading }) => 
 
     return (
         <div className='flex flex-col w-full min-h-screen bg-[#050505] overflow-hidden mt-[5vh]'>
-            <div className="relative py-[12vh] px-6">
-                <h1 className='text-white text-6xl md:text-8xl lg:text-[10rem] text-center font-manrope font-black italic uppercase tracking-tighter leading-none opacity-20 absolute inset-0 flex items-center justify-center select-none pointer-events-none whitespace-nowrap'>
-                    {title}
-                </h1>
-                <h2 className='text-white text-4xl md:text-6xl text-center font-manrope font-black italic uppercase tracking-tighter relative z-10'>
-                    {title}
-                </h2>
-            </div>
+            {title?
+                <div className="relative py-[12vh] px-6">
+                    <h1 className='text-white text-6xl md:text-8xl lg:text-[10rem] text-center font-manrope font-black italic uppercase tracking-tighter leading-none opacity-20 absolute inset-0 flex items-center justify-center select-none pointer-events-none whitespace-nowrap'>
+                        {title}
+                    </h1>
+                    <h2 className='text-white text-4xl md:text-6xl text-center font-manrope font-black italic uppercase tracking-tighter relative z-10'>
+                        {title}
+                    </h2>
+                </div>
+                :
+                null
+            }
 
             {!loading ? (
                 <div className='max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 px-6 pb-20 w-full'>

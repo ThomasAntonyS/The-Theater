@@ -22,10 +22,9 @@ const Header = () => {
   };
 
   const navLinks = [
+    { name: 'Discover', path: '/discover/page/1' },
     { name: 'Popular', path: '/popular/page/1' },
     { name: 'Top-Rated', path: '/top_rated/page/1' },
-    { name: 'Trending', path: '/trending/page/1' },
-    { name: 'Upcoming', path: '/upcoming/page/1' },
   ];
 
   return (

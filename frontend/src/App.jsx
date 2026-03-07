@@ -13,6 +13,7 @@ import NotFound from './Pages/NotFound'
 import GenreMoviesPage from './Components/GenreMoviesPage'
 import CollectionPage from './Pages/CollectionsPage'
 import Trending from './Pages/Trending'
+import Discover from './Pages/Discover'
 
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
             <Route 
             path='/' 
             element={<Home/>}/>
+
+            <Route 
+            path='/discover/page/:page_no' 
+            element={<Discover/>}/> 
 
             <Route
             path='/popular/page/:page_no'

@@ -264,6 +264,48 @@ app.get('/api/search', async (req, res) => {
     }
 });
 
+app.get('/api/discover', async (req, res) => {
+    const { genre, language, yearStart, yearEnd, rating, sort_by, page } = req.query;
+
+    try {
+        const response = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
+            params: {
+                api_key: TMDB_API_KEY,
+                language: 'en-US',
+                sort_by: sort_by || 'popularity.desc',
+                with_genres: genre || undefined,
+                with_original_language: language || undefined,
+                "primary_release_date.gte": yearStart ? `${yearStart}-01-01` : undefined,
+                "primary_release_date.lte": yearEnd ? `${yearEnd}-12-31` : undefined,
+                "vote_average.gte": rating || undefined,
+                page: page || 1,
+                include_adult: false
+            }
+        });
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch filtered results." });
+    }
+});
+
+app.get('/api/genres', async (req, res) => {
+    try {
+        const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${TMDB_API_KEY}&language=en-US`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch genres" });
+    }
+});
+
+app.get('/api/languages', async (req, res) => {
+    try {
+        const response = await axios.get(`https://api.themoviedb.org/3/configuration/languages?api_key=${TMDB_API_KEY}`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch languages" });
+    }
+});
+
 app.get("/", async (req, res) => {
   res.send("Welcome to the theater backend.")
 });
