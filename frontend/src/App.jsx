@@ -14,6 +14,7 @@ import GenreMoviesPage from './Components/GenreMoviesPage'
 import CollectionPage from './Pages/CollectionsPage'
 import Trending from './Pages/Trending'
 import Discover from './Pages/Discover'
+import ProductionPage from './Pages/ProductionPage'
 
 
 function App() {
@@ -62,6 +63,11 @@ function App() {
             <Route
             path={'/cast/:id/:job'}
             element={<CastMovies/>}
+            />
+
+            <Route 
+            path="/production/:companyId/page/:page_no" 
+            element={<ProductionPage />} 
             />
 
             <Route

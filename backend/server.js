@@ -306,6 +306,29 @@ app.get('/api/languages', async (req, res) => {
     }
 });
 
+app.get('/api/production/:companyId/page/:page_no', async (req, res) => {
+    const { companyId, page_no } = req.params;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_companies=${companyId}&page=${page_no}&language=en-US&sort_by=popularity.desc`;
+    
+    try {
+        const response = await axios.get(url);
+        res.json(response.data);
+    } catch (error) {
+        console.error("Error fetching production movies:", error.message);
+        res.status(500).json({ error: "Failed to fetch production house movies." });
+    }
+});
+
+app.get('/api/company/:companyId', async (req, res) => {
+    const { companyId } = req.params;
+    try {
+        const response = await axios.get(`https://api.themoviedb.org/3/company/${companyId}?api_key=${TMDB_API_KEY}`);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch company details" });
+    }
+});
+
 app.get("/", async (req, res) => {
   res.send("Welcome to the theater backend.")
 });

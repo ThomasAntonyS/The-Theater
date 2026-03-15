@@ -41,7 +41,7 @@ const MovieDescription = ({ item }) => {
   };
 
   return (
-    <section className="relative w-full px-6 md:px-12 bg-transparent text-white overflow-hidden py-16">
+    <section className="relative max-w-[1400px] px-6 md:px-10 bg-transparent text-white overflow-hidden py-16 mx-auto">
       <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-12 xl:gap-20">
         
         <div className="hidden lg:block w-[400px] flex-shrink-0" data-aos="zoom-out" data-aos-duration="1200">
@@ -140,7 +140,7 @@ const MovieDescription = ({ item }) => {
               <Link 
                 to={`/collection/${belongs_to_collection.id}`}
                 onClick={handleScrollTop}
-                className="group p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all"
+                className="group p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.05] border border-red-600 transition-all"
               >
                 <p className="text-[10px] font-manrope font-black text-red-600 uppercase tracking-[0.1em] mb-1">Part of a Series</p>
                 <p className="text-lg font-manrope font-black italic uppercase group-hover:translate-x-2 transition-transform">{belongs_to_collection.name} &rarr;</p>
@@ -153,12 +153,19 @@ const MovieDescription = ({ item }) => {
               <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em] mb-6">Studio Partners</p>
               <div className="flex flex-wrap gap-8 items-center transition-all">
                 {visibleStudios.map((company) => (
-                  <img
-                    key={company.id}
-                    src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
-                    alt={company.name}
-                    className="h-7 md:h-9 object-contain invert opacity-70 hover:opacity-100 transition-opacity"
-                  />
+                  <Link 
+                    key={company.id} 
+                    to={`/production/${company.id}/page/1`} 
+                    onClick={handleScrollTop}
+                    className="group relative"
+                    title={company.name}
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
+                      alt={company.name}
+                      className="h-7 md:h-9 object-contain invert transition-all duration-300 hover:scale-110"
+                    />
+                  </Link>
                 ))}
                 
                 {!showAllStudios && extraStudios.length > 0 && (
@@ -174,9 +181,14 @@ const MovieDescription = ({ item }) => {
               {showAllStudios && (
                 <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 animate-in fade-in slide-in-from-top-2 duration-500">
                   {extraStudios.map((company) => (
-                    <span key={company.id} className="text-[11px] font-manrope font-bold text-white/60 uppercase tracking-tight">
+                    <Link 
+                        key={company.id} 
+                        to={`/production/${company.id}/page/1`} 
+                        onClick={handleScrollTop}
+                        className="text-[11px] font-manrope font-bold text-white/60 uppercase tracking-tight hover:text-red-600 transition-colors"
+                    >
                       {company.name}
-                    </span>
+                    </Link>
                   ))}
                   <button 
                     onClick={() => setShowAllStudios(false)}
