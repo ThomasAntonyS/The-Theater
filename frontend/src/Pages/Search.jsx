@@ -80,7 +80,7 @@ const Search = () => {
         try {
           const response = await fetch(`${backendBaseUrl}/api/search?query=${encodeURIComponent(query)}&page=1&type=${searchType}`);
           const data = await response.json();
-          setSuggestions(data.results.slice(0, 6));
+          setSuggestions(data.results.slice(0, 6) || []);
           setShowSuggestions(true);
         } catch (error) { console.error(error); }
       }, 400);

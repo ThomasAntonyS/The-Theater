@@ -39,7 +39,7 @@ const TopRated = () => {
             }
             
             setPageCount(page_no);
-            setMovie(response.results);
+            setMovie(response.results || []);
             setTotalPages(response.total_pages);
         } catch (err) {
             console.error(err);

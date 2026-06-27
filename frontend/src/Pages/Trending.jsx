@@ -39,7 +39,7 @@ const Trending = () => {
             }
 
             setPageCount(page_no);
-            setMovie(response.results);
+            setMovie(response.results || []);
             setTotalPages(response.total_pages);
         } catch (error) {
             console.error("Error fetching trending movies:", error);

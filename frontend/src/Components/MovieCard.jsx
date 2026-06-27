@@ -18,8 +18,9 @@ const MovieCard = ({ title, url, navLink }) => {
         try {
           const data = await fetch(url);
           const movie = await data.json();
-          setMovies(movie.results);
-          sessionStorage.setItem(storageKey, JSON.stringify(movie.results));
+          setMovies(movie.results || []);
+          if(movie.results.length>0)
+            sessionStorage.setItem(storageKey, JSON.stringify(movie.results));
         } catch (error) {
           console.log(error);
         }
@@ -39,7 +40,7 @@ const MovieCard = ({ title, url, navLink }) => {
 
   return (
     <section className='w-full max-w-[1400px] mx-auto mb-16 px-4 md:px-8'>
-      {movies.length > 0 && (
+      {movies?.length > 0 && (
         <>
           <div className='flex items-end justify-between mb-2 border-b border-white/5 pb-4'>
             <div className='flex items-center gap-4'>
