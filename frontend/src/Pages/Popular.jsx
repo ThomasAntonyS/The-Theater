@@ -38,7 +38,6 @@ const Popular = () => {
                 return;
             }
 
-            id
             setPageCount(page_no);
             setMovie(response.results || []);
             setTotalPages(response.total_pages);
