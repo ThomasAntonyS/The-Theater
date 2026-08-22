@@ -100,9 +100,9 @@ const RatingSelect = ({ label, value, onChange }) => {
 
     const options = [
         { label: "Any Rating", value: "" },
-        { label: "Masterpiece (8.5+)", value: "8.5" },
+        { label: "Masterpiece (8.0+)", value: "8.0" },
         { label: "Must Watch (7.5+)", value: "7.5" },
-        { label: "Good (6.5+)", value: "6.5" }
+        { label: "Good (7.0+)", value: "7.0" },
     ];
 
     useEffect(() => {
