@@ -17,7 +17,7 @@
 
 
 ## About The Project
-<img width="1902" height="908" alt="image" src="https://github.com/user-attachments/assets/acfc4d6d-3a32-4334-a3dd-72a66f63ee36" />
+<img width="1901" height="909" alt="image" src="https://github.com/user-attachments/assets/aa149d90-08f2-437c-8521-d94d72b30bd7" />
 
 
 
