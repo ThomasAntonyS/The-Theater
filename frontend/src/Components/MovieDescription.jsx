@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import StarIcon from '@mui/icons-material/Star';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PublicIcon from '@mui/icons-material/Public';
-import PaymentsIcon from '@mui/icons-material/Payments';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { GiCash } from "react-icons/gi";
+import { LiaMoneyBillWaveSolid } from "react-icons/lia";
 
 const MovieDescription = ({ item }) => {
   const [showAllStudios, setShowAllStudios] = useState(false);
@@ -170,14 +170,14 @@ const MovieDescription = ({ item }) => {
 
             <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5 space-y-4">
               <div className="flex items-center gap-3">
-                <PaymentsIcon className="text-red-600" />
+                <GiCash className="text-red-600" />
                 <div>
                   <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em]">Budget</p>
                   <p className="text-sm font-nunito font-bold">{formatCompactCurrency(budget)}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 pt-2 border-t border-white/5">
-                <TrendingUpIcon className="text-red-600" />
+                <LiaMoneyBillWaveSolid className="text-red-600" />
                 <div>
                   <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em]">Revenue</p>
                   <p className="text-sm font-nunito font-bold">{formatCompactCurrency(revenue)}</p>
