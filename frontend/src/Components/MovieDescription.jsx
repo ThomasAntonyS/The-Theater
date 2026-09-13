@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import StarIcon from '@mui/icons-material/Star';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { IoLanguage } from "react-icons/io5";
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import PublicIcon from '@mui/icons-material/Public';
 import { GiCash } from "react-icons/gi";
 import { LiaMoneyBillWaveSolid } from "react-icons/lia";
@@ -159,7 +160,7 @@ const MovieDescription = ({ item }) => {
                 </div>
               </div>
               <div className="pt-2 border-t border-white/5 flex items-center gap-3">
-                <AccessTimeIcon className="text-red-600" />
+                <IoLanguage className="text-red-600" size={26}/>
                 <div>
                   <p className="text-[10px] font-manrope font-black text-white/70 uppercase tracking-[0.1em]">Available Languages</p>
                   <p className="text-sm font-nunito font-bold mt-1">{language}</p>
